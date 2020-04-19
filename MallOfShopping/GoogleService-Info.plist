@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>82856210743-tj7rctp2up505glj3an7h88fudmb0cuh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.82856210743-tj7rctp2up505glj3an7h88fudmb0cuh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAiqRMTJjhIZOaA35FZifj5BaPVeyGERl0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>82856210743</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>urv.MallOfShopping</string>
+	<key>PROJECT_ID</key>
+	<string>mallofshopping-bbdaa</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mallofshopping-bbdaa.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:82856210743:ios:10e1f0da49c0fc175d2ab2</string>
+	<key>DATABASE_URL</key>
+	<string>https://mallofshopping-bbdaa.firebaseio.com</string>
+</dict>
+</plist>

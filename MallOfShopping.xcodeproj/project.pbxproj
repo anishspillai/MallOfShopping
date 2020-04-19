@@ -1,0 +1,745 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4101C3760A7ABCE69479AE18 /* Pods_MallOfShoppingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D4A4D2209FCF90382E2D1D6 /* Pods_MallOfShoppingTests.framework */; };
+		970D640224443F1C00EB35F4 /* IndividualGroceryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970D640124443F1C00EB35F4 /* IndividualGroceryDetailView.swift */; };
+		970D6404244450DF00EB35F4 /* OrderedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970D6403244450DF00EB35F4 /* OrderedItems.swift */; };
+		973DEA7E2449C17700711CDD /* OfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973DEA7D2449C17700711CDD /* OfferView.swift */; };
+		973DEA802449E43300711CDD /* AddGroceryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973DEA7F2449E43300711CDD /* AddGroceryItems.swift */; };
+		973DEA822449E54B00711CDD /* GROCERY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973DEA812449E54B00711CDD /* GROCERY.swift */; };
+		974367EB2446D73D0058529E /* TODOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974367EA2446D73D0058529E /* TODOS.swift */; };
+		974367ED2446E01D0058529E /* ORDERS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974367EC2446E01D0058529E /* ORDERS.swift */; };
+		974367EF2446E4E10058529E /* CustomerOrderHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974367EE2446E4E10058529E /* CustomerOrderHistoryView.swift */; };
+		974367F124471E6F0058529E /* DirectToLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974367F024471E6F0058529E /* DirectToLoginPage.swift */; };
+		975FE39824435055001656D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FE39724435055001656D3 /* AppDelegate.swift */; };
+		975FE39A24435055001656D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FE39924435055001656D3 /* SceneDelegate.swift */; };
+		975FE39E24435058001656D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 975FE39D24435058001656D3 /* Assets.xcassets */; };
+		975FE3A124435058001656D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 975FE3A024435058001656D3 /* Preview Assets.xcassets */; };
+		975FE3A424435058001656D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 975FE3A224435058001656D3 /* LaunchScreen.storyboard */; };
+		975FE3AF24435058001656D3 /* MallOfShoppingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FE3AE24435058001656D3 /* MallOfShoppingTests.swift */; };
+		9768D5C3244C417B00BEE3D4 /* CustomerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768D5C2244C417B00BEE3D4 /* CustomerDetailsView.swift */; };
+		9768D5C5244C5D3B00BEE3D4 /* USER_PROFILE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9768D5C4244C5D3B00BEE3D4 /* USER_PROFILE.swift */; };
+		97736106244B8BB50046543C /* OrderedGroceryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97736105244B8BB50046543C /* OrderedGroceryView.swift */; };
+		97736109244B8EBD0046543C /* OrderedGroceryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97736108244B8EBD0046543C /* OrderedGroceryRowView.swift */; };
+		97A875002444FDA5007260EB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97A874FF2444FDA5007260EB /* GoogleService-Info.plist */; };
+		97A87502244502AA007260EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A87501244502AA007260EB /* User.swift */; };
+		97A8750424450CEE007260EB /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A8750324450CEE007260EB /* SessionStore.swift */; };
+		97A8750624450F3D007260EB /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A8750524450F3D007260EB /* OrderView.swift */; };
+		97A87508244512CA007260EB /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A87507244512CA007260EB /* SignInView.swift */; };
+		97AF66BD244B503E0075F866 /* TopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF66BC244B503E0075F866 /* TopMenu.swift */; };
+		97AF66BF244B524E0075F866 /* IndividualGrocery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF66BE244B524E0075F866 /* IndividualGrocery.swift */; };
+		97BB8421244ACFFF001614C6 /* InitialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BB8420244ACFFF001614C6 /* InitialView.swift */; };
+		97BE41212443B872009BEEF7 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BE41202443B872009BEEF7 /* AppView.swift */; };
+		DBD71704CA6F56DA0AE1012D /* Pods_MallOfShopping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F993ADE15B28094049FCC4BF /* Pods_MallOfShopping.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		975FE3AB24435058001656D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 975FE38C24435055001656D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 975FE39324435055001656D3;
+			remoteInfo = MallOfShopping;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0498122D6D9BFD59714CC891 /* Pods-MallOfShoppingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MallOfShoppingTests.release.xcconfig"; path = "Target Support Files/Pods-MallOfShoppingTests/Pods-MallOfShoppingTests.release.xcconfig"; sourceTree = "<group>"; };
+		3D4A4D2209FCF90382E2D1D6 /* Pods_MallOfShoppingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MallOfShoppingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		970D640124443F1C00EB35F4 /* IndividualGroceryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualGroceryDetailView.swift; sourceTree = "<group>"; };
+		970D6403244450DF00EB35F4 /* OrderedItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedItems.swift; sourceTree = "<group>"; };
+		973DEA7D2449C17700711CDD /* OfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferView.swift; sourceTree = "<group>"; };
+		973DEA7F2449E43300711CDD /* AddGroceryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroceryItems.swift; sourceTree = "<group>"; };
+		973DEA812449E54B00711CDD /* GROCERY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GROCERY.swift; sourceTree = "<group>"; };
+		974367EA2446D73D0058529E /* TODOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODOS.swift; sourceTree = "<group>"; };
+		974367EC2446E01D0058529E /* ORDERS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORDERS.swift; sourceTree = "<group>"; };
+		974367EE2446E4E10058529E /* CustomerOrderHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrderHistoryView.swift; sourceTree = "<group>"; };
+		974367F024471E6F0058529E /* DirectToLoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectToLoginPage.swift; sourceTree = "<group>"; };
+		975FE39424435055001656D3 /* MallOfShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MallOfShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		975FE39724435055001656D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		975FE39924435055001656D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		975FE39D24435058001656D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		975FE3A024435058001656D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		975FE3A324435058001656D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		975FE3A524435058001656D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		975FE3AA24435058001656D3 /* MallOfShoppingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MallOfShoppingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		975FE3AE24435058001656D3 /* MallOfShoppingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MallOfShoppingTests.swift; sourceTree = "<group>"; };
+		975FE3B024435058001656D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9768D5C2244C417B00BEE3D4 /* CustomerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetailsView.swift; sourceTree = "<group>"; };
+		9768D5C4244C5D3B00BEE3D4 /* USER_PROFILE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USER_PROFILE.swift; sourceTree = "<group>"; };
+		97736105244B8BB50046543C /* OrderedGroceryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedGroceryView.swift; sourceTree = "<group>"; };
+		97736108244B8EBD0046543C /* OrderedGroceryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedGroceryRowView.swift; sourceTree = "<group>"; };
+		97A874FF2444FDA5007260EB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		97A87501244502AA007260EB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		97A8750324450CEE007260EB /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		97A8750524450F3D007260EB /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
+		97A87507244512CA007260EB /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		97AF66BC244B503E0075F866 /* TopMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenu.swift; sourceTree = "<group>"; };
+		97AF66BE244B524E0075F866 /* IndividualGrocery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualGrocery.swift; sourceTree = "<group>"; };
+		97BB8420244ACFFF001614C6 /* InitialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialView.swift; sourceTree = "<group>"; };
+		97BE41202443B872009BEEF7 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		9D719DE27A6F2139CC75100A /* Pods-MallOfShoppingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MallOfShoppingTests.debug.xcconfig"; path = "Target Support Files/Pods-MallOfShoppingTests/Pods-MallOfShoppingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B444BFE1C306B916346A8876 /* Pods-MallOfShopping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MallOfShopping.debug.xcconfig"; path = "Target Support Files/Pods-MallOfShopping/Pods-MallOfShopping.debug.xcconfig"; sourceTree = "<group>"; };
+		C131C468E674B27535A7E729 /* Pods-MallOfShopping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MallOfShopping.release.xcconfig"; path = "Target Support Files/Pods-MallOfShopping/Pods-MallOfShopping.release.xcconfig"; sourceTree = "<group>"; };
+		F993ADE15B28094049FCC4BF /* Pods_MallOfShopping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MallOfShopping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		975FE39124435055001656D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBD71704CA6F56DA0AE1012D /* Pods_MallOfShopping.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		975FE3A724435058001656D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4101C3760A7ABCE69479AE18 /* Pods_MallOfShoppingTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0ACAE7F8EA36255CB5C2CE61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F993ADE15B28094049FCC4BF /* Pods_MallOfShopping.framework */,
+				3D4A4D2209FCF90382E2D1D6 /* Pods_MallOfShoppingTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		14104F8550636195D5AE1719 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B444BFE1C306B916346A8876 /* Pods-MallOfShopping.debug.xcconfig */,
+				C131C468E674B27535A7E729 /* Pods-MallOfShopping.release.xcconfig */,
+				9D719DE27A6F2139CC75100A /* Pods-MallOfShoppingTests.debug.xcconfig */,
+				0498122D6D9BFD59714CC891 /* Pods-MallOfShoppingTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		97021AEB244BAF4B00DEE89A /* OrderHistory */ = {
+			isa = PBXGroup;
+			children = (
+				974367EE2446E4E10058529E /* CustomerOrderHistoryView.swift */,
+			);
+			path = OrderHistory;
+			sourceTree = "<group>";
+		};
+		973DEA7C2449C15800711CDD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9768D5C1244C416000BEE3D4 /* CustomerDetails */,
+				97021AEB244BAF4B00DEE89A /* OrderHistory */,
+				9773610A244B9A850046543C /* IndividualGrocery */,
+				97736107244B8E7E0046543C /* OrderedGrocery */,
+				97AF66BB244B50180075F866 /* MainView */,
+				97BB841F244ACFDF001614C6 /* InitialView */,
+				973DEA7D2449C17700711CDD /* OfferView.swift */,
+				973DEA7F2449E43300711CDD /* AddGroceryItems.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		974367E92446D7240058529E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				970D6403244450DF00EB35F4 /* OrderedItems.swift */,
+				97A87501244502AA007260EB /* User.swift */,
+				974367EA2446D73D0058529E /* TODOS.swift */,
+				974367EC2446E01D0058529E /* ORDERS.swift */,
+				973DEA812449E54B00711CDD /* GROCERY.swift */,
+				9768D5C4244C5D3B00BEE3D4 /* USER_PROFILE.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		975FE38B24435055001656D3 = {
+			isa = PBXGroup;
+			children = (
+				975FE39624435055001656D3 /* MallOfShopping */,
+				975FE3AD24435058001656D3 /* MallOfShoppingTests */,
+				975FE39524435055001656D3 /* Products */,
+				14104F8550636195D5AE1719 /* Pods */,
+				0ACAE7F8EA36255CB5C2CE61 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		975FE39524435055001656D3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				975FE39424435055001656D3 /* MallOfShopping.app */,
+				975FE3AA24435058001656D3 /* MallOfShoppingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		975FE39624435055001656D3 /* MallOfShopping */ = {
+			isa = PBXGroup;
+			children = (
+				9773610C244B9ADF0046543C /* Login */,
+				9773610B244B9AC10046543C /* Session */,
+				974367E92446D7240058529E /* Model */,
+				97A874FF2444FDA5007260EB /* GoogleService-Info.plist */,
+				97BE41202443B872009BEEF7 /* AppView.swift */,
+				975FE39724435055001656D3 /* AppDelegate.swift */,
+				975FE39924435055001656D3 /* SceneDelegate.swift */,
+				975FE39D24435058001656D3 /* Assets.xcassets */,
+				975FE3A224435058001656D3 /* LaunchScreen.storyboard */,
+				975FE3A524435058001656D3 /* Info.plist */,
+				975FE39F24435058001656D3 /* Preview Content */,
+				97A8750524450F3D007260EB /* OrderView.swift */,
+				973DEA7C2449C15800711CDD /* Views */,
+			);
+			path = MallOfShopping;
+			sourceTree = "<group>";
+		};
+		975FE39F24435058001656D3 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				975FE3A024435058001656D3 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		975FE3AD24435058001656D3 /* MallOfShoppingTests */ = {
+			isa = PBXGroup;
+			children = (
+				975FE3AE24435058001656D3 /* MallOfShoppingTests.swift */,
+				975FE3B024435058001656D3 /* Info.plist */,
+			);
+			path = MallOfShoppingTests;
+			sourceTree = "<group>";
+		};
+		9768D5C1244C416000BEE3D4 /* CustomerDetails */ = {
+			isa = PBXGroup;
+			children = (
+				9768D5C2244C417B00BEE3D4 /* CustomerDetailsView.swift */,
+			);
+			path = CustomerDetails;
+			sourceTree = "<group>";
+		};
+		97736107244B8E7E0046543C /* OrderedGrocery */ = {
+			isa = PBXGroup;
+			children = (
+				97736105244B8BB50046543C /* OrderedGroceryView.swift */,
+				97736108244B8EBD0046543C /* OrderedGroceryRowView.swift */,
+			);
+			path = OrderedGrocery;
+			sourceTree = "<group>";
+		};
+		9773610A244B9A850046543C /* IndividualGrocery */ = {
+			isa = PBXGroup;
+			children = (
+				970D640124443F1C00EB35F4 /* IndividualGroceryDetailView.swift */,
+			);
+			path = IndividualGrocery;
+			sourceTree = "<group>";
+		};
+		9773610B244B9AC10046543C /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				97A8750324450CEE007260EB /* SessionStore.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		9773610C244B9ADF0046543C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				97A87507244512CA007260EB /* SignInView.swift */,
+				974367F024471E6F0058529E /* DirectToLoginPage.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		97AF66BB244B50180075F866 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				97AF66BC244B503E0075F866 /* TopMenu.swift */,
+				97AF66BE244B524E0075F866 /* IndividualGrocery.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		97BB841F244ACFDF001614C6 /* InitialView */ = {
+			isa = PBXGroup;
+			children = (
+				97BB8420244ACFFF001614C6 /* InitialView.swift */,
+			);
+			path = InitialView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		975FE39324435055001656D3 /* MallOfShopping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 975FE3B324435058001656D3 /* Build configuration list for PBXNativeTarget "MallOfShopping" */;
+			buildPhases = (
+				5F7BC2FB9F7F5E05FCC5F2AF /* [CP] Check Pods Manifest.lock */,
+				975FE39024435055001656D3 /* Sources */,
+				975FE39124435055001656D3 /* Frameworks */,
+				975FE39224435055001656D3 /* Resources */,
+				BA09FEA4B63FA0A0E4FFD518 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MallOfShopping;
+			productName = MallOfShopping;
+			productReference = 975FE39424435055001656D3 /* MallOfShopping.app */;
+			productType = "com.apple.product-type.application";
+		};
+		975FE3A924435058001656D3 /* MallOfShoppingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 975FE3B624435058001656D3 /* Build configuration list for PBXNativeTarget "MallOfShoppingTests" */;
+			buildPhases = (
+				C681E095D200EDB99A79210F /* [CP] Check Pods Manifest.lock */,
+				975FE3A624435058001656D3 /* Sources */,
+				975FE3A724435058001656D3 /* Frameworks */,
+				975FE3A824435058001656D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				975FE3AC24435058001656D3 /* PBXTargetDependency */,
+			);
+			name = MallOfShoppingTests;
+			productName = MallOfShoppingTests;
+			productReference = 975FE3AA24435058001656D3 /* MallOfShoppingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		975FE38C24435055001656D3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = URV;
+				TargetAttributes = {
+					975FE39324435055001656D3 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					975FE3A924435058001656D3 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 975FE39324435055001656D3;
+					};
+				};
+			};
+			buildConfigurationList = 975FE38F24435055001656D3 /* Build configuration list for PBXProject "MallOfShopping" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 975FE38B24435055001656D3;
+			productRefGroup = 975FE39524435055001656D3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				975FE39324435055001656D3 /* MallOfShopping */,
+				975FE3A924435058001656D3 /* MallOfShoppingTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		975FE39224435055001656D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				975FE3A424435058001656D3 /* LaunchScreen.storyboard in Resources */,
+				97A875002444FDA5007260EB /* GoogleService-Info.plist in Resources */,
+				975FE3A124435058001656D3 /* Preview Assets.xcassets in Resources */,
+				975FE39E24435058001656D3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		975FE3A824435058001656D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F7BC2FB9F7F5E05FCC5F2AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MallOfShopping-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA09FEA4B63FA0A0E4FFD518 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MallOfShopping/Pods-MallOfShopping-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MallOfShopping/Pods-MallOfShopping-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MallOfShopping/Pods-MallOfShopping-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C681E095D200EDB99A79210F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MallOfShoppingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		975FE39024435055001656D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				973DEA822449E54B00711CDD /* GROCERY.swift in Sources */,
+				97BE41212443B872009BEEF7 /* AppView.swift in Sources */,
+				97736109244B8EBD0046543C /* OrderedGroceryRowView.swift in Sources */,
+				975FE39824435055001656D3 /* AppDelegate.swift in Sources */,
+				97AF66BD244B503E0075F866 /* TopMenu.swift in Sources */,
+				97AF66BF244B524E0075F866 /* IndividualGrocery.swift in Sources */,
+				970D6404244450DF00EB35F4 /* OrderedItems.swift in Sources */,
+				973DEA802449E43300711CDD /* AddGroceryItems.swift in Sources */,
+				974367F124471E6F0058529E /* DirectToLoginPage.swift in Sources */,
+				974367EB2446D73D0058529E /* TODOS.swift in Sources */,
+				974367ED2446E01D0058529E /* ORDERS.swift in Sources */,
+				97BB8421244ACFFF001614C6 /* InitialView.swift in Sources */,
+				97736106244B8BB50046543C /* OrderedGroceryView.swift in Sources */,
+				9768D5C5244C5D3B00BEE3D4 /* USER_PROFILE.swift in Sources */,
+				975FE39A24435055001656D3 /* SceneDelegate.swift in Sources */,
+				97A87508244512CA007260EB /* SignInView.swift in Sources */,
+				973DEA7E2449C17700711CDD /* OfferView.swift in Sources */,
+				970D640224443F1C00EB35F4 /* IndividualGroceryDetailView.swift in Sources */,
+				97A8750624450F3D007260EB /* OrderView.swift in Sources */,
+				97A8750424450CEE007260EB /* SessionStore.swift in Sources */,
+				9768D5C3244C417B00BEE3D4 /* CustomerDetailsView.swift in Sources */,
+				97A87502244502AA007260EB /* User.swift in Sources */,
+				974367EF2446E4E10058529E /* CustomerOrderHistoryView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		975FE3A624435058001656D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				975FE3AF24435058001656D3 /* MallOfShoppingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		975FE3AC24435058001656D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 975FE39324435055001656D3 /* MallOfShopping */;
+			targetProxy = 975FE3AB24435058001656D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		975FE3A224435058001656D3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				975FE3A324435058001656D3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		975FE3B124435058001656D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		975FE3B224435058001656D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		975FE3B424435058001656D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B444BFE1C306B916346A8876 /* Pods-MallOfShopping.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"MallOfShopping/Preview Content\"";
+				DEVELOPMENT_TEAM = MNVMD4WRWZ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = MallOfShopping/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = urv.MallOfShopping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		975FE3B524435058001656D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C131C468E674B27535A7E729 /* Pods-MallOfShopping.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"MallOfShopping/Preview Content\"";
+				DEVELOPMENT_TEAM = MNVMD4WRWZ;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = MallOfShopping/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = urv.MallOfShopping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		975FE3B724435058001656D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D719DE27A6F2139CC75100A /* Pods-MallOfShoppingTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MNVMD4WRWZ;
+				INFOPLIST_FILE = MallOfShoppingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = urv.MallOfShoppingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MallOfShopping.app/MallOfShopping";
+			};
+			name = Debug;
+		};
+		975FE3B824435058001656D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0498122D6D9BFD59714CC891 /* Pods-MallOfShoppingTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MNVMD4WRWZ;
+				INFOPLIST_FILE = MallOfShoppingTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = urv.MallOfShoppingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MallOfShopping.app/MallOfShopping";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		975FE38F24435055001656D3 /* Build configuration list for PBXProject "MallOfShopping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				975FE3B124435058001656D3 /* Debug */,
+				975FE3B224435058001656D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		975FE3B324435058001656D3 /* Build configuration list for PBXNativeTarget "MallOfShopping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				975FE3B424435058001656D3 /* Debug */,
+				975FE3B524435058001656D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		975FE3B624435058001656D3 /* Build configuration list for PBXNativeTarget "MallOfShoppingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				975FE3B724435058001656D3 /* Debug */,
+				975FE3B824435058001656D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 975FE38C24435055001656D3 /* Project object */;
+}
