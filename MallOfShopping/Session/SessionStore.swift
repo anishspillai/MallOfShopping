@@ -210,7 +210,7 @@ class SessionStore : ObservableObject {
                     self.groceryList.append(order)
                     
                 }
-            }
+            } 
             
             self.anish = self.groceryList.chunked(into: 3)
         }
