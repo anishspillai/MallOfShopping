@@ -211,8 +211,7 @@ class SessionStore : ObservableObject {
                     
                 }
             }
-            print(self.groceryList)
-            print(self.groceryList.chunked(into: 3))
+            
             self.anish = self.groceryList.chunked(into: 3)
         }
     }
