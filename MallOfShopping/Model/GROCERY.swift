@@ -43,6 +43,7 @@ struct GROCERY: Identifiable  {
     }
     
     init?(snapshot: DataSnapshot) {
+
         guard
             let value = snapshot.value as? [String: AnyObject],
             let type = value["type"] as? String,
@@ -56,6 +57,8 @@ struct GROCERY: Identifiable  {
             else {
                 return nil
         }
+        
+
         
         self.type = type
         self.brandName = brandName

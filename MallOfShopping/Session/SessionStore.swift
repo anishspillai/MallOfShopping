@@ -17,7 +17,7 @@ class SessionStore : ObservableObject {
     var handle: AuthStateDidChangeListenerHandle?
     
     @EnvironmentObject var orderedItems: OrderedItems
-
+    
     
     @Published var items: [TODOS] = []
     
@@ -26,7 +26,7 @@ class SessionStore : ObservableObject {
     @Published var groceryList: [GROCERY] = []
     
     @Published var anish: [[GROCERY]] = [[]]
-
+    
     
     var ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
     
@@ -200,6 +200,7 @@ class SessionStore : ObservableObject {
     
     
     func getListOfGroceries()  {
+        
         let ref: DatabaseReference = Database.database().reference(withPath: "admin/Grocery")
         
         ref.observe(DataEventType.value) { (snapshot) in
@@ -207,12 +208,14 @@ class SessionStore : ObservableObject {
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let order = GROCERY(snapshot: snapshot) {
+
                     self.groceryList.append(order)
-                    
                 }
-            } 
-            
-            self.anish = self.groceryList.chunked(into: 3)
+            }
+
+            if(!self.groceryList.isEmpty) {
+                self.anish = self.groceryList.chunked(into: 3)
+            }
         }
     }
     
@@ -254,10 +257,8 @@ extension Array {
         
         for index in 0...self.count {
             if index % size == 0 && index != 0 {
-                print("First if \(index) ")
                 chunkedArray.append(Array(self[(index - size)..<index]))
             } else if(index == self.count) {
-                print("Second if \(index) ")
                 chunkedArray.append(Array(self[index - 2..<index]))
             }
         }

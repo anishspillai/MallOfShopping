@@ -41,13 +41,6 @@ struct AppView: View {
                             Image(systemName: "indianrupeesign.circle")
                             Text("Offers")
                     }
-                    
-                    IndividualGrocery()
-                        .tabItem {
-                            Image(systemName: "heart.fill")
-                            Text("Add Grocery")
-                    }
-                    .edgesIgnoringSafeArea(.top)
                 }
                 
                 // Badge View
@@ -63,7 +56,10 @@ struct AppView: View {
                     //.offset(x: ( ( 2 * self.badgePosition) - 2 ) * ( geometry.size.width / ( 2 * self.tabsCount ) ), y: -30)
                     .offset(x: 190, y: -30)
                     .opacity(self.orderedItems.total == 0 ? 0 : 1)
+
             }
+
+            .edgesIgnoringSafeArea(.top)
         }
     }
 }

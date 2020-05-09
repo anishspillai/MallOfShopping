@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 
 final class OrderedItems: ObservableObject {
+    
     @Published var orderedGroceries = [ORDERS]()
     
      var total: Float {
@@ -31,6 +32,7 @@ final class OrderedItems: ObservableObject {
     func add(item: ORDERS) {
         orderedGroceries.append(item)
     }
+    
 }
 
 /**struct OrderedGrocery: Identifiable {

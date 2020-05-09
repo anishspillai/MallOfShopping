@@ -23,25 +23,29 @@ struct IndividualGrocery: View {
     var body: some View {
         
         VStack {
-            if(false) {
+            if(session.anish.isEmpty) {
                 InitialView()
             }
             else {
                 NavigationView {
                     GeometryReader { geometry in
-                    VStack {
-                        TopMenu()
-                        List {
+                        VStack {
+                            TopMenu()
+                            
                             if(true) { // Search here
-                                ScrollView {
+                                
+                                ScrollView(showsIndicators: false) {
+                                    
+                                    Rectangle()
+                                        .frame(width: geometry.size.width, height: 0.01)
+                                    
                                     Spacer()
                                     if(true) {
-                                        ForEach(0..<self.session.anish.count) { index in
+                                        ForEach(0..<self.session.anish.count, id: \.self) { index in
                                             HStack {
                                                 ForEach(self.session.anish[index]) { grocery in
                                                     
-                                                    NavigationLink(destination: IndividualGroceryDetailView()) {
-                                                        
+                                                    NavigationLink(destination:IndividualGroceryDetailView()) {
                                                         
                                                         VStack() {
                                                             
@@ -58,29 +62,29 @@ struct IndividualGrocery: View {
                                                         .stroke(Color.orange, lineWidth: 1))
                                                         .frame(width: ( geometry.size.width - 50)/3)
                                                         .padding(.trailing, 2).padding(.leading, 1)
-                                                    
+                                                        
                                                     }.buttonStyle(PlainButtonStyle())
                                                 }
                                             }.padding(.bottom, 5)
                                         }
                                     }
                                 }
+                                
                             }
-                        }
-                    } }
-                    .navigationBarTitle(Text("Your boutique").foregroundColor(Color.white), displayMode: .inline)
-                    .navigationBarItems(trailing: SearchBarView(searchText: $searchText))
-               
+                        } }
+                        .navigationBarTitle(Text("Your boutique").foregroundColor(Color.white), displayMode: .inline)
+                        .navigationBarItems(trailing: SearchBarView(searchText: $searchText))
+                    
                 }
             }
         }.onAppear(perform: fetchGroceries)
     }
     
     func fetchGroceries() {
-        if(!self.isLoaded) { // Do not fetch again once it is loaded.
+        //if(!self.isLoaded) { // Do not fetch again once it is loaded.
             self.session.getListOfGroceries()
             self.isLoaded.toggle()
-        }
+        //}
     }
     
     
@@ -124,7 +128,7 @@ struct GroceryCountStepperView: View {
     
     @EnvironmentObject var orderedItems: OrderedItems
     
-    @State private var noOfItems: Int = 0
+    @State private var noOfItems: Int = 1
     @State var displayStepper = false
     
     var grocery: GROCERY
@@ -139,7 +143,11 @@ struct GroceryCountStepperView: View {
                     Button(action: {
                         self.displayStepper.toggle()
                     }) {
-                        Text("Add me")
+                        Text("Add")
+                            .frame(width: 100)
+                            .background(Color(red: 72 / 255, green: 176 / 255, blue: 13 / 255))
+                            .foregroundColor(Color.white)
+                            .cornerRadius(5)
                     }
                 } else {
                     Button(action: {
@@ -174,7 +182,7 @@ struct GroceryCountStepperView: View {
 }
 
 struct GroceryDetailView: View {
-        
+    
     let grocery: GROCERY
     
     var body: some View {
@@ -185,8 +193,10 @@ struct GroceryDetailView: View {
             }
             
             Text(self.grocery.brandName).font(.footnote).foregroundColor(Color.black)
+            
             Text("\(grocery.Weight) \(grocery.unitOfWeight)").font(.footnote).foregroundColor(Color.black)
-        }
+            
+        }.frame(height: 45	)
     }
     
     func getSavedPrice(grocery: GROCERY) -> String{
