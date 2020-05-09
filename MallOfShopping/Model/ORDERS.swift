@@ -13,7 +13,7 @@ struct ORDERS: Identifiable {
     let ref: DatabaseReference?
     let groceryName: String
     let grossWeight: Int
-    let noOfItems: Int
+    var noOfItems: Int
     let price: Float
     let id: String
     let timeOfOrder: String

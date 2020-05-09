@@ -13,45 +13,33 @@ final class OrderedItems: ObservableObject {
     
     @Published var orderedGroceries = [ORDERS]()
     
-     var total: Float {
-           if orderedGroceries.count > 0 {
+    var total: Float {
+        if orderedGroceries.count > 0 {
             return orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) }
-           } else {
-               return 0
-           }
-       }
-       
-        var totalCost: Float {
-              if orderedGroceries.count > 0 {
-                return orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price}
-              } else {
-                  return 0
-              }
-          }
+        } else {
+            return 0
+        }
+    }
+    
+    var totalCost: Float {
+        if orderedGroceries.count > 0 {
+            return orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price}
+        } else {
+            return 0
+        }
+    }
     
     func add(item: ORDERS) {
         orderedGroceries.append(item)
     }
     
+    func removeGroceryFromTheList(idOfTheItem: String) {
+        let indexOfItem = self.orderedGroceries.firstIndex(where: { $0.id == idOfTheItem })
+        self.orderedGroceries.remove(at: (indexOfItem!))
+    }
+    
+    func updateOrderCount(idOfTheItem: String, noOfItems: Int) {
+        var order: ORDERS! = self.orderedGroceries.first(where: { $0.id == idOfTheItem })
+        order.noOfItems = noOfItems
+    }
 }
-
-/**struct OrderedGrocery: Identifiable {
-    var noOfItems: Int
-    var id = UUID()
-    var name: String
-    var price: Float
-    var grossWeight: Int
-    
-    init(id: UUID, noOfItems: Float, name: String, price: Float, grossWeight: Int) {
-        self.id = id
-        self.noOfItems = noOfItems
-        self.name = name
-        self.price = price
-        self.grossWeight = grossWeight
-    }
-    
-    func getPriceWithPrecision() -> String {
-        String(format: "%.2f", self.price)
-    }
-    
-}*/

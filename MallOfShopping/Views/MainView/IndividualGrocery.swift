@@ -82,8 +82,8 @@ struct IndividualGrocery: View {
     
     func fetchGroceries() {
         //if(!self.isLoaded) { // Do not fetch again once it is loaded.
-            self.session.getListOfGroceries()
-            self.isLoaded.toggle()
+        self.session.getListOfGroceries()
+        self.isLoaded.toggle()
         //}
     }
     
@@ -141,6 +141,7 @@ struct GroceryCountStepperView: View {
             Group {
                 if(!self.displayStepper) {
                     Button(action: {
+                        self.addOrderToTheOrderedList()
                         self.displayStepper.toggle()
                     }) {
                         Text("Add")
@@ -154,8 +155,11 @@ struct GroceryCountStepperView: View {
                         
                         if(self.noOfItems == 1) {
                             self.displayStepper.toggle()
+                            self.orderedItems.removeGroceryFromTheList(idOfTheItem: self.grocery.id.uuidString)
+                        } else {
+                            self.noOfItems -= 1
+                            self.orderedItems.updateOrderCount(idOfTheItem: self.grocery.id.uuidString, noOfItems: self.noOfItems)
                         }
-                        self.noOfItems -= 1
                     }) {
                         Image(systemName: "minus.circle.fill").imageScale(.medium)
                     }
@@ -164,20 +168,25 @@ struct GroceryCountStepperView: View {
                     
                     Button(action: {
                         self.noOfItems += 1
-                        let orderedGrocery = ORDERS(id: self.grocery.id.uuidString,
-                                                    groceryName: self.grocery.brandName,
-                                                    grossWeight: self.grocery.Weight,
-                                                    noOfItems: self.noOfItems,
-                                                    price: self.grocery.actualPrice,
-                                                    timeOfOrder: self.formatter.dateFormat)
-                        
-                        self.orderedItems.add(item: orderedGrocery)
+                        self.orderedItems.updateOrderCount(idOfTheItem: self.grocery.id.uuidString, noOfItems: self.noOfItems)
                     }) {
                         Image(systemName: "plus.circle.fill").imageScale(.medium)
                     }
                 }
             }
         }.foregroundColor(Color.orange)
+    }
+    
+    func addOrderToTheOrderedList() {
+        
+        let orderedGrocery = ORDERS(id: self.grocery.id.uuidString,
+                                    groceryName: self.grocery.brandName,
+                                    grossWeight: self.grocery.Weight,
+                                    noOfItems: self.noOfItems,
+                                    price: self.grocery.actualPrice,
+                                    timeOfOrder: self.formatter.dateFormat)
+        
+        self.orderedItems.add(item: orderedGrocery)
     }
 }
 
@@ -211,7 +220,7 @@ struct PriceView: View {
     
     var body: some View {
         ZStack {
-            Image("1").resizable().frame(height: 100).padding(.all)
+            Image("1").resizable().frame(height: 100).padding(		.all)
             
             Text(self.getPrice(grocery: grocery))
                 .font(.caption)
