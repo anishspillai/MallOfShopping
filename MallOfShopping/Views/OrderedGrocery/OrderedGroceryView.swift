@@ -38,7 +38,7 @@ struct OrderedGroceryView: View {
                 HStack(alignment: .center) {
                     
                     //CartImage()
-                    Text("\(self.orderedItems.total)").font(.headline).foregroundColor(Color.black)
+                    Text("\(self.orderedItems.totalCost)").font(.headline).foregroundColor(Color.black)
                     
                     Spacer()
                     
@@ -46,7 +46,7 @@ struct OrderedGroceryView: View {
                     
                     CheckoutButton(displayLoginPage: $displayLoginPage)
                     
-                    Spacer()
+                    
                     
                     SignoutButton()
                     
@@ -79,10 +79,7 @@ struct EmptyCartButton: View {
         Button(action: {
             self.orderedItems.orderedGroceries = []
         }) {
-            Text("Empty Cart")
-                .foregroundColor(.white)
-                .background(LinearGradient(gradient: Gradient(colors: [.red, .orange]), startPoint: .leading, endPoint: .trailing))
-                .cornerRadius(20).padding(.trailing, 10).padding(.leading, 10)
+            Image(systemName: "trash.fill").foregroundColor(Color.red).font(.title)
         }
     }
     
@@ -108,10 +105,7 @@ struct CheckoutButton: View {
                 }
             }) {
                 
-                Text("Check out")
-                    .foregroundColor(.white)
-                    .background(LinearGradient(gradient: Gradient(colors: [.red, .orange ]), startPoint: .leading, endPoint: .trailing))
-                    .cornerRadius(20).padding(.trailing, 10).padding(.leading, 10)
+                GreenButtonView(buttonTitle: "Add")
             }
         }
     }

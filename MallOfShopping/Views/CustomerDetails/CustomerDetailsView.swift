@@ -56,7 +56,7 @@ struct CustomerDetailsView: View {
                 Button(action: {
                     self.addUserProfile()
                 }) {
-                    Text("Add")
+                    Text("Add User Details")
                 }.frame(alignment: .center)
                 
             }

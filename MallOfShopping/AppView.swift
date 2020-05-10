@@ -28,7 +28,7 @@ struct AppView: View {
                         .tabItem {
                             Image(systemName: "cart.fill")
                             Text("Orders")
-                    }.edgesIgnoringSafeArea(.top)
+                    }
                     
                     CustomerOrderHistoryView()
                         .tabItem {

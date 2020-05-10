@@ -29,8 +29,8 @@ struct IndividualGrocery: View {
                 InitialView()
             }
             else {
-                ZStack {
                 NavigationView {
+                    ZStack {
                     GeometryReader { geometry in
                         VStack {
                             TopMenu()
@@ -83,9 +83,11 @@ struct IndividualGrocery: View {
                             Image(systemName: "umbrella")
                         })
                     )
-                    
+                        
+                        SideBarMainPageView(displayMenu: self.$displayMenu).offset(x:-75).opacity(self.displayMenu ? 1.5: 0.0)
                 }
-                    SideBarMainPageView(displayMenu: self.$displayMenu).offset(x:-75).opacity(self.displayMenu ? 1.5: 0.0)
+                    
+                    
             }
                 
             }
@@ -94,8 +96,8 @@ struct IndividualGrocery: View {
     
     func fetchGroceries() {
         //if(!self.isLoaded) { // Do not fetch again once it is loaded.
-        self.session.getListOfGroceries()
-        self.isLoaded.toggle()
+        //self.session.getListOfGroceries()
+        //self.isLoaded.toggle()
         //}
     }
     
@@ -151,7 +153,7 @@ struct GroceryCountStepperView: View {
     var body: some View {
         HStack () {
             Group {
-                if(!self.displayStepper) {
+                if(!self.displayStepper && self.isAlreadyPlacedThisItem()) {
                     Button(action: {
                         self.addOrderToTheOrderedList()
                         self.displayStepper.toggle()
@@ -188,7 +190,14 @@ struct GroceryCountStepperView: View {
             }
         }.foregroundColor(Color.orange)
     }
+
     
+    func isAlreadyPlacedThisItem() -> Bool{
+        if(!self.orderedItems.orderedGroceries.isEmpty) {
+            return self.orderedItems.orderedGroceries.contains(where: { $0.id == self.grocery.id.uuidString })
+        }
+        return true
+    }
     func addOrderToTheOrderedList() {
         
         let orderedGrocery = ORDERS(id: self.grocery.id.uuidString,

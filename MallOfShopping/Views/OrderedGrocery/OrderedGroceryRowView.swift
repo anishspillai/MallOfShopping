@@ -20,44 +20,52 @@ struct OrderedGroceryRowView: View {
             ForEach(self.orderedItems.orderedGroceries, id: \.id) { orderedGrocery in
                 HStack {
                     
-                    VStack(alignment: .leading, spacing: 10) {
-                        
-                        Text(orderedGrocery.groceryName)
-                        
-                        Text("\(orderedGrocery.noOfItems) * \(orderedGrocery.grossWeight)")
-                            .font(.subheadline).foregroundColor(.secondary)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            
+                            Text(orderedGrocery.groceryName).font(.subheadline)
+                            
+                            Text("\(orderedGrocery.noOfItems) * \(orderedGrocery.grossWeight)")
+                                .font(.subheadline).foregroundColor(.secondary)
+                        }
+                        Spacer()
                     }.frame(width: 100)
                     
                     Spacer()
+                    
+                    
+                    Divider()
                     
                     HStack {
                         
                         
                         Button(action: {
+
+                            
                             if(orderedGrocery.noOfItems == 1) {
-                                
+                                self.orderedItems.removeGroceryFromTheList(idOfTheItem: orderedGrocery.id)
                             } else {
+                                //orderedGrocery.noOfItems -= 1
                             }
+                            
                         }) {
-                            Image(systemName: "minus.circle.fill").imageScale(.medium)
+                            Image(systemName: "minus.circle.fill").imageScale(.medium).foregroundColor(Color.orange)
                         }
                         
                         Text(String(orderedGrocery.noOfItems))
                         
                         
                         Button(action: {
-                            if(orderedGrocery.noOfItems == 1) {
-                                
-                            } else {
-                            }
+
+                            //orderedGrocery.noOfItems += 1
                         }) {
-                            Image(systemName: "plus.circle.fill").imageScale(.medium)
+                            Image(systemName: "plus.circle.fill").imageScale(.medium).foregroundColor(Color.orange)
                         }
-                    }
+                    }.buttonStyle(PlainButtonStyle())
                     
-                    Spacer()
+                    Divider()
                     
-                    Text("\(orderedGrocery.getPriceWithPrecision())")
+                    Text("\(orderedGrocery.getPriceWithPrecision())").font(.subheadline)
                 }
                 
             }.onDelete(perform: deleteItems(at:))

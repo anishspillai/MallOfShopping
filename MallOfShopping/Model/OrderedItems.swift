@@ -21,11 +21,12 @@ final class OrderedItems: ObservableObject {
         }
     }
     
-    var totalCost: Float {
+    var totalCost: String {
         if orderedGroceries.count > 0 {
-            return orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price}
+            return String(format: "%.2f", orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price})
+
         } else {
-            return 0
+            return "0"
         }
     }
     
@@ -40,6 +41,6 @@ final class OrderedItems: ObservableObject {
     
     func updateOrderCount(idOfTheItem: String, noOfItems: Int) {
         var order: ORDERS! = self.orderedGroceries.first(where: { $0.id == idOfTheItem })
-        order.noOfItems = noOfItems
+		        order.noOfItems = noOfItems
     }
 }

@@ -13,43 +13,49 @@ struct SideBarMainPageView: View {
     @Binding var displayMenu: Bool
     
     @EnvironmentObject var session: SessionStore
-
+    
     var body: some View {
-        
-        VStack{
-            HStack {
-                Button(action: {
-                    withAnimation(.default) {
-                        self.displayMenu.toggle()
+            
+            VStack{
+                HStack {
+                    Button(action: {
+                        withAnimation(.default) {
+                            self.displayMenu.toggle()
+                        }
+                    }) {
+                        Image(systemName: "heart")
                     }
-                }) {
-                    Image(systemName: "heart")
+                    Spacer()
+                }.padding(.top)
+                
+                Spacer()
+                
+                Divider()
+                
+                NavigationLink(destination: CustomerDetailView()) {
+                    Text("User Profile")
                 }
-            }.padding(.top)
-                .padding(.bottom, 25)
-            
-            Spacer()
-            
-            Divider()
-            
-            ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
-                Text(sideBarMenuModel.menu)
+                
+                Spacer()
+                
+                ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
+                    Text(sideBarMenuModel.menu)
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
-        }
-        .foregroundColor(.primary)
-        .padding(.horizontal, 20)
-        .frame(width: UIScreen.main.bounds.width / 1.5)
-        .background(Color.gray).edgesIgnoringSafeArea(.all)
-        .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth:2)
-        .shadow(radius: 3).edgesIgnoringSafeArea(.all))
-        .opacity(self.displayMenu ? 1: 5)
-    .onAppear(perform: fetchSideBarMenuOptions)
+            .foregroundColor(.primary)
+            .padding(.horizontal, 20)
+            .frame(width: UIScreen.main.bounds.width / 1.5)
+            .background(Color.gray)
+            .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth:2)
+            .shadow(radius: 3).edgesIgnoringSafeArea(.all))
+            .opacity(self.displayMenu ? 1: 5)
+            .onAppear(perform: fetchSideBarMenuOptions)
+        
     }
     
     func fetchSideBarMenuOptions() {
         self.session.getCatagoriesForSideBarMenu()
     }
 }
-
