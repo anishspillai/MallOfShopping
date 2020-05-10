@@ -27,6 +27,8 @@ class SessionStore : ObservableObject {
     
     @Published var anish: [[GROCERY]] = [[]]
     
+    @Published var sideBarMenuModelList: [SideBarMenuModel] = []
+    
     
     var ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
     
@@ -215,6 +217,22 @@ class SessionStore : ObservableObject {
 
             if(!self.groceryList.isEmpty) {
                 self.anish = self.groceryList.chunked(into: 3)
+            }
+        }
+    }
+    
+    func getCatagoriesForSideBarMenu() {
+        
+        
+        let ref: DatabaseReference = Database.database().reference(withPath: "admin/SearchCatagory")
+        
+        ref.observe(DataEventType.value) { (snapshot) in
+            self.sideBarMenuModelList = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let sideBarMenuModel: SideBarMenuModel = SideBarMenuModel(snapshot: snapshot) {
+                    self.sideBarMenuModelList.append(sideBarMenuModel)
+                }
             }
         }
     }

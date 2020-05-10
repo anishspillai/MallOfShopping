@@ -8,9 +8,11 @@
 
 import SwiftUI
 
-struct SideBarMenu: View {
+struct SideBarMainPageView: View {
     
     @Binding var displayMenu: Bool
+    
+    @EnvironmentObject var session: SessionStore
 
     var body: some View {
         
@@ -27,6 +29,14 @@ struct SideBarMenu: View {
                 .padding(.bottom, 25)
             
             Spacer()
+            
+            Divider()
+            
+            ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
+                Text(sideBarMenuModel.menu)
+            }
+            
+            Spacer()
         }
         .foregroundColor(.primary)
         .padding(.horizontal, 20)
@@ -35,6 +45,11 @@ struct SideBarMenu: View {
         .overlay(Rectangle().stroke(Color.primary.opacity(0.2), lineWidth:2)
         .shadow(radius: 3).edgesIgnoringSafeArea(.all))
         .opacity(self.displayMenu ? 1: 5)
+    .onAppear(perform: fetchSideBarMenuOptions)
+    }
+    
+    func fetchSideBarMenuOptions() {
+        self.session.getCatagoriesForSideBarMenu()
     }
 }
 

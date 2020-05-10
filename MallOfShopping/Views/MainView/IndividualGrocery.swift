@@ -85,7 +85,7 @@ struct IndividualGrocery: View {
                     )
                     
                 }
-                    SideBarMenu(displayMenu: self.$displayMenu).offset(x:-75).opacity(self.displayMenu ? 1.5: 0.0)
+                    SideBarMainPageView(displayMenu: self.$displayMenu).offset(x:-75).opacity(self.displayMenu ? 1.5: 0.0)
             }
                 
             }
