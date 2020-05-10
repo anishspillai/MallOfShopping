@@ -15,7 +15,9 @@ struct TopMenu: View {
     var body: some View {
         HStack {
             Text("    Available items").bold().foregroundColor(Color.black)
+            
             Spacer()
+            
             Image(systemName: "cart.fill")
                 .imageScale(.medium)
                 .foregroundColor(.yellow)

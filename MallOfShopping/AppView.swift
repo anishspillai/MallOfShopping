@@ -36,11 +36,11 @@ struct AppView: View {
                             Text("Order History")
                     }
                     
-                    OfferView()
+                    /**ElseTest()
                         .tabItem {
                             Image(systemName: "indianrupeesign.circle")
-                            Text("Offers")
-                    }
+                            Text("Offers")*/
+                    //}
                 }
                 
                 // Badge View
@@ -55,7 +55,7 @@ struct AppView: View {
                 .frame(width: 20, height: 20)
                     //.offset(x: ( ( 2 * self.badgePosition) - 2 ) * ( geometry.size.width / ( 2 * self.tabsCount ) ), y: -30)
                     .offset(x: 190, y: -30)
-                    .opacity(self.orderedItems.total == 0 ? 0 : 1)
+                    .opacity(self.orderedItems.total == 0 ? 0 : 3)
 
             }
 

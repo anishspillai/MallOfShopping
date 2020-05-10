@@ -20,6 +20,8 @@ struct IndividualGrocery: View {
     
     @State private var isLoaded = false
     
+    @State private var displayMenu = false
+    
     var body: some View {
         
         VStack {
@@ -27,6 +29,7 @@ struct IndividualGrocery: View {
                 InitialView()
             }
             else {
+                ZStack {
                 NavigationView {
                     GeometryReader { geometry in
                         VStack {
@@ -73,9 +76,18 @@ struct IndividualGrocery: View {
                             }
                         } }
                         .navigationBarTitle(Text("Your boutique").foregroundColor(Color.white), displayMode: .inline)
-                        .navigationBarItems(trailing: SearchBarView(searchText: $searchText))
+                        //.navigationBarItems(trailing: SearchBarView(searchText: $searchText))
+                        .navigationBarItems(leading: Button(action: {
+                            self.displayMenu.toggle()
+                        }, label: {
+                            Image(systemName: "umbrella")
+                        })
+                    )
                     
                 }
+                    SideBarMenu(displayMenu: self.$displayMenu).offset(x:-75).opacity(self.displayMenu ? 1.5: 0.0)
+            }
+                
             }
         }.onAppear(perform: fetchGroceries)
     }
