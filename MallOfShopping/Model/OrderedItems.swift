@@ -17,7 +17,7 @@ final class OrderedItems: ObservableObject {
         if orderedGroceries.count > 0 {
             return orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) }
         } else {
-            return 0
+            return 0 
         }
     }
     
