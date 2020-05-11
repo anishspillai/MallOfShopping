@@ -99,10 +99,10 @@ struct IndividualGrocery: View {
     }
     
     func fetchGroceries() {
-        //if(!self.isLoaded) { // Do not fetch again once it is loaded.
+        if(!self.isLoaded) { // Do not fetch again once it is loaded.
         self.session.getListOfGroceries()
-        //self.isLoaded.toggle()
-        //}
+        self.isLoaded.toggle()
+        }
     }
     
 }
@@ -184,7 +184,7 @@ struct GroceryCountStepperView: View {
     var body: some View {
         HStack () {
             Group {
-                if(!self.displayStepper && self.isAlreadyPlacedThisItem()) {
+                if(!self.isAlreadyPlacedThisItem()) {
                     Button(action: {
                         self.addOrderToTheOrderedList()
                         self.displayStepper.toggle()
@@ -223,12 +223,13 @@ struct GroceryCountStepperView: View {
     }
     
     
-    func isAlreadyPlacedThisItem() -> Bool{
+    func isAlreadyPlacedThisItem() -> Bool {
         if(!self.orderedItems.orderedGroceries.isEmpty) {
             return self.orderedItems.orderedGroceries.contains(where: { $0.id == self.grocery.id.uuidString })
         }
-        return true
+        return false
     }
+    
     func addOrderToTheOrderedList() {
         
         let orderedGrocery = ORDERS(id: self.grocery.id.uuidString,

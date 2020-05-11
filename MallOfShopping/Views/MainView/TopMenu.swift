@@ -58,10 +58,10 @@ struct TopMenu: View {
                 .fixedSize()
                 .foregroundColor(Color.black)
         }.frame(height: 30)
-            .onAppear(perform: podaTest)
+            .onAppear(perform: initializeValuesForSearchController)
     }
     
-    func podaTest() {
+    func initializeValuesForSearchController() {
         SearchController.shared.setSessionStore(sessionStore: self.sessionStore)
     }
 }
