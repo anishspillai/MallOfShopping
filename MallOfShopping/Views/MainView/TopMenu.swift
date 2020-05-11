@@ -34,8 +34,16 @@ struct TopMenu: View {
             }
             
             if (self.displaySearchTextInput) {
-                TextField("Search By brand name", text: self.$tester.searchText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.top).padding(.leading)
+                ZStack {
+                    TextField("Search By brand name", text: self.$tester.searchText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.top).padding(.leading)
+
+                    Button(action: {
+                        self.tester.searchText = ""
+                    }) {
+                        Image(systemName: "multiply.circle.fill")
+                    }.offset(x:0, y:0)
+                }
             }
             
             Spacer()
