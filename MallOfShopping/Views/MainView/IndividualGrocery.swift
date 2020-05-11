@@ -100,8 +100,8 @@ struct IndividualGrocery: View {
     
     func fetchGroceries() {
         if(!self.isLoaded) { // Do not fetch again once it is loaded.
-        self.session.getListOfGroceries()
-        self.isLoaded.toggle()
+            self.session.getListOfGroceries()
+            self.isLoaded.toggle()
         }
     }
     
@@ -209,7 +209,7 @@ struct GroceryCountStepperView: View {
                         Image(systemName: "minus.circle.fill").imageScale(.medium)
                     }
                     
-                    Text("\(self.noOfItems)").foregroundColor(Color.black)
+                    Text("\(self.noOfItems)")
                     
                     Button(action: {
                         self.noOfItems += 1
@@ -228,6 +228,17 @@ struct GroceryCountStepperView: View {
             return self.orderedItems.orderedGroceries.contains(where: { $0.id == self.grocery.id.uuidString })
         }
         return false
+    }
+    
+    
+    func getNoOfItemsFromOrderedList() -> Int {
+        if(!self.orderedItems.orderedGroceries.isEmpty) {
+            let order: ORDERS! = self.orderedItems.orderedGroceries.first(where: { $0.id == self.grocery.id.uuidString })
+            if(order != nil) {
+                return order.noOfItems
+            }
+        }
+        return self.noOfItems
     }
     
     func addOrderToTheOrderedList() {
