@@ -43,12 +43,12 @@ struct GROCERY: Identifiable  {
     }
     
     init?(snapshot: DataSnapshot) {
-
+        
         guard
             let value = snapshot.value as? [String: AnyObject],
             let type = value["type"] as? String,
             let brandName = value["brandName"] as? String,
-            let Weight = value["Weight"] as? Int,
+            //let Weight = value["grossWeight"] as? Int,
             let id = value["id"] as? String,
             
             let unitOfWeight = value["unitOfWeight"] as? String,
@@ -59,10 +59,11 @@ struct GROCERY: Identifiable  {
         }
         
 
+        print(type)
         
         self.type = type
         self.brandName = brandName
-        self.Weight = Weight
+        self.Weight = 15
         self.id = UUID.init(uuidString: id) ?? UUID()
         self.unitOfWeight = unitOfWeight
         self.actualPrice = actualPrice

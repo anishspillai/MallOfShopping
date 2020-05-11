@@ -96,7 +96,7 @@ struct DisplayUserDetails : View {
                     }) {
                         GreenButtonView(buttonTitle: "Edit")
                     }
-                }
+                }.padding()
             } else {
                 EditUserDetailView(editUserDetails: self.$editUserDetails)
                 Spacer()
@@ -165,7 +165,7 @@ struct EditUserDetailView : View {
                 Button(action: {
                     self.editUserDetails.toggle()
                 }) {
-                    Image(systemName: "gobackward")
+                    Image(systemName: "return")
                 }.padding(.trailing)
                 
                 

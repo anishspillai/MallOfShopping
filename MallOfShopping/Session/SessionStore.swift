@@ -29,6 +29,10 @@ class SessionStore : ObservableObject {
     
     @Published var sideBarMenuModelList: [SideBarMenuModel] = []
     
+    @Published var groceryListByType: [GROCERY] = []
+    
+    @Published var groceryListGridByType: [[GROCERY]] = [[]]
+    
     
     var ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
     
@@ -210,19 +214,47 @@ class SessionStore : ObservableObject {
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let order = GROCERY(snapshot: snapshot) {
-
+                    
                     self.groceryList.append(order)
                 }
             }
-
+            
             if(!self.groceryList.isEmpty) {
                 self.anish = self.groceryList.chunked(into: 3)
             }
         }
     }
     
-    func getCatagoriesForSideBarMenu() {
+    func getFilteredGroceryList(groceryType: String)  {
         
+        let ref: DatabaseReference = Database.database().reference(withPath: "admin/Catagories/" + groceryType)
+        
+        ref.observe(DataEventType.value) { (snapshot) in
+            self.groceryListByType = []
+            
+            for child in snapshot.children {
+                
+                let snapshot = child as? DataSnapshot
+                
+                for child in snapshot!.children {
+                    if let snapshot = child as? DataSnapshot,
+                        let order = GROCERY(snapshot: snapshot) {
+                        self.groceryListByType.append(order)
+                    }
+                }                
+                
+            }
+            
+            
+            
+            if(!self.groceryListByType.isEmpty) {
+                print(self.groceryListByType.count)
+                self.groceryListGridByType = self.groceryListByType.chunked(into: 3)
+            }
+        }
+    }
+    
+    func getCatagoriesForSideBarMenu() {
         
         let ref: DatabaseReference = Database.database().reference(withPath: "admin/SearchCatagory")
         
