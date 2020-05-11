@@ -52,9 +52,8 @@ struct CustomerDetailsView: View {
                               text: $postNumber)
                 }
                 
-                
                 Button(action: {
-                    self.addUserProfile()
+                    self.addUserProfile() 
                 }) {
                     Text("Add User Details")
                 }.frame(alignment: .center)
