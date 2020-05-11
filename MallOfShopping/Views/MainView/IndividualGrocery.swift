@@ -187,7 +187,6 @@ struct GroceryCountStepperView: View {
                 if(!self.isAlreadyPlacedThisItem()) {
                     Button(action: {
                         self.addOrderToTheOrderedList()
-                        self.displayStepper.toggle()
                     }) {
                         Text("Add")
                             .frame(width: 100)
@@ -197,23 +196,15 @@ struct GroceryCountStepperView: View {
                     }
                 } else {
                     Button(action: {
-                        
-                        if(self.noOfItems == 1) {
-                            self.displayStepper.toggle()
-                            self.orderedItems.removeGroceryFromTheList(idOfTheItem: self.grocery.id.uuidString)
-                        } else {
-                            self.noOfItems -= 1
-                            self.orderedItems.updateOrderCount(idOfTheItem: self.grocery.id.uuidString, noOfItems: self.noOfItems)
-                        }
+                        self.orderedItems.decrement(idOfTheItem: self.grocery.id.uuidString)
                     }) {
                         Image(systemName: "minus.circle.fill").imageScale(.medium)
                     }
                     
-                    Text("\(self.noOfItems)")
+                    Text("\(self.getNoOfItemsFromOrderedList())")
                     
                     Button(action: {
-                        self.noOfItems += 1
-                        self.orderedItems.updateOrderCount(idOfTheItem: self.grocery.id.uuidString, noOfItems: self.noOfItems)
+                        self.orderedItems.increament(idOfTheItem: self.grocery.id.uuidString)
                     }) {
                         Image(systemName: "plus.circle.fill").imageScale(.medium)
                     }
@@ -238,7 +229,7 @@ struct GroceryCountStepperView: View {
                 return order.noOfItems
             }
         }
-        return self.noOfItems
+        return 1
     }
     
     func addOrderToTheOrderedList() {
@@ -246,7 +237,7 @@ struct GroceryCountStepperView: View {
         let orderedGrocery = ORDERS(id: self.grocery.id.uuidString,
                                     groceryName: self.grocery.brandName,
                                     grossWeight: self.grocery.Weight,
-                                    noOfItems: self.noOfItems,
+                                    noOfItems: 1,
                                     price: self.grocery.actualPrice,
                                     timeOfOrder: self.formatter.dateFormat)
         

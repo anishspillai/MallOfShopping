@@ -40,12 +40,12 @@ struct OrderedGroceryRowView: View {
                         
                         
                         Button(action: {
-
+                            
                             
                             if(orderedGrocery.noOfItems == 1) {
                                 self.orderedItems.removeGroceryFromTheList(idOfTheItem: orderedGrocery.id)
                             } else {
-                                //orderedGrocery.noOfItems -= 1
+                                self.orderedItems.decrement(idOfTheItem: orderedGrocery.id)
                             }
                             
                         }) {
@@ -56,8 +56,7 @@ struct OrderedGroceryRowView: View {
                         
                         
                         Button(action: {
-
-                            //orderedGrocery.noOfItems += 1
+                            self.orderedItems.increament(idOfTheItem: orderedGrocery.id)
                         }) {
                             Image(systemName: "plus.circle.fill").imageScale(.medium).foregroundColor(Color.orange)
                         }

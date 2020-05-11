@@ -38,7 +38,7 @@ struct OrderedGroceryView: View {
                 HStack(alignment: .center) {
                     
                     //CartImage()
-                    Text("\(self.orderedItems.totalCost)").font(.headline).foregroundColor(Color.black)
+                    Text("\(self.orderedItems.totalCost)").font(.headline).padding(.trailing)
                     
                     Spacer()
                     
@@ -105,7 +105,7 @@ struct CheckoutButton: View {
                 }
             }) {
                 
-                GreenButtonView(buttonTitle: "Add")
+                GreenButtonView(buttonTitle: "Check-Out >")
             }
         }
     }

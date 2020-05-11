@@ -40,7 +40,21 @@ final class OrderedItems: ObservableObject {
     }
     
     func updateOrderCount(idOfTheItem: String, noOfItems: Int) {
-        var order: ORDERS! = self.orderedGroceries.first(where: { $0.id == idOfTheItem })
-        order.noOfItems = noOfItems
+        let indexOfItem: Int = self.orderedGroceries.firstIndex(where: { $0.id == idOfTheItem })!
+        self.orderedGroceries[indexOfItem].noOfItems = noOfItems
+    }
+    
+    func increament(idOfTheItem: String) {
+        let indexOfItem: Int = self.orderedGroceries.firstIndex(where: { $0.id == idOfTheItem })!
+        self.orderedGroceries[indexOfItem].noOfItems += 1
+    }
+    
+    func decrement(idOfTheItem: String) {
+        let indexOfItem: Int = self.orderedGroceries.firstIndex(where: { $0.id == idOfTheItem })!
+        if(self.orderedGroceries[indexOfItem].noOfItems == 1) {
+            self.orderedGroceries.remove(at: (indexOfItem))
+        } else {
+            self.orderedGroceries[indexOfItem].noOfItems -= 1
+        }
     }
 }

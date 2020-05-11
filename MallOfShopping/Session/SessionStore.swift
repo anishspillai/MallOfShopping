@@ -133,8 +133,6 @@ class SessionStore : ObservableObject {
                     self.orders.append(order)
                 }
             }
-            print("Grocess vbaseed on user is here")
-            print(self.orders)
         }
     }
     
@@ -149,8 +147,6 @@ class SessionStore : ObservableObject {
                     self.orders.append(order)
                 }
             }
-            print("Address List is here ")
-            print(self.orders)
         }
     }
     

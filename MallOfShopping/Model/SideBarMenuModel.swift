@@ -23,7 +23,6 @@ struct SideBarMenuModel {
             self.menu = snapshot.key 
             self.subMenu = []
             snapshot.children.forEach { subMenu in
-                print(subMenu)
                 let snapshot: DataSnapshot = subMenu as! DataSnapshot
 
                 self.subMenu.append(snapshot.value as! String)
