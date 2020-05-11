@@ -34,6 +34,7 @@ struct IndividualGrocery: View {
                     ZStack {
                         GeometryReader { geometry in
                             VStack {
+                                //TopMenu(searchHandler: SearchController(kooi: self.session, anish: true, poda: ""))
                                 TopMenu()
                                 
                                 if(true) { // Search here

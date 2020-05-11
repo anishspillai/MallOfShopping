@@ -22,6 +22,7 @@ struct FilteredGroceryGridView: View {
                 
                 GeometryReader { geometry in
                     VStack {
+                        //TopMenu(searchHandler: SearchController(kooi: self.session, anish: true, poda: ""))
                         TopMenu()
                         
                         if(true) { // Search here

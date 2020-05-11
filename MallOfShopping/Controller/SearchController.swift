@@ -11,12 +11,11 @@ import SwiftUI
 
 class SearchController: ObservableObject {
     
+    static let shared = SearchController()
+    
     var sessionStore: SessionStore = SessionStore()
     
-    func initializeValues(sessionStore: SessionStore, isMainPage: Bool) {
-        self.sessionStore = sessionStore
-        self.isMainPage = isMainPage
-    }
+    @Published var isMainPage: Bool = false
     
     var searchText: String = "" {
         didSet {
@@ -24,16 +23,18 @@ class SearchController: ObservableObject {
         }
     }
     
-    var isMainPage: Bool = true
+    private init() {
+    }
+    
+    func setSessionStore(sessionStore: SessionStore) {
+        SearchController.shared.sessionStore = sessionStore
+        SearchController.shared.isMainPage = true
+    }
     
     func filterGroceryData() {
         
-        print(self.sessionStore.groceryList)
-        
-        if(isMainPage) {
-            let filteredGroceryArray: [GROCERY] = self.sessionStore.groceryList.filter{$0.brandName.contains(self.searchText)}
-            
-            print(filteredGroceryArray)
+        if(true) {
+            let filteredGroceryArray: [GROCERY] = self.sessionStore.groceryList.filter{self.searchText.isEmpty ? true : $0.brandName.contains(self.searchText)}
             
             if(!filteredGroceryArray.isEmpty) {
                 self.sessionStore.anish = filteredGroceryArray.chunked(into: 3)

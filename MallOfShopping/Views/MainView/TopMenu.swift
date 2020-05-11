@@ -13,11 +13,12 @@ struct TopMenu: View {
     @EnvironmentObject var orderedItems: OrderedItems
     
     @EnvironmentObject var sessionStore: SessionStore
-
+    
     
     @State private var displaySearchTextInput: Bool = false
     
-    @ObservedObject var searchHandler = SearchController()
+    @ObservedObject var tester: SearchController = SearchController.shared
+    
     
     var body: some View {
         HStack {
@@ -33,7 +34,8 @@ struct TopMenu: View {
             }
             
             if (self.displaySearchTextInput) {
-                TextField("StringProtocol", text: self.$searchHandler.searchText).padding().textFieldStyle(RoundedBorderTextFieldStyle()).padding(.top)
+                TextField("Search By brand name", text: self.$tester.searchText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.top).padding(.leading)
             }
             
             Spacer()
@@ -48,13 +50,10 @@ struct TopMenu: View {
                 .fixedSize()
                 .foregroundColor(Color.black)
         }.frame(height: 30)
-        .onAppear(perform: initializeSearchController)
+            .onAppear(perform: podaTest)
     }
     
-    func initializeSearchController() {
-        print("{")
-        print(sessionStore.groceryList.count)
-        print("}")
-        self.searchHandler.initializeValues(sessionStore: self.sessionStore, isMainPage: true)
+    func podaTest() {
+        SearchController.shared.setSessionStore(sessionStore: self.sessionStore)
     }
 }
