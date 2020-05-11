@@ -33,6 +33,8 @@ class SessionStore : ObservableObject {
     
     @Published var groceryListGridByType: [[GROCERY]] = [[]]
     
+    @Published var customerDeliveryAddress: CustomerDeliveryAddress = CustomerDeliveryAddress()
+    
     
     var ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
     
@@ -169,11 +171,31 @@ class SessionStore : ObservableObject {
         
     }
     
-    func addUserAddress(userProfile: USERPROFILE) {
+    func addUserAddress(customerDeliveryAddress: CustomerDeliveryAddress) {
+        
         let ref: DatabaseReference = Database.database().reference(withPath: "users/user-details/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
         
-        ref.setValue([userProfile.toAnyObject()])
+        ref.setValue([customerDeliveryAddress.toAnyObject()])
     }
+    
+    
+    func fetchUserDeliveryAddress()  {
+        
+        let ref: DatabaseReference = Database.database().reference(withPath: "users/user-details/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
+        
+        ref.observe(DataEventType.value) { (snapshot) in
+            
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let customerDeliveryAddress = CustomerDeliveryAddress(snapshot: snapshot) {
+                    self.customerDeliveryAddress = customerDeliveryAddress
+                }
+            }
+            
+        }
+    }
+    
+    
     
     func addGroceryByAdmin(orders: [GROCERY]) {
         

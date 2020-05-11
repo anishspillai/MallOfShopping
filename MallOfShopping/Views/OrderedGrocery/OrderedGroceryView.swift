@@ -18,10 +18,6 @@ struct OrderedGroceryView: View {
     
     @EnvironmentObject var session: SessionStore
     
-    
-    
-    
-    
     func storeOrders() {
         session.addGroceryForTheUser(orders: self.orderedItems.orderedGroceries)
     }
@@ -33,7 +29,6 @@ struct OrderedGroceryView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
                 
                 HStack(alignment: .center) {
                     
@@ -93,15 +88,13 @@ struct CheckoutButton: View {
     
     
     var body: some View {
-        NavigationLink(destination: CustomerDetailsView(), tag: 1, selection: $selection) {
+        NavigationLink(destination: OrderConfirmationView(), tag: 1, selection: $selection) {
             Button(action: {
                 if(self.session.session != nil) {
                     //self.storeOrders()
                     self.selection = 1
                 } else {
                     self.displayLoginPage = true
-                    
-                    
                 }
             }) {
                 

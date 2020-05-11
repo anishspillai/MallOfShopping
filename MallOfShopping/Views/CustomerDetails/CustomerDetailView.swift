@@ -22,6 +22,10 @@ struct CustomerDetailView_Previews: PreviewProvider {
 
 struct DisplayUserDetails : View {
     @State private var editUserDetails = false
+    
+    @EnvironmentObject var session: SessionStore
+    
+    
     var body: some View {
         VStack() {
             
@@ -31,7 +35,7 @@ struct DisplayUserDetails : View {
                 
                 Image(systemName: "person.crop.circle.fill").resizable().frame(width:50, height: 50).foregroundColor(Color.white)
                 
-                Text("Hej! Anish Sasiharan Pillai Ansih ").offset(x: 0, y:50).foregroundColor(Color.white)
+                Text(session.customerDeliveryAddress.firstName).offset(x: 0, y:50).foregroundColor(Color.white)
                 
             }
             Spacer()
@@ -44,9 +48,11 @@ struct DisplayUserDetails : View {
                         .italic()
                         Spacer()
                     }.padding(.leading, 10).padding(.top, 20)
-                    HStack {Text("0723980601").font(.subheadline)
+                    
+                    HStack {Text(session.customerDeliveryAddress.telephoneNumber).font(.subheadline)
                         Spacer()
                     }.padding(.leading, 25)
+                    
                     Divider()
                 }
                 
@@ -58,7 +64,7 @@ struct DisplayUserDetails : View {
                     }.padding(.leading, 10)
                     
                     
-                    HStack {Text("Månstorpsvägen 22, Tullinge, Tamizha tamizha, nalum, nammd, anish spi lia , and the cause of the change is that the no of the cases increase day by day").font(.subheadline)
+                    HStack {Text(session.customerDeliveryAddress.streetName)
                         Spacer()
                     }.padding(25)
                     
@@ -70,7 +76,7 @@ struct DisplayUserDetails : View {
                         Spacer()
                     }.padding(.leading, 10)
                     
-                    HStack {Text("22").font(.subheadline)
+                    HStack {Text("\(session.customerDeliveryAddress.apartmentNumber)").font(.subheadline)
                         Spacer()
                     }.padding(.leading, 25)
                     
@@ -82,7 +88,7 @@ struct DisplayUserDetails : View {
                         Spacer()
                     }.padding(.leading, 10)
                     
-                    HStack {Text("14546").font(.subheadline)
+                    HStack {Text("\(session.customerDeliveryAddress.postNumber)").font(.subheadline)
                         Spacer()
                     }.padding(.leading, 25)
                     
@@ -101,7 +107,11 @@ struct DisplayUserDetails : View {
                 EditUserDetailView(editUserDetails: self.$editUserDetails)
                 Spacer()
             }
-        }
+        }.onAppear(perform: fetchUserDetails)
+    }
+    
+    func fetchUserDetails() {
+        
     }
 }
 
