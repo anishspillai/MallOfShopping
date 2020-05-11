@@ -12,9 +12,29 @@ struct TopMenu: View {
     
     @EnvironmentObject var orderedItems: OrderedItems
     
+    @EnvironmentObject var sessionStore: SessionStore
+
+    
+    @State private var displaySearchTextInput: Bool = false
+    
+    @ObservedObject var searchHandler = SearchController()
+    
     var body: some View {
         HStack {
-            Text("    Available items").bold().foregroundColor(Color.black)
+            
+            if(!self.displaySearchTextInput) {
+                Text("    Available items").bold()
+                
+                Button(action: {
+                    self.displaySearchTextInput.toggle()
+                }) {
+                    Image(systemName: "magnifyingglass.circle")
+                }
+            }
+            
+            if (self.displaySearchTextInput) {
+                TextField("StringProtocol", text: self.$searchHandler.searchText).padding().textFieldStyle(RoundedBorderTextFieldStyle()).padding(.top)
+            }
             
             Spacer()
             
@@ -28,11 +48,13 @@ struct TopMenu: View {
                 .fixedSize()
                 .foregroundColor(Color.black)
         }.frame(height: 30)
+        .onAppear(perform: initializeSearchController)
     }
-}
-
-struct SearchButton_Previews: PreviewProvider {
-    static var previews: some View {
-        TopMenu()
+    
+    func initializeSearchController() {
+        print("{")
+        print(sessionStore.groceryList.count)
+        print("}")
+        self.searchHandler.initializeValues(sessionStore: self.sessionStore, isMainPage: true)
     }
 }

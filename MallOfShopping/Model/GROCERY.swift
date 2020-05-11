@@ -58,9 +58,6 @@ struct GROCERY: Identifiable  {
                 return nil
         }
         
-
-        print(type)
-        
         self.type = type
         self.brandName = brandName
         self.Weight = 15

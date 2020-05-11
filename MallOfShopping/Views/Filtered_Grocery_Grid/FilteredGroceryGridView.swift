@@ -12,6 +12,8 @@ struct FilteredGroceryGridView: View {
     
     @EnvironmentObject var session: SessionStore
     
+    @State private var searchText = ""
+    
     var groceryType: String
     var body: some View {
         VStack {

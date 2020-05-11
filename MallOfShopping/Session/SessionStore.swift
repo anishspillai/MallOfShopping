@@ -248,7 +248,6 @@ class SessionStore : ObservableObject {
             
             
             if(!self.groceryListByType.isEmpty) {
-                print(self.groceryListByType.count)
                 self.groceryListGridByType = self.groceryListByType.chunked(into: 3)
             }
         }
@@ -309,7 +308,7 @@ extension Array {
             if index % size == 0 && index != 0 {
                 chunkedArray.append(Array(self[(index - size)..<index]))
             } else if(index == self.count) {
-                chunkedArray.append(Array(self[index - 2..<index]))
+                chunkedArray.append(Array(self[index - 1..<index]))
             }
         }
         
