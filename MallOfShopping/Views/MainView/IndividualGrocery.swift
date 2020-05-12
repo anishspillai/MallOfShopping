@@ -21,7 +21,8 @@ struct IndividualGrocery: View {
         
         VStack {
             if(session.groceryListInGridFormat.isEmpty) {
-                InitialView()
+                //InitialView()
+                Text("Loading")
             }
             else {
                 NavigationView {
@@ -99,7 +100,7 @@ struct IndividualGrocery: View {
 struct GroceryView: View {
     let grocery: GROCERY
     var body: some View {
-        GeometryReader { geometry in           
+        GeometryReader { geometry in
             
             NavigationLink(destination:IndividualGroceryDetailView()) {
                 
@@ -133,23 +134,16 @@ struct GroceryCountStepperView: View {
     
     var grocery: GROCERY
     
-    let today = Date()
-    let formatter = DateFormatter()
-    
     var body: some View {
-        HStack () {
-            Group {
-                if(!self.isAlreadyPlacedThisItem()) {
-                    Button(action: {
-                        self.addOrderToTheOrderedList()
-                    }) {
-                        Text("Add")
-                            .frame(width: 100)
-                            .background(Color(red: 72 / 255, green: 176 / 255, blue: 13 / 255))
-                            .foregroundColor(Color.white)
-                            .cornerRadius(5)
-                    }
-                } else {
+        VStack () {
+            if(!self.isAlreadyPlacedThisItem()) {
+                Button(action: {
+                    self.addOrderToTheOrderedList()
+                }) {
+                    GreenButtonView(buttonTitle: "Add")
+                }
+            } else {
+                HStack{
                     Button(action: {
                         self.orderedItems.decrement(idOfTheItem: self.grocery.id.uuidString)
                     }) {
