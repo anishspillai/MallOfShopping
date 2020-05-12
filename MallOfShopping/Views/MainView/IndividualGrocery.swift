@@ -12,21 +12,15 @@ struct IndividualGrocery: View {
     
     @EnvironmentObject var session: SessionStore
     
-    @State var anish = false
-    
-    @State private var searchText : String = ""
-    
-    @State private var chunkedGroceryArray = [[GROCERY]]()
-    
     @State private var isLoaded = false
     
-    @State private var displayMenu = false
+    @State private var displaySidebarMenu = false
     
     
     var body: some View {
         
         VStack {
-            if(session.anish.isEmpty) {
+            if(session.groceryListInGridFormat.isEmpty) {
                 InitialView()
             }
             else {
@@ -34,61 +28,56 @@ struct IndividualGrocery: View {
                     ZStack {
                         GeometryReader { geometry in
                             VStack {
-                                //TopMenu(searchHandler: SearchController(kooi: self.session, anish: true, poda: ""))
+                                
                                 TopMenu()
                                 
-                                if(true) { // Search here
+                                ScrollView(showsIndicators: false) {
                                     
-                                    ScrollView(showsIndicators: false) {
-                                        
-                                        Rectangle()
-                                            .frame(width: geometry.size.width, height: 0.01)
-                                        
-                                        Spacer()
-                                        if(true) {
-                                            ForEach(0..<self.session.anish.count, id: \.self) { index in
-                                                HStack {
-                                                    ForEach(self.session.anish[index]) { grocery in
+                                    Rectangle().frame(width: geometry.size.width, height: 0.01)
+                                    
+                                    Spacer()
+                                    
+                                    ForEach(0..<self.session.groceryListInGridFormat.count, id: \.self) { index in
+                                        HStack {
+                                            ForEach(self.session.groceryListInGridFormat[index]) { grocery in
+                                                
+                                                NavigationLink(destination:IndividualGroceryDetailView()) {
+                                                    
+                                                    VStack() {
                                                         
-                                                        NavigationLink(destination:IndividualGroceryDetailView()) {
-                                                            
-                                                            VStack() {
-                                                                
-                                                                PriceView(grocery: grocery)
-                                                                
-                                                                GroceryDetailView(grocery: grocery)
-                                                                
-                                                                GroceryCountStepperView(grocery: grocery)
-                                                                
-                                                                Spacer()
-                                                                
-                                                            }
-                                                            .overlay(RoundedRectangle(cornerRadius: 10)
-                                                            .stroke(Color.orange, lineWidth: 1))
-                                                            .frame(width: ( geometry.size.width - 50)/3)
-                                                            .padding(.trailing, 2).padding(.leading, 1)
-                                                            
-                                                        }.buttonStyle(PlainButtonStyle())
+                                                        PriceView(grocery: grocery)
                                                         
-                                                        //GroceryView(grocery: grocery)
+                                                        GroceryDetailView(grocery: grocery)
+                                                        
+                                                        GroceryCountStepperView(grocery: grocery)
+                                                        
+                                                        Spacer()
+                                                        
                                                     }
-                                                }.padding(.bottom, 5)
+                                                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                                    .stroke(Color.orange, lineWidth: 1))
+                                                    .frame(width: (geometry.size.width - 50)/3)
+                                                    .padding(.trailing, 2).padding(.leading, 1)
+                                                    
+                                                }.buttonStyle(PlainButtonStyle())
                                             }
-                                        }
+                                        }.padding(.bottom, 5)
                                     }
-                                    
                                 }
-                            } }
-                            .navigationBarTitle(Text("Your boutique").foregroundColor(Color.white), displayMode: .inline)
-                            //.navigationBarItems(trailing: SearchBarView(searchText: $searchText))
-                            .navigationBarItems(leading: Button(action: {
-                                self.displayMenu.toggle()
-                            }, label: {
-                                Image(systemName: "circle.grid.3x3.fill").foregroundColor(Color.white)
-                            })
+                                
+                                
+                            }
+                            
+                        }
+                        .navigationBarTitle(Text("Your boutique").foregroundColor(Color.white), displayMode: .inline)
+                        .navigationBarItems(leading: Button(action: {
+                            self.displaySidebarMenu.toggle()
+                        }, label: {
+                            Image(systemName: "circle.grid.3x3.fill").foregroundColor(Color.white)
+                        })
                         )
                         
-                        SideBarMainPageView(displayMenu: self.$displayMenu).offset(x:-75).opacity(self.displayMenu ? 1.5: 0.0)
+                        SideBarMainPageView(displayMenu: self.$displaySidebarMenu).offset(x:-75).opacity(self.displaySidebarMenu ? 1.5: 0.0)
                     }
                     
                     
@@ -100,7 +89,7 @@ struct IndividualGrocery: View {
     
     func fetchGroceries() {
         if(!self.isLoaded) { // Do not fetch again once it is loaded.
-            //self.session.getListOfGroceries()
+            self.session.getListOfGroceries()
             self.isLoaded.toggle()
         }
     }
@@ -110,8 +99,7 @@ struct IndividualGrocery: View {
 struct GroceryView: View {
     let grocery: GROCERY
     var body: some View {
-        GeometryReader { geometry in
-            
+        GeometryReader { geometry in           
             
             NavigationLink(destination:IndividualGroceryDetailView()) {
                 
@@ -128,44 +116,11 @@ struct GroceryView: View {
                 }
                 .overlay(RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.orange, lineWidth: 1))
-                .frame(width: ( geometry.size.width - 50)/3)
+                .frame(width: (geometry.size.width - 50)/3)
                 .padding(.trailing, 2).padding(.leading, 1)
                 
             }.buttonStyle(PlainButtonStyle())
         }
-    }
-}
-
-struct SearchBarView: View {
-    @State private var seachButtonClicked = false
-    @State var email: String = "test@gmail.com"
-    @Binding var searchText: String
-    
-    var body: some View {
-        HStack {
-            Group {
-                if(!self.seachButtonClicked) {
-                    Button(action: {
-                        self.seachButtonClicked.toggle()
-                    }) {
-                        Image(systemName: "magnifyingglass.circle.fill").imageScale(.large).foregroundColor(Color.white)
-                    }
-                } else {
-                    
-                    SearchBar(text: $searchText)
-                    
-                }
-            }
-        }
-    }
-}
-
-struct SearchBar: View {
-    
-    @Binding var text: String
-    
-    var body: some View {
-        TextField("Search", text: $text)
     }
 }
 
@@ -239,7 +194,7 @@ struct GroceryCountStepperView: View {
                                     grossWeight: self.grocery.Weight,
                                     noOfItems: 1,
                                     price: self.grocery.actualPrice,
-                                    timeOfOrder: self.formatter.dateFormat)
+                                    type: self.grocery.type)
         
         self.orderedItems.add(item: orderedGrocery)
     }
@@ -295,6 +250,7 @@ struct PriceView: View {
         return String(grocery.actualPrice)
     }
 }
+
 struct IndividualGrocery_Previews: PreviewProvider {
     static var previews: some View {
         IndividualGrocery()

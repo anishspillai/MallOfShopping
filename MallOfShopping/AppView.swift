@@ -50,9 +50,9 @@ struct AppView: View {
                     
                     Text("\(self.orderedItems.total)")
                         .foregroundColor(.white)
-                        .font(Font.system(size: 12))
+                        .font(Font.system(size: 10))
                 }
-                .frame(width: 20, height: 20)
+                .frame(width: 25, height: 25)
                     //.offset(x: ( ( 2 * self.badgePosition) - 2 ) * ( geometry.size.width / ( 2 * self.tabsCount ) ), y: -30)
                     .offset(x: 190, y: -30)
                     .opacity(self.orderedItems.total == 0 ? 0 : 3)

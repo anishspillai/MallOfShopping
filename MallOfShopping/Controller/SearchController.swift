@@ -37,9 +37,9 @@ class SearchController: ObservableObject {
             let filteredGroceryArray: [GROCERY] = self.sessionStore.groceryList.filter{self.searchText.isEmpty ? true : $0.brandName.contains(self.searchText)}
             
             if(!filteredGroceryArray.isEmpty) {
-                self.sessionStore.anish = filteredGroceryArray.chunked(into: 3)
+                self.sessionStore.groceryListInGridFormat = filteredGroceryArray.chunked(into: 3)
             } else {
-                 self.sessionStore.anish = [[]]
+                 self.sessionStore.groceryListInGridFormat = [[]]
             }
         } else {
             let filteredGroceryArray: [GROCERY] = self.sessionStore.groceryListByType.filter{$0.brandName.localizedStandardContains(self.searchText)}

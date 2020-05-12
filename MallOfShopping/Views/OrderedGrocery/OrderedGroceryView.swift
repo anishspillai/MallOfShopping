@@ -33,7 +33,7 @@ struct OrderedGroceryView: View {
                 HStack(alignment: .center) {
                     
                     //CartImage()
-                    Text("\(self.orderedItems.totalCost)").font(.headline).padding(.trailing)
+                    Text("\(self.orderedItems.totalCost)").font(.headline).padding(.leading)
                     
                     Spacer()
                     

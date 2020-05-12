@@ -25,7 +25,7 @@ class SessionStore : ObservableObject {
     
     @Published var groceryList: [GROCERY] = []
     
-    @Published var anish: [[GROCERY]] = [[]]
+    @Published var groceryListInGridFormat: [[GROCERY]] = [[]]
     
     @Published var sideBarMenuModelList: [SideBarMenuModel] = []
     
@@ -241,7 +241,7 @@ class SessionStore : ObservableObject {
             }
             
             if(!self.groceryList.isEmpty) {
-                self.anish = self.groceryList.chunked(into: 3)
+                self.groceryListInGridFormat = self.groceryList.chunked(into: 3)
             }
         }
     }

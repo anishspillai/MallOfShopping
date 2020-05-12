@@ -13,20 +13,20 @@ final class OrderedItems: ObservableObject {
     
     @Published var orderedGroceries = [ORDERS]()
     
-    var total: Float {
+    var total: Int {
         if orderedGroceries.count > 0 {
-            return orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) }
+            return orderedGroceries.reduce(0) { $0 + $1.noOfItems }
         } else {
             return 0 
         }
     }
     
     var totalCost: String {
-        if orderedGroceries.count > 0 {
-            return String(format: "%.2f", orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price})
+        if (!orderedGroceries.isEmpty) {
+            return String(format: "%.2f", orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price}) + "Kr"
             
         } else {
-            return "0"
+            return "0 Kr"
         }
     }
     

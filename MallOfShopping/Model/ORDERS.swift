@@ -16,15 +16,15 @@ struct ORDERS: Identifiable {
     var noOfItems: Int
     let price: Float
     let id: String
-    let timeOfOrder: String
+    let type: String
     
-    init(id: String, groceryName: String, grossWeight: Int, noOfItems: Int, price: Float, timeOfOrder: String) {
+    init(id: String, groceryName: String, grossWeight: Int, noOfItems: Int, price: Float, type: String) {
         self.ref = nil
         self.groceryName = groceryName
         self.grossWeight = grossWeight
         self.noOfItems = noOfItems
         self.id = id
-        self.timeOfOrder = timeOfOrder
+        self.type = type
         self.price = price
         
     }
@@ -38,7 +38,7 @@ struct ORDERS: Identifiable {
             let noOfItems = value["noOfItems"] as? Int,
             let price = value["price"] as? Float,
             let id = value["id"] as? String,
-            let timeOfOrder = value["timeOfOrder"] as? String
+            let type = value["type"] as? String
             else {
                 return nil
         }
@@ -48,7 +48,7 @@ struct ORDERS: Identifiable {
         self.grossWeight = grossWeight
         self.noOfItems = noOfItems
         self.id = id
-        self.timeOfOrder = timeOfOrder
+        self.type = type
         self.price = price
     }
     
@@ -58,7 +58,7 @@ struct ORDERS: Identifiable {
             "grossWeight": grossWeight,
             "noOfItems": noOfItems,
             "id": id,
-            "timeOfOrder": timeOfOrder,
+            "type": type,
             "price": price
         ]
     }

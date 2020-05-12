@@ -26,7 +26,7 @@ struct OrderConfirmationView: View {
                 }.padding().background(Color.orange).border(Color.gray)
             }
             
-            NavigationLink(destination: CustomerDetailView()) {
+            NavigationLink(destination: OrderRecieptView()) {
                 HStack {
                     Text("Reciept")
                     Spacer()
@@ -36,7 +36,7 @@ struct OrderConfirmationView: View {
             
             Spacer()
             
-            GreenButtonView(buttonTitle: "Finish").padding()
+            GreenButtonView(buttonTitle: "Finish Shopping").padding().frame(minWidth: 0, maxWidth: .infinity)
                 
                 .navigationBarTitle("")
         }
