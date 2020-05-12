@@ -54,7 +54,6 @@ struct TopMenu: View {
             
             Text(self.orderedItems.totalCost)
                 .padding(.trailing)
-                .font(.title)
         }.frame(height: 30)
             .onAppear(perform: initializeValuesForSearchController)
     }

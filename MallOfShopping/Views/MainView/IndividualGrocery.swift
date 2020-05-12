@@ -97,34 +97,6 @@ struct IndividualGrocery: View {
     
 }
 
-struct GroceryView: View {
-    let grocery: GROCERY
-    var body: some View {
-        GeometryReader { geometry in
-            
-            NavigationLink(destination:IndividualGroceryDetailView()) {
-                
-                VStack() {
-                    
-                    PriceView(grocery: self.grocery)
-                    
-                    GroceryDetailView(grocery: self.grocery)
-                    
-                    GroceryCountStepperView(grocery: self.grocery)
-                    
-                    Spacer()
-                    
-                }
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                .stroke(Color.orange, lineWidth: 1))
-                .frame(width: (geometry.size.width - 50)/3)
-                .padding(.trailing, 2).padding(.leading, 1)
-                
-            }.buttonStyle(PlainButtonStyle())
-        }
-    }
-}
-
 struct GroceryCountStepperView: View {
     
     @EnvironmentObject var orderedItems: OrderedItems
@@ -147,7 +119,7 @@ struct GroceryCountStepperView: View {
                     Button(action: {
                         self.orderedItems.decrement(idOfTheItem: self.grocery.id.uuidString)
                     }) {
-                        Image(systemName: "minus.circle.fill").imageScale(.medium)
+                        Image(systemName: "minus.circle.fill").imageScale(.large)
                     }
                     
                     Text("\(self.getNoOfItemsFromOrderedList())")
@@ -155,7 +127,7 @@ struct GroceryCountStepperView: View {
                     Button(action: {
                         self.orderedItems.increament(idOfTheItem: self.grocery.id.uuidString)
                     }) {
-                        Image(systemName: "plus.circle.fill").imageScale(.medium)
+                        Image(systemName: "plus.circle.fill").imageScale(.large)
                     }
                 }
             }
@@ -223,8 +195,9 @@ struct PriceView: View {
     let grocery: GROCERY
     
     var body: some View {
+        
         ZStack {
-            Image("1").resizable().frame(height: 100).padding(		.all)
+            Image("1").resizable().frame(height: 100).padding(.all)
             
             Text(self.getPrice(grocery: grocery))
                 .font(.caption)

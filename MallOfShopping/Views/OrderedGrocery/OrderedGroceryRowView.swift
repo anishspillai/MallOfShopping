@@ -23,13 +23,16 @@ struct OrderedGroceryRowView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             
-                            Text(orderedGrocery.groceryName).font(.subheadline)
+                            Text(orderedGrocery.groceryName)
+                                .font(.system(size: 14, weight: .light, design: .serif))
+                                .italic()
                             
                             Text("\(orderedGrocery.noOfItems) * \(orderedGrocery.grossWeight)")
-                                .font(.subheadline).foregroundColor(.secondary)
+                                .font(.system(size: 14, weight: .light, design: .serif))
+                                .foregroundColor(.secondary)
                         }
                         Spacer()
-                    }.frame(width: 100)
+                    }.frame(width: 90)
                     
                     Spacer()
                     

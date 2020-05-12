@@ -32,7 +32,6 @@ struct OrderedGroceryView: View {
                 
                 HStack(alignment: .center) {
                     
-                    //CartImage()
                     Text("\(self.orderedItems.totalCost)").font(.headline).padding(.leading)
                     
                     Spacer()
@@ -40,8 +39,6 @@ struct OrderedGroceryView: View {
                     EmptyCartButton()
                     
                     CheckoutButton(displayLoginPage: $displayLoginPage)
-                    
-                    
                     
                     SignoutButton()
                     
@@ -113,6 +110,7 @@ struct CartImage: View {
 }
 
 struct SignoutButton: View {
+    
     var body: some View {
         Button(action: {
             self.signOut()
@@ -120,6 +118,7 @@ struct SignoutButton: View {
             Image(systemName: "cloud.fill")
         }
     }
+    
     func signOut () {
         //self.displayLoginPage = false
         //session.signOut()

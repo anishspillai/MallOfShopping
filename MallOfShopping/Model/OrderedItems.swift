@@ -23,7 +23,8 @@ final class OrderedItems: ObservableObject {
     
     var totalCost: String {
         if (!orderedGroceries.isEmpty) {
-            return String(format: "%.2f", orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price}) + "Kr"
+            //return "\(orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price}) Kr"
+            return String(format: "%.2f", orderedGroceries.reduce(0) { $0 + Float($1.noOfItems) * $1.price}) + " Kr"
             
         } else {
             return "0 Kr"

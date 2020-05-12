@@ -19,17 +19,7 @@ struct SideBarMainPageView: View {
     var body: some View {
         
         VStack (alignment: .leading, spacing: 5) {
-            /**HStack {
-             Button(action: {
-             withAnimation(.default) {
-             self.displayMenu.toggle()
-             }
-             }) {
-             Image(systemName: "heart")
-             }
-             Spacer()
-             }.padding(.top) */
-            
+            Group {
             
             NavigationLink(destination: CustomerDetailView()) {
                 Text("User Profile").font(.system(size: 15, weight: .light, design: .serif)).padding(.top)
@@ -59,6 +49,27 @@ struct SideBarMainPageView: View {
                 ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
                     NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu)) {
                         Text(sideBarMenuModel.menu).padding(.leading, 20)
+                    }
+                }
+            }
+            
+            Divider()
+            }
+            
+            if(self.session.session != nil) {
+                Button(action: {
+                    self.displayCatagories.toggle()
+                }) {
+                    HStack {
+                        GreenButtonView(buttonTitle: "Log In")
+                    }
+                }
+            } else {                
+                Button(action: {
+                    _ = self.session.signOut()
+                }) {
+                    HStack {
+                        GreenButtonView(buttonTitle: "Log Out")
                     }
                 }
             }
