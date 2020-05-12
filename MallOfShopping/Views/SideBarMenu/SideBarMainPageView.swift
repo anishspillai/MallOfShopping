@@ -78,6 +78,6 @@ struct SideBarMainPageView: View {
     }
     
     func fetchSideBarMenuOptions() {
-        self.session.getCatagoriesForSideBarMenu()
+        //self.session.getCatagoriesForSideBarMenu()
     }
 }

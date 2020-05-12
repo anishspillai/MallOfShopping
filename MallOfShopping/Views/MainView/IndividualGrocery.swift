@@ -100,7 +100,7 @@ struct IndividualGrocery: View {
     
     func fetchGroceries() {
         if(!self.isLoaded) { // Do not fetch again once it is loaded.
-            self.session.getListOfGroceries()
+            //self.session.getListOfGroceries()
             self.isLoaded.toggle()
         }
     }

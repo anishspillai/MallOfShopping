@@ -30,17 +30,38 @@ struct DisplayUserDetails : View {
         VStack() {
             
             ZStack {
-                Rectangle().foregroundColor(Color.purple).frame(height: 150)
-                    .clipShape(CustomShape())
+                VStack {
+                    Rectangle().foregroundColor(Color.purple).frame(height: 150)
+                        .clipShape(CustomShape()).padding(.top, 0)
+                }
                 
                 Image(systemName: "person.crop.circle.fill").resizable().frame(width:50, height: 50).foregroundColor(Color.white)
                 
-                Text(session.customerDeliveryAddress.firstName).offset(x: 0, y:50).foregroundColor(Color.white)
+                Text("Hej!   \(session.customerDeliveryAddress.firstName) \(session.customerDeliveryAddress.lastName)").offset(x: 0, y:50).foregroundColor(Color.white)
                 
-            }
-            Spacer()
+            }.padding(.bottom)
+            
+            Spacer().frame(height: 10)
+            
             
             if(!self.editUserDetails) {
+                
+                if(self.session.session == nil) {
+                    HStack {
+                        Image(systemName: "exclamationmark.circle").padding(.leading)
+                        Spacer()
+                        Text("Please Login and Try again!!").padding(.trailing)
+                    }.frame(minWidth: 0, maxWidth: .infinity).padding().background(Color.green)
+                } else if(session.customerDeliveryAddress.postNumber.isEmpty) {
+                    HStack {
+                        Image(systemName: "exclamationmark.circle")
+                        Spacer()
+                        Text("Missing Delivery Address!!!")
+                    }.frame(minWidth: 0, maxWidth: .infinity).padding().background(Color.green)
+                }
+                
+                Text("User Details").font(.headline).fontWeight(.semibold)
+                
                 Group {
                     
                     HStack {Text("Mobile Number")
@@ -57,14 +78,14 @@ struct DisplayUserDetails : View {
                 }
                 
                 Group {
-                    HStack {Text("Street Name")
+                    HStack {Text("Address")
                         .font(.system(size: 15, weight: .light, design: .serif))
                         .italic()
                         Spacer()
                     }.padding(.leading, 10)
                     
                     
-                    HStack {Text(session.customerDeliveryAddress.streetName)
+                    HStack {Text("\(session.customerDeliveryAddress.streetName), \(session.customerDeliveryAddress.address)")
                         Spacer()
                     }.padding(25)
                     
@@ -94,13 +115,13 @@ struct DisplayUserDetails : View {
                     
                     Divider()
                 }
-                
+                Spacer()
                 HStack {
                     Spacer()
                     Button(action: {
                         self.editUserDetails = true
                     }) {
-                        GreenButtonView(buttonTitle: "Edit")
+                        GreenButtonView(buttonTitle: session.customerDeliveryAddress.postNumber.isEmpty ? "Add" : "Edit")
                     }
                 }.padding()
             } else {
@@ -111,7 +132,8 @@ struct DisplayUserDetails : View {
     }
     
     func fetchUserDetails() {
-        
+        session.listen()
+        self.session.fetchUserDeliveryAddress()
     }
 }
 
@@ -119,30 +141,29 @@ struct EditUserDetailView : View {
     
     @Binding var editUserDetails: Bool
     
+    @EnvironmentObject var session: SessionStore
     
-    @State private var firstname: String = ""
-    @State private var lastname: String = ""
+    
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
     @State private var telephoneNumber: String = ""
     
     @State private var postNumber: String = ""
-    @State private var city: String = ""
+    @State private var address: String = ""
     @State private var streetName: String = ""
     @State private var apartmentNumber: String = ""
     var body: some View {
         VStack {
             
-            Text("Edit User Details").font(.title).fontWeight(.semibold).underline()
+            Text("Edit User Details").font(.subheadline).fontWeight(.semibold)
             
             Group {
-                TextField("First Name", text:  $firstname)
+                TextField("First Name", text: $firstName)
                     .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
                 
-                Divider()
-                
-                TextField("Last Name", text:  $lastname)
+                TextField("Last Name", text:  $lastName)
                     .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
                 
-                Divider()
                 
                 TextField("Mobile Number", text:  $telephoneNumber)
                     .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
@@ -155,16 +176,16 @@ struct EditUserDetailView : View {
                 TextField("Apartment No", text:  $postNumber)
                     .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
                 
-                Divider()
                 
-                
-                TextField("First Name", text:  $streetName)
+                TextField("Street Name", text:  $streetName)
                     .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
                 
-                Divider()
+                
+                TextField("Address", text:  $address)
+                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
                 
                 
-                TextField("Address", text:  $apartmentNumber)
+                TextField("Post Number", text:  $apartmentNumber)
                     .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
                 
             }
@@ -180,7 +201,15 @@ struct EditUserDetailView : View {
                 
                 
                 Button(action: {
-                    //self.editUserDetails = true
+                    let customerDeliveryAddress = CustomerDeliveryAddress(firstName: self.firstName,
+                                                                          lastName: self.lastName,
+                                                                          telephoneNumber: self.telephoneNumber,
+                                                                          postNumber: self.postNumber,
+                                                                          address: self.address,
+                                                                          streetName: self.streetName,
+                                                                          apartmentNumber: self.apartmentNumber)
+                    self.session.addUserAddress(customerDeliveryAddress: customerDeliveryAddress)
+                    self.editUserDetails.toggle()
                 }) {
                     GreenButtonView(buttonTitle: "Save")
                 }.padding(.trailing)

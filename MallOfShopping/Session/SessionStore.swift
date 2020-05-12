@@ -183,12 +183,15 @@ class SessionStore : ObservableObject {
         
         let ref: DatabaseReference = Database.database().reference(withPath: "users/user-details/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
         
+        print(ref.description())
+        
         ref.observe(DataEventType.value) { (snapshot) in
             
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let customerDeliveryAddress = CustomerDeliveryAddress(snapshot: snapshot) {
                     self.customerDeliveryAddress = customerDeliveryAddress
+                    print(self.customerDeliveryAddress)
                 }
             }
             

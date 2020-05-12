@@ -13,11 +13,11 @@ import FirebaseDatabase
 struct CustomerDeliveryAddress {
     
     let ref: DatabaseReference?
-    let apartmentNumber: Int
-    let city: String
+    let apartmentNumber: String
+    let address: String
     let firstName: String
     let lastName: String
-    let postNumber: Int
+    let postNumber: String
     let streetName: String
     let telephoneNumber: String
     
@@ -26,27 +26,27 @@ struct CustomerDeliveryAddress {
     init(firstName: String,
          lastName: String,
          telephoneNumber: String,
-         postNumber: Int,
-         city: String,
+         postNumber: String,
+         address: String,
          streetName: String,
-         apartmentNumber: Int) {
+         apartmentNumber: String) {
         
         self.firstName = firstName
         self.lastName = lastName
         self.telephoneNumber = telephoneNumber
         self.postNumber = postNumber
-        self.city = city
+        self.address = address
         self.streetName = streetName
         self.apartmentNumber = apartmentNumber
         self.ref = nil
     }
     
     init() {
-        self.apartmentNumber = -1
-        self.city = ""
+        self.apartmentNumber = ""
+        self.address = ""
         self.firstName = ""
         self.lastName = ""
-        self.postNumber = -1
+        self.postNumber = ""
         self.ref = nil
         self.streetName = ""
         self.telephoneNumber = ""
@@ -56,11 +56,11 @@ struct CustomerDeliveryAddress {
         print(snapshot)
         guard
             let value = snapshot.value as? [String: AnyObject],
-            let apartmentNumber = value["apartmentNumber"] as? Int,
-            let city = value["city"] as? String,
+            let apartmentNumber = value["apartmentNumber"] as? String,
+            let address = value["address"] as? String,
             let firstName = value["firstName"] as? String,
             let lastName = value["lastName"] as? String,
-            let postNumber = value["postNumber"] as? Int,
+            let postNumber = value["postNumber"] as? String,
             let streetName = value["streetName"] as? String,
             let telephoneNumber = value["telephoneNumber"] as? String
             else {
@@ -69,7 +69,7 @@ struct CustomerDeliveryAddress {
         
         self.ref = snapshot.ref
         self.apartmentNumber = apartmentNumber
-        self.city = city
+        self.address = address
         self.firstName = firstName
         self.lastName = lastName
         self.postNumber = postNumber
@@ -80,7 +80,7 @@ struct CustomerDeliveryAddress {
     func toAnyObject() -> Any {
         return [
             "apartmentNumber": apartmentNumber,
-            "city": city,
+            "address": address,
             "firstName": firstName,
             "lastName": lastName,
             "postNumber": postNumber,
