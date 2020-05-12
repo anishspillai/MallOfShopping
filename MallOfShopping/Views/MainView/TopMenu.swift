@@ -24,12 +24,12 @@ struct TopMenu: View {
         HStack {
             
             if(!self.displaySearchTextInput) {
-                Text("    Available items").bold()
+                Text("Available items").bold().padding(.leading)
                 
                 Button(action: {
                     self.displaySearchTextInput.toggle()
                 }) {
-                    Image(systemName: "magnifyingglass.circle")
+                    Image(systemName: "magnifyingglass.circle").foregroundColor(Color.orange)
                 }
             }
             
@@ -37,7 +37,7 @@ struct TopMenu: View {
                 ZStack {
                     TextField("Search By brand name", text: self.$tester.searchText)
                         .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.top).padding(.leading)
-
+                    
                     Button(action: {
                         self.tester.searchText = ""
                     }) {
@@ -52,11 +52,9 @@ struct TopMenu: View {
                 .imageScale(.medium)
                 .foregroundColor(.yellow)
             
-            Text("\(String(format: "%.2f", self.orderedItems.totalCost)) kr")
+            Text(self.orderedItems.totalCost)
                 .padding(.trailing)
-                .font(.headline)
-                .fixedSize()
-                .foregroundColor(Color.black)
+                .font(.title)
         }.frame(height: 30)
             .onAppear(perform: initializeValuesForSearchController)
     }
