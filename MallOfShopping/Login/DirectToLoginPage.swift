@@ -9,23 +9,31 @@
 import SwiftUI
 
 struct DirectToLoginPage: View {
+    
+    @Binding var displayLoginPage: Bool
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
                 
                 NavigationLink(destination: SignInView(isSignUp: true)) {
-                    Text("Sign Up")
+                    GreenButtonView(buttonTitle: "Sign Up").frame(maxWidth: .infinity)
                 }
                 
                 NavigationLink(destination: SignInView(isSignUp: false)) {
-                    Text("Sign In")
+                    GreenButtonView(buttonTitle: "Sign In").frame(maxWidth: .infinity)
                 }
-            }.frame(width: 300, height: 300).background(Image("1")).opacity(0.5)
+                
+                Button(action: {
+                    self.displayLoginPage.toggle()
+                }) {
+                    Text("I shall login later").underline().foregroundColor(Color.purple).font(.headline)
+                }
+                
+                Spacer()
+                
+                
+            }.frame(width: 300, height: 300).background(Image("1")).opacity(1)
         }}
 }
 
-struct DirectToLoginPage_Previews: PreviewProvider {
-    static var previews: some View {
-        DirectToLoginPage()
-    }
-}

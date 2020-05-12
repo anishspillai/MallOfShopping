@@ -12,8 +12,6 @@ struct OrderedGroceryView: View {
     
     @EnvironmentObject var orderedItems: OrderedItems
     
-    @State var anish = false
-    @State var quantity = 0
     @State var displayLoginPage = false
     
     @EnvironmentObject var session: SessionStore
@@ -28,34 +26,38 @@ struct OrderedGroceryView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            
+            ZStack {
                 
-                HStack(alignment: .center) {
+                VStack {
                     
-                    Text("\(self.orderedItems.totalCost)").font(.headline).padding(.leading)
+                    HStack(alignment: .center) {
+                        
+                        Text("\(self.orderedItems.totalCost)").font(.headline).padding(.leading)
+                        
+                        Spacer()
+                        
+                        EmptyCartButton()
+                        
+                        CheckoutButton(displayLoginPage: $displayLoginPage).padding(.trailing)
+                        
+                    }.padding(.top, 10)
+                    
+                    OrderedGroceryRowView()
                     
                     Spacer()
                     
-                    EmptyCartButton()
+                }.onAppear(perform: getUser).background(Color(red: 242 / 255, green: 242 / 255, blue: 242 / 255))
                     
-                    CheckoutButton(displayLoginPage: $displayLoginPage)
-                    
-                }.padding(.top, 10)
+                    .navigationBarTitle("Your Order", displayMode: .inline)
                 
-                ZStack {
-                    OrderedGroceryRowView()
-                    
-                    if(self.session.session == nil && self.displayLoginPage) {
-                        DirectToLoginPage()
-                    }
+                if(self.session.session == nil && self.displayLoginPage) {
+                    DirectToLoginPage(displayLoginPage: self.$displayLoginPage)
                 }
-                
-                Spacer()
-            }.onAppear(perform: getUser).background(Color(red: 242 / 255, green: 242 / 255, blue: 242 / 255))
+            }
             
-            //.navigationBarHidden(true)
-            .navigationBarTitle("Your Order", displayMode: .inline)
         }
+        
     }
     
     
