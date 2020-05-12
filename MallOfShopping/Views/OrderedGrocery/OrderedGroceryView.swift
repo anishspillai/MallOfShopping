@@ -40,8 +40,6 @@ struct OrderedGroceryView: View {
                     
                     CheckoutButton(displayLoginPage: $displayLoginPage)
                     
-                    SignoutButton()
-                    
                 }.padding(.top, 10)
                 
                 ZStack {
@@ -71,7 +69,7 @@ struct EmptyCartButton: View {
         Button(action: {
             self.orderedItems.orderedGroceries = []
         }) {
-            Image(systemName: "trash.fill").foregroundColor(Color.red).font(.title)
+            Image(systemName: "trash.fill").foregroundColor(Color.red).font(.headline)
         }
     }
     
@@ -108,23 +106,6 @@ struct CartImage: View {
             .foregroundColor(.yellow).padding(.leading, 5)
     }
 }
-
-struct SignoutButton: View {
-    
-    var body: some View {
-        Button(action: {
-            self.signOut()
-        }) {
-            Image(systemName: "cloud.fill")
-        }
-    }
-    
-    func signOut () {
-        //self.displayLoginPage = false
-        //session.signOut()
-    }
-}
-
 
 struct OrderedGroceryView_Previews: PreviewProvider {
     static var previews: some View {
