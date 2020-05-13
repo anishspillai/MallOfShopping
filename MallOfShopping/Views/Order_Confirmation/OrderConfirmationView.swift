@@ -36,9 +36,22 @@ struct OrderConfirmationView: View {
             
             Spacer()
             
-            GreenButtonView(buttonTitle: "Finish Shopping").padding().frame(minWidth: 0, maxWidth: .infinity)
+            Button(action: {
+                print("Clicked")
+            }) {
+                Text("Confirm Order")
+                .padding()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .background(Color(red: 72 / 255, green: 176 / 255, blue: 13 / 255))
+                    .foregroundColor(Color.white)
+                    .cornerRadius(5)
+                    .padding(.bottom)
                 
-                .navigationBarTitle("")
+            }
+                
+                
+                
+            .navigationBarTitle("")
         }
         //}
     }

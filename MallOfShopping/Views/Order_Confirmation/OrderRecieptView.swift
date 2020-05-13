@@ -9,19 +9,40 @@
 import SwiftUI
 
 struct OrderRecieptView: View {
-
+    
     @EnvironmentObject var orderedItems: OrderedItems
-
+    
     var body: some View {
         
-        VStack {
-            ForEach(orderedItems.orderedGroceries) { order in
-                Text(order.groceryName)
+        ScrollView() {
+            VStack {
+                Text("Orders").font(.headline).bold().padding(.bottom)
+                
+                ForEach(orderedItems.orderedGroceries) { order in
+                    Divider()
+                    HStack{
+                        Text("\(order.noOfItems) * \(order.type),  \(order.groceryName)")
+                        .font(.system(size: 12, weight: .light, design: .serif))
+                        .italic()
+                        Spacer()
+                        Text(order.getTotalPrice())
+                        .font(.system(size: 12, weight: .light, design: .serif))
+                        .italic()
+                    }.padding(.leading).padding(.trailing)
+                    
+                }
+                Divider().accentColor(Color.gray)
+                
+                HStack {
+                    Text("Total").bold()
+                    Spacer()
+                    Text(orderedItems.totalCost).bold()
+                }.padding(.trailing).padding(.leading)
+                
+                Spacer()
             }
+                        
         }
-        
-        
-        
     }
 }
 

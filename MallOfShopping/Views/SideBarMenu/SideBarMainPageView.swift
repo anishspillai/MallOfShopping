@@ -56,7 +56,7 @@ struct SideBarMainPageView: View {
             Divider()
             }
             
-            if(self.session.session != nil) {
+            if(self.session.session == nil) {
                 Button(action: {
                     self.displayCatagories.toggle()
                 }) {

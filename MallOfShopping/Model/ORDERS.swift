@@ -66,4 +66,8 @@ struct ORDERS: Identifiable {
     func getPriceWithPrecision() -> String {
         String(format: "%.2f", self.price)
     }
+    
+    func getTotalPrice() -> String {
+        String(format: "%.2f", (self.price * Float(self.noOfItems)))  + " Kr"
+    }
 }
