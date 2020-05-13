@@ -45,7 +45,7 @@ struct OrderConfirmationView: View {
                     .background(Color(red: 72 / 255, green: 176 / 255, blue: 13 / 255))
                     .foregroundColor(Color.white)
                     .cornerRadius(5)
-                    .padding(.bottom)
+                    .padding()
                 
             }
                 
