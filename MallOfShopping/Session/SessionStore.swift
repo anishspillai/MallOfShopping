@@ -35,12 +35,7 @@ class SessionStore : ObservableObject {
     
     @Published var customerDeliveryAddress: CustomerDeliveryAddress = CustomerDeliveryAddress()
     
-    
     var ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
-    
-    let groecery_list = Database.database().reference(withPath: "Error/Groceries")
-    
-    var userDetails: DatabaseReference = Database.database().reference(withPath: "users/user_details/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
     
     
     func listen () {
@@ -94,38 +89,6 @@ class SessionStore : ObservableObject {
         }
     }
     
-    
-    
-    func getTODOS() {
-        ref.observe(DataEventType.value) { (snapshot) in
-            self.items = []
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let toDo = TODOS(snapshot: snapshot) {
-                    self.items.append(toDo)
-                }
-            }
-        }
-    }
-    
-    
-    func getORDERS() {
-        ref.observe(DataEventType.value) { (snapshot) in
-            self.orders = []
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let order = ORDERS(snapshot: snapshot) {
-                    self.orders.append(order)
-                }
-            }
-        }
-    }
-    
-    func uploadTODO(todo: String) {
-    }
-    
-    
-    
     func getUserGroceries() {
         ref.observe(DataEventType.value) { (snapshot) in
             self.orders = []
@@ -138,26 +101,11 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func getUserAddress() {
-        let ref: DatabaseReference = Database.database().reference(withPath: "users/user-details/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
-        
-        ref.observe(DataEventType.value) { (snapshot) in
-            self.orders = []
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let order = ORDERS(snapshot: snapshot) {
-                    self.orders.append(order)
-                }
-            }
-        }
-    }
-    
-    
     func addGroceryForTheUser(orders: [ORDERS]) {
         
         let ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
         
-        
+        ref.child(String(NSDate().timeIntervalSince1970))
         
         var data: [Any] = []
         
@@ -253,22 +201,22 @@ class SessionStore : ObservableObject {
         
         self.groceryListByType = []
         self.groceryListGridByType = [[]]
-
+        
         ref.observe(DataEventType.value) { (snapshot) in
             
             
             
             //for child in snapshot.children {
-                
-                //let snapshot = child as? DataSnapshot
-                
-                for child in snapshot.children {
-                    if let snapshot = child as? DataSnapshot,
-                        let order = GROCERY(snapshot: snapshot) {
-                        self.groceryListByType.append(order)
-                    }
-                }                
-                
+            
+            //let snapshot = child as? DataSnapshot
+            
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let order = GROCERY(snapshot: snapshot) {
+                    self.groceryListByType.append(order)
+                }
+            }
+            
             //}
             
             
@@ -292,35 +240,6 @@ class SessionStore : ObservableObject {
                 }
             }
         }
-    }
-    
-    func toAnsihOB() -> Any {
-        return [
-            "name": "Anish",
-            "Apartmano ": "22",
-            "Street": "Monstorpsvägen",
-            "pin": "14645",
-            "telephone": "0723980601"
-        ]
-    }
-    func toAady() -> Any {
-        return [
-            "name": "Aaadya",
-            "Apartmano ": "22",
-            "Street": "Monstorpsvägen",
-            "pin": "14645",
-            "telephone": "0723980601"
-        ]
-    }
-    
-    func toSwa() -> Any {
-        return [
-            "name": "Swathy",
-            "Apartmano ": "22",
-            "Street": "Monstorpsvägen",
-            "pin": "14645",
-            "telephone": "0723980601"
-        ]
     }
 }
 

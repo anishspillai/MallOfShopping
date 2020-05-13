@@ -22,16 +22,19 @@ struct CustomerOrderHistoryView: View {
     }
     
     var body: some View {
+        NavigationView {
         VStack {
-            Text("Your order status")
-            Group {
+            Text("Your order status").bold().padding(.top).padding(.bottom)
+            
+            Spacer()
+            
                 if session.session != nil {
                     List {
                         ForEach(self.session.orders) { ORDERS in
                             HStack {
                                 VStack {
-                                Text("\(ORDERS.noOfItems) * \(ORDERS.groceryName)").font(.headline)
-                                Text("\(ORDERS.grossWeight)")
+                                    Text("\(ORDERS.noOfItems) * \(ORDERS.groceryName)").font(.headline)
+                                    Text("\(ORDERS.grossWeight)")
                                 }.padding(.leading, 5)
                                 
                                 Spacer()
@@ -41,11 +44,14 @@ struct CustomerOrderHistoryView: View {
                         }.onDelete(perform: deleteItems(at:))
                     }
                 } else {
-                    Text("An0nymous Customer, Please log in and check the list again")
+                    Image(systemName: "person.crop.circle.fill.badge.exclam").font(.largeTitle).padding().foregroundColor(Color.red)
+                    Text("Please log in and check the list again").padding()
                 }
-            }
+            Spacer()
+            
         }.onAppear(perform: getUser)
-    }
+        .navigationBarTitle("Your Order History", displayMode: .inline)
+        }}
 }
 
 struct CustomerOrderView_Previews: PreviewProvider {
