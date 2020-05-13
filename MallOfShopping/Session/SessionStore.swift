@@ -35,7 +35,7 @@ class SessionStore : ObservableObject {
     
     @Published var customerDeliveryAddress: CustomerDeliveryAddress = CustomerDeliveryAddress()
     
-    var ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
+    @Published var orderHistories: [OrderHistory] = []
     
     
     func listen () {
@@ -89,33 +89,44 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func getUserGroceries() {
-        ref.observe(DataEventType.value) { (snapshot) in
-            self.orders = []
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let order = ORDERS(snapshot: snapshot) {
-                    self.orders.append(order)
-                }
-            }
-        }
-    }
-    
-    func addGroceryForTheUser(orders: [ORDERS]) {
+    func getOrderHistory() {
         
         let ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
         
-        ref.child(String(NSDate().timeIntervalSince1970))
+        ref.observe(DataEventType.value) { (snapshot) in
+            self.orderHistories = []
+            var ordersInThePast : [ORDERS] = []
+            var orderHistory: OrderHistory = OrderHistory(orderedTime: snapshot.key)
+                        
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let order = ORDERS(snapshot: snapshot) {
+                    ordersInThePast.append(order)
+                }
+            }
+            orderHistory.orders = ordersInThePast
+            self.orderHistories.append(orderHistory)
+        }
+    }
+    
+    func addGroceryForTheUser(orderedItems: [ORDERS]) {
+        
+        let ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
+        
+        let currentTimeStamp = Int(Date.timeIntervalSinceReferenceDate)
+        
+        let childPath = "/" + String(currentTimeStamp)
+        
+        let postRef = ref.child(childPath)
         
         var data: [Any] = []
         
-        for order in orders {
+        for order in orderedItems {
             data.append(order.toJsonFormat())
         }
         
-        ref.setValue(data)
         
-        self.orderedItems.orderedGroceries = []
+        postRef.setValue(data)
         
     }
     

@@ -9,6 +9,11 @@
 import SwiftUI
 
 struct OrderConfirmationView: View {
+    
+    @EnvironmentObject var session: SessionStore
+    
+    @EnvironmentObject var orderedItems: OrderedItems
+
     var body: some View {
         //NavigationView {
         
@@ -37,7 +42,7 @@ struct OrderConfirmationView: View {
             Spacer()
             
             Button(action: {
-                print("Clicked")
+                self.session.addGroceryForTheUser(orderedItems: self.orderedItems.orderedGroceries)
             }) {
                 Text("Confirm Order")
                 .padding()

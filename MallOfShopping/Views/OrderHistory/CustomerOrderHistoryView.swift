@@ -14,7 +14,12 @@ struct CustomerOrderHistoryView: View {
     
     
     func getUser () {
+        
+        print(session.orderHistories)
         session.listen()
+        
+        session.getOrderHistory()
+        print(session.orderHistories)
     }
     
     func deleteItems(at offsets: IndexSet) {

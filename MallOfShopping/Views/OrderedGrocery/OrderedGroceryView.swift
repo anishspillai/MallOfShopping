@@ -16,10 +16,6 @@ struct OrderedGroceryView: View {
     
     @EnvironmentObject var session: SessionStore
     
-    func storeOrders() {
-        session.addGroceryForTheUser(orders: self.orderedItems.orderedGroceries)
-    }
-    
     func getUser () {
         session.listen()
     }
