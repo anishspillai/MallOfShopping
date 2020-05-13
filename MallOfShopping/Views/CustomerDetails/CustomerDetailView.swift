@@ -44,7 +44,7 @@ struct DisplayUserDetails : View {
             Spacer().frame(height: 10)
             
             
-            if(!self.editUserDetails) {
+            if(!session.customerDeliveryAddress.postNumber.isEmpty) {
                 
                 if(self.session.session == nil) {
                     HStack {
@@ -155,50 +155,52 @@ struct EditUserDetailView : View {
     var body: some View {
         VStack {
             
-            Text("Edit User Details").font(.subheadline).fontWeight(.semibold)
+            Text("Add User Details").font(.subheadline).fontWeight(.semibold)
             
             Group {
-                TextField("First Name", text: $firstName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
-                
-                TextField("Last Name", text:  $lastName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
                 
                 
-                TextField("Mobile Number", text:  $telephoneNumber)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+                HStack {
+                    Text("*").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
+                    TextField("First Name", text:  $firstName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+                }
+                
+                HStack {
+                    Text("  ").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
+                    TextField("Last Name, not mandatory", text:  $lastName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+                }
+                
+                TelephoneNumberInputView(telephoneNumber: $telephoneNumber)
                 
                 Divider()
             }
             
             Group {
                 
-                TextField("Apartment No", text:  $postNumber)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+                HStack {
+                    Text("*").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
+                    TextField("Apartment No", text:  $apartmentNumber)
+                        .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+                }
                 
+                HStack {
+                    Text("*").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
+                    TextField("Street Name", text:  $streetName)
+                        .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+                }
+                HStack {
+                    Text("*").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
+                    TextField("Address", text:  $address)
+                        .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+                }
                 
-                TextField("Street Name", text:  $streetName)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
-                
-                
-                TextField("Address", text:  $address)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
-                
-                
-                TextField("Post Number", text:  $apartmentNumber)
-                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
-                
+                PinCodeInputView(pinCode: $postNumber)
             }
             
             HStack {
                 Spacer()
-                
-                Button(action: {
-                    self.editUserDetails.toggle()
-                }) {
-                    Image(systemName: "return")
-                }.padding(.trailing)
-                
                 
                 Button(action: {
                     let customerDeliveryAddress = CustomerDeliveryAddress(firstName: self.firstName,
@@ -209,9 +211,21 @@ struct EditUserDetailView : View {
                                                                           streetName: self.streetName,
                                                                           apartmentNumber: self.apartmentNumber)
                     self.session.addUserAddress(customerDeliveryAddress: customerDeliveryAddress)
-                    self.editUserDetails.toggle()
                 }) {
-                    GreenButtonView(buttonTitle: "Save")
+                    if(firstName.isEmpty ||
+                        telephoneNumber.count < 10 ||
+                        postNumber.count < 5 ||
+                        address.isEmpty ||
+                        streetName.isEmpty ||
+                        apartmentNumber.isEmpty) {
+                        Text("*** Save button appears after filling all the fields ***")
+                        .font(.system(size: 12, weight: .light, design: .serif))
+                        .disabled(true)
+                            .foregroundColor(Color.red)
+                    } else {
+                        GreenButtonView(buttonTitle: "Save")
+                    }
+                    
                 }.padding(.trailing)
             }
             
@@ -226,5 +240,54 @@ struct CustomShape : Shape {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: .bottomLeft,
                                 cornerRadii: CGSize(width: 55, height: 55))
         return Path(path.cgPath)
+    }
+}
+
+
+struct TelephoneNumberInputView : View {
+    
+    @Binding  var telephoneNumber: String
+    var body: some View {
+        VStack {
+            HStack {
+                Text("*").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
+                
+                TextField("10 digits telephone number, ex 0123456789", text:  $telephoneNumber)
+                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+            }
+            
+            if(!TelephoneNumberValidator.isValidContact(contactNumber: self.telephoneNumber)) {
+                Text("Invalid Telephone Number, requires 10 digit number with starting 0")
+                    .font(.system(size: 12, weight: .light, design: .serif))
+                    .italic()
+                    .foregroundColor(Color.red)
+            }
+        }
+    }
+}
+
+
+struct PinCodeInputView : View {
+    
+    @Binding var pinCode: String
+    var body: some View {
+        VStack {
+            
+            
+            
+            if(!PinCodeValidator.isValidPinNumber(pinNumber: self.pinCode)) {
+                Text("Invalid Pin Code Number, requires 5 digits number")
+                    .font(.system(size: 12, weight: .light, design: .serif))
+                    .italic()
+                    .foregroundColor(Color.red)
+            }
+            
+            HStack {
+                Text("*").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
+                
+                TextField("5 digits postal code , ex 12345", text:  $pinCode)
+                    .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
+            }
+        }
     }
 }
