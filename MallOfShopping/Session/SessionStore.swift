@@ -37,6 +37,8 @@ class SessionStore : ObservableObject {
     
     @Published var orderHistories: [OrderHistory] = []
     
+    @Published var orderPlacementStatus: String = ""
+    
     
     func listen () {
         // monitor authentication changes using firebase
@@ -115,7 +117,7 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func addGroceryForTheUser(orderedItems: [ORDERS]) {
+    func addGroceryForTheUser(orderedItems: OrderedItems) {
         
         let ref: DatabaseReference = Database.database().reference(withPath: "users/order-lists/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
         
@@ -127,12 +129,19 @@ class SessionStore : ObservableObject {
         
         var data: [Any] = []
         
-        for order in orderedItems {
+        for order in orderedItems.orderedGroceries {
             data.append(order.toJsonFormat())
         }
         
         
-        postRef.setValue(data)
+        postRef.setValue(data, withCompletionBlock: { (error, ref) in
+            if (error == nil) {
+                orderedItems.orderedGroceries = []
+                self.orderPlacementStatus = "success"
+            } else {
+                self.orderPlacementStatus = "failed"
+            }
+        })
         
     }
     

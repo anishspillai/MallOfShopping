@@ -15,7 +15,10 @@ struct OrderConfirmationView: View {
     @EnvironmentObject var orderedItems: OrderedItems
     
     @State private var displayReciept = false
-
+    
+    @State private var showingAlert = false
+    
+    
     var body: some View {
         //NavigationView {
         
@@ -34,25 +37,35 @@ struct OrderConfirmationView: View {
             }
             
             
-                HStack {
-                    Text("Reciept")
-                    Spacer()
-                    Text(">").font(.title)
-                }.padding().background(Color.orange).onTapGesture {
-                    self.displayReciept.toggle()
-                }
+            HStack {
+                Text("Reciept")
+                Spacer()
+                Text(">").font(.title)
+            }.padding().background(Color.orange).onTapGesture {
+                self.displayReciept.toggle()
+            }
             if(self.displayReciept) {
                 OrderRecieptView()
             }
-           
+            
+            /**VStack {
+                if(session.orderPlacementStatus == "success") {
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Thank you for the order"), message: Text("Wear sunscreen"))
+                    }
+                }
+            }*/
+            
             
             Spacer()
             
             Button(action: {
-                self.session.addGroceryForTheUser(orderedItems: self.orderedItems.orderedGroceries)
+                self.session.addGroceryForTheUser(orderedItems: self.orderedItems)
+                self.showingAlert = true
+                
             }) {
                 Text("Confirm Order")
-                .padding()
+                    .padding()
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .background(Color(red: 72 / 255, green: 176 / 255, blue: 13 / 255))
                     .foregroundColor(Color.white)
