@@ -16,7 +16,7 @@ struct OrderRecieptView: View {
         
         ScrollView() {
             VStack {
-                Text("Orders").font(.headline).bold().padding(.bottom)
+                Text("Reciept").font(.headline).bold().padding(.bottom)
                 
                 ForEach(orderedItems.orderedGroceries) { order in
                     Divider()

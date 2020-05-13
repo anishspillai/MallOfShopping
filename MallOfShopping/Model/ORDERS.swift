@@ -70,7 +70,7 @@ struct ORDERS: Identifiable {
     }
     
     func getPriceWithPrecision() -> String {
-        String(format: "%.2f", self.price)
+        String(format: "%.2f", self.price) + " Kr"
     }
     
     func getTotalPrice() -> String {

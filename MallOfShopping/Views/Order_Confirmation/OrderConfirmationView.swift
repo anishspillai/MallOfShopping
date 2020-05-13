@@ -13,6 +13,8 @@ struct OrderConfirmationView: View {
     @EnvironmentObject var session: SessionStore
     
     @EnvironmentObject var orderedItems: OrderedItems
+    
+    @State private var displayReciept = false
 
     var body: some View {
         //NavigationView {
@@ -31,13 +33,18 @@ struct OrderConfirmationView: View {
                 }.padding().background(Color.orange).border(Color.gray)
             }
             
-            NavigationLink(destination: OrderRecieptView()) {
+            
                 HStack {
                     Text("Reciept")
                     Spacer()
                     Text(">").font(.title)
-                }.padding().background(Color.orange)
+                }.padding().background(Color.orange).onTapGesture {
+                    self.displayReciept.toggle()
+                }
+            if(self.displayReciept) {
+                OrderRecieptView()
             }
+           
             
             Spacer()
             

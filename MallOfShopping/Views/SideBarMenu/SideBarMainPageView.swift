@@ -86,7 +86,7 @@ struct SideBarMainPageView: View {
                 Divider()
             }
             
-            if(self.session.session == nil) {
+            if(self.session.session != nil) {
                 Button(action: {
                     self.displayCatagories.toggle()
                 }) {
@@ -96,7 +96,14 @@ struct SideBarMainPageView: View {
                 }
             } else {                
                 Button(action: {
-                    _ = self.session.signOut()
+                    //_ = self.session.signOut()
+                    
+                    let now = Date()
+                    let stamp = Int(now.timeIntervalSinceReferenceDate)
+                    print(stamp)
+                    
+                    print(Date(timeIntervalSinceReferenceDate: TimeInterval(Double(String(stamp))!)))
+                    
                 }) {
                     HStack {
                         GreenButtonView(buttonTitle: "Log Out")
