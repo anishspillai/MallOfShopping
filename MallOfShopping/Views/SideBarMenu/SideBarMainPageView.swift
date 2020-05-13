@@ -16,44 +16,74 @@ struct SideBarMainPageView: View {
     
     @EnvironmentObject var session: SessionStore
     
+    @State private var selection: Set<String> = []
+    
     var body: some View {
         
         VStack (alignment: .leading, spacing: 5) {
             Group {
-            
-            NavigationLink(destination: CustomerDetailView()) {
-                Text("User Profile").font(.system(size: 15, weight: .light, design: .serif)).padding(.top)
-            }
-            
-            Divider().padding(0)
-            
-            NavigationLink(destination: CustomerDetailView()) {
-                Text("Favorite").font(.system(size: 15, weight: .light, design: .serif))
-            }
-            
-            Divider()
-            
-            
-            Button(action: {
-                self.displayCatagories.toggle()
-            }) {
-                HStack {
-                    Text("Catagories").font(.system(size: 15, weight: .light, design: .serif)).padding(0)
-                    Image(systemName: "chevron.down")
+                
+                NavigationLink(destination: CustomerDetailView()) {
+                    Text("User Profile").font(.system(size: 15, weight: .light, design: .serif)).padding(.top)
                 }
-            }
-            
-            
-            
-            if(self.displayCatagories) {
-                ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
-                    NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu)) {
-                        Text(sideBarMenuModel.menu).padding(.leading, 20)
+                
+                Divider().padding(0)
+                
+                NavigationLink(destination: CustomerDetailView()) {
+                    Text("Favorite").font(.system(size: 15, weight: .light, design: .serif))
+                }
+                
+                Divider()
+                
+                
+                Button(action: {
+                    self.displayCatagories.toggle()
+                }) {
+                    HStack {
+                        Text("Catagories").font(.system(size: 15, weight: .light, design: .serif)).padding(0)
+                        Image(systemName: "chevron.down")
                     }
                 }
             }
             
-            Divider()
+            Group {
+                
+                
+                if(self.displayCatagories) {
+                    ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
+                        VStack {
+                            if(sideBarMenuModel.subMenu.isEmpty) {
+                                NavigationLink(destination: FilteredGroceryGridView(groceryType: "Maida/Maida")) {
+                                    Text(sideBarMenuModel.menu).padding(.leading, 20)
+                                }
+                            } else {
+                                HStack {
+                                    Text(sideBarMenuModel.menu).padding(.leading, 20).onTapGesture {
+                                        self.selectDeselect(menu: sideBarMenuModel.menu)
+                                    }
+                                    
+                                    Image(systemName: "chevron.down")
+                                    
+                                    Spacer()
+                                }
+                                
+                                VStack(alignment: .leading) {
+                                    if(self.selection.contains(sideBarMenuModel.menu)) {
+                                        
+                                        ForEach(sideBarMenuModel.subMenu, id: \.self) { subMenu in
+                                            NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu + "/" + subMenu)) {
+                                                Text(subMenu)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                
+                Divider()
             }
             
             if(self.session.session == nil) {
@@ -90,5 +120,13 @@ struct SideBarMainPageView: View {
     
     func fetchSideBarMenuOptions() {
         self.session.getCatagoriesForSideBarMenu()
+    }
+    
+    private func selectDeselect(menu: String) {
+        if selection.contains(menu) {
+            selection.remove(menu)
+        } else {
+            selection.insert(menu)
+        }
     }
 }

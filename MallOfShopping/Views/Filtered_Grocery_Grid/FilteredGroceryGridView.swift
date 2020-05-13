@@ -15,14 +15,15 @@ struct FilteredGroceryGridView: View {
     @State private var searchText = ""
     
     var groceryType: String
+    
     var body: some View {
         VStack {
+            
             if(!session.groceryListGridByType.isEmpty) {
-                
                 
                 GeometryReader { geometry in
                     VStack {
-                        //TopMenu(searchHandler: SearchController(kooi: self.session, anish: true, poda: ""))
+                        
                         TopMenu()
                         
                         if(true) { // Search here
@@ -69,9 +70,6 @@ struct FilteredGroceryGridView: View {
                     }
                     
                 }
-                
-                
-                
                 
             } else {
                 Text("Loading...")

@@ -12,7 +12,7 @@ import FirebaseDatabase
 struct SideBarMenuModel {
     
     let menu: String
-    public var subMenu: [String] = []
+    var subMenu: [String] = []
 
     
     init?(snapshot: DataSnapshot) {
@@ -24,7 +24,6 @@ struct SideBarMenuModel {
             self.subMenu = []
             snapshot.children.forEach { subMenu in
                 let snapshot: DataSnapshot = subMenu as! DataSnapshot
-
                 self.subMenu.append(snapshot.value as! String)
             }
         }

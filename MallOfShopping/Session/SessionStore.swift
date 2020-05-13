@@ -248,23 +248,28 @@ class SessionStore : ObservableObject {
     
     func getFilteredGroceryList(groceryType: String)  {
         
+        print(groceryType)
+        
         let ref: DatabaseReference = Database.database().reference(withPath: "admin/Catagories/" + groceryType)
         
         ref.observe(DataEventType.value) { (snapshot) in
+            
+            print(snapshot)
+            
             self.groceryListByType = []
             
-            for child in snapshot.children {
+            //for child in snapshot.children {
                 
-                let snapshot = child as? DataSnapshot
+                //let snapshot = child as? DataSnapshot
                 
-                for child in snapshot!.children {
+                for child in snapshot.children {
                     if let snapshot = child as? DataSnapshot,
                         let order = GROCERY(snapshot: snapshot) {
                         self.groceryListByType.append(order)
                     }
                 }                
                 
-            }
+            //}
             
             
             
@@ -284,6 +289,8 @@ class SessionStore : ObservableObject {
                 if let snapshot = child as? DataSnapshot,
                     let sideBarMenuModel: SideBarMenuModel = SideBarMenuModel(snapshot: snapshot) {
                     self.sideBarMenuModelList.append(sideBarMenuModel)
+                    
+                    print(self.sideBarMenuModelList)
                 }
             }
         }

@@ -18,7 +18,13 @@ struct ORDERS: Identifiable {
     let id: String
     let type: String
     
-    init(id: String, groceryName: String, grossWeight: Int, noOfItems: Int, price: Float, type: String) {
+    init(id: String,
+         groceryName: String,
+         grossWeight: Int,
+         noOfItems: Int,
+         price: Float,
+         type: String) {
+        
         self.ref = nil
         self.groceryName = groceryName
         self.grossWeight = grossWeight
