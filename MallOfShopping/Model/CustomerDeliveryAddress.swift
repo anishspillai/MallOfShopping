@@ -53,7 +53,7 @@ struct CustomerDeliveryAddress {
     }
     
     init?(snapshot: DataSnapshot) {
-        print(snapshot)
+
         guard
             let value = snapshot.value as? [String: AnyObject],
             let apartmentNumber = value["apartmentNumber"] as? String,

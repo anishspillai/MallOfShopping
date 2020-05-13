@@ -15,6 +15,8 @@ struct FilteredGroceryGridView: View {
     @State private var searchText = ""
     
     var groceryType: String
+    var grocerySubType: String
+
     
     var body: some View {
         VStack {
@@ -81,12 +83,7 @@ struct FilteredGroceryGridView: View {
     }
     
     func fetchFilteredGroceries() {
-        session.getFilteredGroceryList(groceryType: self.groceryType)
+        session.getFilteredGroceryList(groceryType: self.groceryType, grocerySubType: self.grocerySubType)
     }
 }
 
-struct FilteredGroceryGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilteredGroceryGridView(groceryType: "Wheat")
-    }
-}

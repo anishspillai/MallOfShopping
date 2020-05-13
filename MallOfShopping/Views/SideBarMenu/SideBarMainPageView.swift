@@ -53,7 +53,7 @@ struct SideBarMainPageView: View {
                     ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
                         VStack {
                             if(sideBarMenuModel.subMenu.isEmpty) {
-                                NavigationLink(destination: FilteredGroceryGridView(groceryType: "Maida/Maida")) {
+                                NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu, grocerySubType: "")) {
                                     Text(sideBarMenuModel.menu).padding(.leading, 20)
                                 }
                             } else {
@@ -71,7 +71,7 @@ struct SideBarMainPageView: View {
                                     if(self.selection.contains(sideBarMenuModel.menu)) {
                                         
                                         ForEach(sideBarMenuModel.subMenu, id: \.self) { subMenu in
-                                            NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu + "/" + subMenu)) {
+                                            NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu, grocerySubType: subMenu)) {
                                                 Text(subMenu)
                                             }
                                         }

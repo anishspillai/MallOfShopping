@@ -191,7 +191,6 @@ class SessionStore : ObservableObject {
                 if let snapshot = child as? DataSnapshot,
                     let customerDeliveryAddress = CustomerDeliveryAddress(snapshot: snapshot) {
                     self.customerDeliveryAddress = customerDeliveryAddress
-                    print(self.customerDeliveryAddress)
                 }
             }
             
@@ -246,17 +245,18 @@ class SessionStore : ObservableObject {
         }
     }
     
-    func getFilteredGroceryList(groceryType: String)  {
+    func getFilteredGroceryList(groceryType: String, grocerySubType: String)  {
         
-        print(groceryType)
+        let groceryReference = grocerySubType.isEmpty ? groceryType + "/" + groceryType : groceryType + "/" + grocerySubType
         
-        let ref: DatabaseReference = Database.database().reference(withPath: "admin/Catagories/" + groceryType)
+        let ref: DatabaseReference = Database.database().reference(withPath: "admin/Catagories/" + groceryReference)
         
+        self.groceryListByType = []
+        self.groceryListGridByType = [[]]
+
         ref.observe(DataEventType.value) { (snapshot) in
             
-            print(snapshot)
             
-            self.groceryListByType = []
             
             //for child in snapshot.children {
                 
@@ -289,8 +289,6 @@ class SessionStore : ObservableObject {
                 if let snapshot = child as? DataSnapshot,
                     let sideBarMenuModel: SideBarMenuModel = SideBarMenuModel(snapshot: snapshot) {
                     self.sideBarMenuModelList.append(sideBarMenuModel)
-                    
-                    print(self.sideBarMenuModelList)
                 }
             }
         }

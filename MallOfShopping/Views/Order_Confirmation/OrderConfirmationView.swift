@@ -49,8 +49,6 @@ struct OrderConfirmationView: View {
                 
             }
                 
-                
-                
             .navigationBarTitle("")
         }
         //}
