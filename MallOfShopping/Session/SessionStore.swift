@@ -97,12 +97,12 @@ class SessionStore : ObservableObject {
         
         ref.observe(DataEventType.value) { (snapshot) in
             self.orderHistories = []
-            var ordersInThePast : [ORDERS] = []
             
             for parent in snapshot.children {
                 let parentSnapShot = parent as? DataSnapshot
                 
                 var orderHistory: OrderHistory = OrderHistory(orderedTime: parentSnapShot!.key)
+                var ordersInThePast : [ORDERS] = []
                 
                 for child in parentSnapShot!.children {
                     if let snapshot = child as? DataSnapshot,

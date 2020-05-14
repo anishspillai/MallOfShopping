@@ -26,24 +26,26 @@ struct CustomerOrderHistoryView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Your order status").bold().padding(.top)
-                
-                if session.session != nil {
+            ScrollView(showsIndicators: false) {
+                VStack {
                     
-                    ForEach(self.session.orderHistories, id: \.self.orderedTime) { orderHistory in
-                        OrderHistoryAccordianView(orderHistory: orderHistory)
+                    if session.session != nil {
+                        
+                        ForEach(self.session.orderHistories, id: \.self.orderedTime) { orderHistory in
+                            OrderHistoryAccordianView(orderHistory: orderHistory)
+                        }
+                        
+                    } else {
+                        Image(systemName: "person.crop.circle.fill.badge.exclam").font(.largeTitle).padding().foregroundColor(Color.red)
+                        Text("Please log in and check the list again").padding()
                     }
+                    Spacer()
                     
-                } else {
-                    Image(systemName: "person.crop.circle.fill.badge.exclam").font(.largeTitle).padding().foregroundColor(Color.red)
-                    Text("Please log in and check the list again").padding()
-                }
-                Spacer()
-                
-            }.onAppear(perform: getUser)
-                .navigationBarTitle("Your Order History", displayMode: .inline)
-        }}
+                }.onAppear(perform: getUser)
+                    .navigationBarTitle("Your Order History", displayMode: .inline)
+            }
+        }
+    }
 }
 
 struct CustomerOrderView_Previews: PreviewProvider {
@@ -57,52 +59,19 @@ struct OrderHistoryAccordianView : View {
     let orderHistory: OrderHistory
     var body: some View {
         VStack {
-            HStack {
-                Text(convertToReadableTimeFormat(orderPlacedTimeFormat: orderHistory.orderedTime))
-                Spacer()
-                Image(systemName: "chevron.down.square.fill").font(.title)
-            }
-            .padding(5)
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .background(Color.gray)
-            .onTapGesture {
-                self.accordianClickObserver.toggle()
+            
+            NavigationLink(destination: OrderHistoryDetails(orderHistory: self.orderHistory)){
+                HStack {
+                    Text(DateConverter.convertToReadableTimeFormat(orderPlacedTimeFormat: orderHistory.orderedTime))
+                        .font(.system(size: 15, weight: .light, design: .serif))
+                        .italic()
+                    
+                    Spacer()
+                    Image(systemName: "chevron.right.circle.fill").foregroundColor(Color.green)
+                }.padding(10).cornerRadius(25)
             }
             
-            if(self.accordianClickObserver) {
-                List {
-                    ForEach(orderHistory.orders) { order in
-                        HStack {
-                            VStack(alignment: .leading) {
-                                
-                                Text("\(order.groceryName), \(order.type)")
-                                    .font(.system(size: 14, weight: .light, design: .serif))
-                                    .italic()
-                                
-                                Text("\(order.noOfItems) * \(order.grossWeight)")
-                                    .font(.system(size: 14, weight: .light, design: .serif))
-                                    .foregroundColor(.secondary)
-                            }
-                            
-                            Spacer()
-                            
-                            Text(order.getPriceWithPrecision())
-                            
-                            Spacer()
-                            
-                            Image("shipping").resizable().frame(width: 20, height: 20).clipShape(Circle())
-                        }
-                    }
-                }
-                .listStyle(GroupedListStyle())
-                .environment(\.horizontalSizeClass, .regular)
-            }
-
             Divider()
         }
-    }
-    
-    func convertToReadableTimeFormat(orderPlacedTimeFormat: String) -> String {
-        return Date(timeIntervalSinceReferenceDate: TimeInterval(Double(String(orderPlacedTimeFormat))!)).description
     }
 }
