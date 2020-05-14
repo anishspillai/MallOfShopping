@@ -37,7 +37,7 @@ class SessionStore : ObservableObject {
     
     @Published var orderHistories: [OrderHistory] = []
     
-    @Published var orderPlacementStatus: String = ""
+    @Published var orderPlacementStatus = ""
     
     
     func listen () {
@@ -135,6 +135,7 @@ class SessionStore : ObservableObject {
         
         
         postRef.setValue(data, withCompletionBlock: { (error, ref) in
+            
             if (error == nil) {
                 orderedItems.orderedGroceries = []
                 self.orderPlacementStatus = "success"
