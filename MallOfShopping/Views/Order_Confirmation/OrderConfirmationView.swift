@@ -16,8 +16,7 @@ struct OrderConfirmationView: View {
     
     @State private var displayReciept = false
     
-    @State private var showingAlert = false
-    
+    @State private var showAlert = false
     
     var body: some View {
         //NavigationView {
@@ -48,20 +47,11 @@ struct OrderConfirmationView: View {
                 OrderRecieptView()
             }
             
-            /**VStack {
-                if(session.orderPlacementStatus == "success") {
-                    .alert(isPresented: $showingAlert) {
-                        Alert(title: Text("Thank you for the order"), message: Text("Wear sunscreen"))
-                    }
-                }
-            }*/
-            
-            
             Spacer()
             
             Button(action: {
                 self.session.addGroceryForTheUser(orderedItems: self.orderedItems)
-                self.showingAlert = true
+                self.showAlert = true
                 
             }) {
                 Text("Confirm Order")
@@ -74,14 +64,27 @@ struct OrderConfirmationView: View {
                 
             }
                 
-            .navigationBarTitle("")
+                .navigationBarTitle("")
+            }
+                
+            
+            .alert(isPresented: $showAlert) {
+                switch session.orderPlacementStatus {
+                case "success":
+                    return Alert(title: Text("Thanks!").foregroundColor(Color.green).bold(), message: Text("Your order has been succesfully placed!"))
+                
+                case "failed":
+                    return Alert(title: Text("Sorry!").foregroundColor(Color.red).bold(), message: Text("Something goes wrong. Please contact 0123456789 or use the web application!!!"))
+               
+                default:
+                return Alert(title: Text("Sorry!"), message: Text("Not able to get the status of order placement. Please check the order history tab"))
+                }
+            }
         }
-        //}
     }
-}
-
-struct OrderConfirmationView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderConfirmationView()
-    }
+    
+    struct OrderConfirmationView_Previews: PreviewProvider {
+        static var previews: some View {
+            OrderConfirmationView()
+        }
 }
