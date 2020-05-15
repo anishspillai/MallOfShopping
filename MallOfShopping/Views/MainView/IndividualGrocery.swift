@@ -112,7 +112,7 @@ struct GroceryCountStepperView: View {
                 Button(action: {
                     self.addOrderToTheOrderedList()
                 }) {
-                    GreenButtonView(buttonTitle: "Add")
+                    GreenButtonView(buttonTitle: "Add", isWidthFixed: true)
                 }
             } else {
                 HStack{

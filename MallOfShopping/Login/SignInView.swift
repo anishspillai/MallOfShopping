@@ -58,10 +58,8 @@ struct SignInView : View {
     
     var body: some View {
         
-        
-        
         ZStack{
-            Image("1").resizable()
+            Image("1").resizable().opacity(0.5)
             VStack {
                 TextField("Enter a password", text: $email)
                     .padding()
@@ -75,15 +73,21 @@ struct SignInView : View {
                     .cornerRadius(5.0)
                     .padding(.bottom, 20)
                 
-                Group {
+                HStack (spacing: 20) {
                     if(!self.isSignUp) {
                         Button(action: signIn) {
-                            GreenButtonView(buttonTitle: "Sign In")
+                            GreenButtonView(buttonTitle: "Sign In", isWidthFixed: true)
                         }
                     } else {
                         Button(action: signUp) {
-                            GreenButtonView(buttonTitle: "Sign Up")
+                            GreenButtonView(buttonTitle: "Sign Up", isWidthFixed: true)
                         }
+                    }
+                    
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        CommonButtonWithColorInputParameterView(buttonTitle: "Cancel", isWidthFixed: true, color: Color.pink)
                     }
                 }
                 .alert(isPresented: $showingAlert) {
@@ -91,5 +95,6 @@ struct SignInView : View {
                 }
             }
         }.edgesIgnoringSafeArea(.all)
+        .navigationBarBackButtonHidden(true)
     }
 }

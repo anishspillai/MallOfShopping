@@ -67,7 +67,7 @@ struct EmptyCartButton: View {
         Button(action: {
             self.orderedItems.orderedGroceries = []
         }) {
-            Image(systemName: "trash.fill").foregroundColor(Color.red).font(.headline)
+            CommonButtonWithColorInputParameterView(buttonTitle: "Empty orders", isWidthFixed: false, color: Color.red)
         }
     }
     
@@ -87,13 +87,15 @@ struct CheckoutButton: View {
             Button(action: {
                 if(self.session.session != nil) {
                     //self.storeOrders()
-                    self.selection = 1
+                    if(!self.orderedItems.orderedGroceries.isEmpty) {
+                        self.selection = 1
+                    }
                 } else {
                     self.displayLoginPage = true
                 }
             }) {
-                GreenButtonView(buttonTitle: " Check-Out > ")
-            }.disabled(self.orderedItems.orderedGroceries.isEmpty)
+                GreenButtonView(buttonTitle: " Check-Out > ", isWidthFixed: false)
+            }
         }
     }
 }

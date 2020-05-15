@@ -48,38 +48,42 @@ struct SideBarMainPageView: View {
             
             Group {
                 
-                
-                if(self.displayCatagories) {
-                    ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
-                        VStack {
-                            if(sideBarMenuModel.subMenu.isEmpty) {
-                                NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu, grocerySubType: "")) {
-                                    Text(sideBarMenuModel.menu).padding(.leading, 20)
-                                }
-                            } else {
-                                HStack {
-                                    Text(sideBarMenuModel.menu).padding(.leading, 20).onTapGesture {
-                                        self.selectDeselect(menu: sideBarMenuModel.menu)
+                ScrollView {
+                    if(self.displayCatagories) {
+                        ForEach(self.session.sideBarMenuModelList, id: \.menu) { sideBarMenuModel in
+                            VStack {
+                                if(sideBarMenuModel.subMenu.isEmpty) {
+                                    NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu, grocerySubType: "")) {
+                                        HStack {
+                                            Text(sideBarMenuModel.menu).padding(.leading, 20)
+                                            Spacer()
+                                        }
+                                    }
+                                } else {
+                                    HStack (spacing: 5) {
+                                        Text(sideBarMenuModel.menu).padding(.leading, 20).onTapGesture {
+                                            self.selectDeselect(menu: sideBarMenuModel.menu)
+                                        }
+                                        
+                                        Image(systemName: "chevron.down")
+                                        
+                                        Spacer()
                                     }
                                     
-                                    Image(systemName: "chevron.down")
-                                    
-                                    Spacer()
-                                }
-                                
-                                VStack(alignment: .leading) {
-                                    if(self.selection.contains(sideBarMenuModel.menu)) {
-                                        
-                                        ForEach(sideBarMenuModel.subMenu, id: \.self) { subMenu in
-                                            NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu, grocerySubType: subMenu)) {
-                                                Text(subMenu)
+                                    VStack(alignment: .leading) {
+                                        if(self.selection.contains(sideBarMenuModel.menu)) {
+                                            
+                                            ForEach(sideBarMenuModel.subMenu, id: \.self) { subMenu in
+                                                NavigationLink(destination: FilteredGroceryGridView(groceryType: sideBarMenuModel.menu, grocerySubType: subMenu)) {
+                                                    Text(subMenu)
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
+                            
                         }
-                        
                     }
                 }
                 
@@ -87,9 +91,18 @@ struct SideBarMainPageView: View {
             }
             
             if(self.session.session == nil) {
-               
-                NavigationLink(destination: SignInView()) {
-                     GreenButtonView(buttonTitle: "Log In")
+                
+                HStack {
+                    NavigationLink(destination: SignInView()) {
+                        GreenButtonView(buttonTitle: "Log In", isWidthFixed: true)
+                    }
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: SignInView(isSignUp: true)) {
+                        CommonButtonWithColorInputParameterView(buttonTitle: "Sign Up", isWidthFixed: true, color: Color.pink)
+                    }
+                    
                 }
                 
             } else {                
@@ -97,7 +110,7 @@ struct SideBarMainPageView: View {
                     _ = self.session.signOut()
                 }) {
                     HStack {
-                        GreenButtonView(buttonTitle: "Log Out")
+                        GreenButtonView(buttonTitle: "Log Out", isWidthFixed: true)
                     }
                 }
             }

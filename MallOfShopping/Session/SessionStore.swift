@@ -161,8 +161,7 @@ class SessionStore : ObservableObject {
         
         ref.observe(DataEventType.value) { (snapshot) in
             
-            print(snapshot)
-            
+           
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let customerDeliveryAddress = CustomerDeliveryAddress(snapshot: snapshot) {

@@ -14,26 +14,32 @@ struct DirectToLoginPage: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
+            VStack(alignment: .center, spacing: 20) {
+                
+                Spacer()
                 
                 NavigationLink(destination: SignInView(isSignUp: true)) {
-                    GreenButtonView(buttonTitle: "Sign Up").frame(maxWidth: .infinity)
+                    GreenButtonView(buttonTitle: "Sign Up", isWidthFixed: true).frame(maxWidth: .infinity)
                 }
                 
                 NavigationLink(destination: SignInView(isSignUp: false)) {
-                    GreenButtonView(buttonTitle: "Sign In").frame(maxWidth: .infinity)
+                    GreenButtonView(buttonTitle: "Sign In", isWidthFixed: true).frame(maxWidth: .infinity)
                 }
                 
                 Button(action: {
                     self.displayLoginPage.toggle()
                 }) {
-                    Text("I shall login later").underline().foregroundColor(Color.purple).font(.headline)
+                    Text("I shall login later")
+                        .font(.system(size: 18, weight: .light, design: .serif))
+                        .italic()
+                        .underline()
+                        .foregroundColor(Color.purple)
+                        .font(.headline)
                 }
                 
                 Spacer()
                 
-                
-            }.frame(width: 300, height: 300).background(Image("1")).opacity(1)
+            }.background(Image("1").resizable().opacity(0.2))
         }}
 }
 

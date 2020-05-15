@@ -121,7 +121,7 @@ struct DisplayUserDetails : View {
                     Button(action: {
                         self.editUserDetails = true
                     }) {
-                        GreenButtonView(buttonTitle: session.customerDeliveryAddress.postNumber.isEmpty ? "Add" : "Edit")
+                        GreenButtonView(buttonTitle: session.customerDeliveryAddress.postNumber.isEmpty ? "Add" : "Edit", isWidthFixed: true)
                     }
                 }.padding()
             } else {
@@ -223,7 +223,7 @@ struct EditUserDetailView : View {
                         .disabled(true)
                             .foregroundColor(Color.red)
                     } else {
-                        GreenButtonView(buttonTitle: "Save")
+                        GreenButtonView(buttonTitle: "Save", isWidthFixed: true)
                     }
                     
                 }.padding(.trailing)

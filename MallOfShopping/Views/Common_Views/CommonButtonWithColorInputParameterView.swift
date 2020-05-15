@@ -1,36 +1,31 @@
 //
-//  GreenButtonView.swift
+//  CommonButtonWithColorInputParameterView.swift
 //  MallOfShopping
 //
-//  Created by Anish Pillai on 2020-05-10.
+//  Created by Anish Pillai on 2020-05-15.
 //  Copyright © 2020 URV. All rights reserved.
 //
 
 import SwiftUI
 
-struct GreenButtonView: View {
+struct CommonButtonWithColorInputParameterView: View {
     
     let buttonTitle: String
-    
     let isWidthFixed: Bool
-    
+    let color: Color
     var body: some View {
-        
         Text(buttonTitle)
             .font(.system(size: 14, weight: .light, design: .serif))
             .italic()
             .frame(width: isWidthFixed ? 100 : 120, height: 30)
-            .background(Color(red: 72 / 255, green: 176 / 255, blue: 13 / 255))
+            .background(color)
             .foregroundColor(Color.white)
             .cornerRadius(5)
     }
 }
 
-struct GreenButtonView_Previews: PreviewProvider {
+struct CommonButtonWithColorInputParameterView_Previews: PreviewProvider {
     static var previews: some View {
-        GreenButtonView(buttonTitle: "", isWidthFixed: true)
+        CommonButtonWithColorInputParameterView(buttonTitle: "", isWidthFixed: true, color: Color.red)
     }
 }
-
-
-
