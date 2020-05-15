@@ -79,6 +79,8 @@ struct CheckoutButton: View {
     @State var selection: Int? = nil
     @Binding var displayLoginPage: Bool
     
+    @EnvironmentObject var orderedItems: OrderedItems
+    
     
     var body: some View {
         NavigationLink(destination: OrderConfirmationView(), tag: 1, selection: $selection) {
@@ -90,9 +92,8 @@ struct CheckoutButton: View {
                     self.displayLoginPage = true
                 }
             }) {
-                
-                GreenButtonView(buttonTitle: "Check-Out >")
-            }
+                GreenButtonView(buttonTitle: " Check-Out > ")
+            }.disabled(self.orderedItems.orderedGroceries.isEmpty)
         }
     }
 }

@@ -38,7 +38,9 @@ final class OrderedItems: ObservableObject {
     func removeGroceryFromTheList(idOfTheItem: String) {
         let indexOfItem = self.orderedGroceries.firstIndex(where: { $0.id == idOfTheItem })
 
-        self.orderedGroceries.remove(at: (indexOfItem!))
+        if(indexOfItem != nil) {
+            self.orderedGroceries.remove(at: (indexOfItem!))
+        }
     }
     
     func updateOrderCount(idOfTheItem: String, noOfItems: Int) {

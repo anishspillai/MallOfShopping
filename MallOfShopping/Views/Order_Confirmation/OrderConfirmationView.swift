@@ -21,32 +21,43 @@ struct OrderConfirmationView: View {
     var body: some View {
         //NavigationView {
         
-        VStack (){
-            VStack {
-                Text("Anish")
-                Text("Delivry Address").padding()
-            }.frame(minWidth:0, maxWidth: .infinity).background(Color.gray)
+        VStack {
+            
+            Text("We deliver everyday between 6:30 to 9:30 PM").font(.subheadline).padding()
+                .frame(minWidth:0, maxWidth: .infinity).background(Color.gray)
             
             NavigationLink(destination: CustomerDetailView()) {
                 HStack {
-                    Text("Delivery Address")
+                    Text("Delivery Address").font(.system(size: 14, weight: .light, design: .serif))
                     Spacer()
-                    Text(">").font(.title)
-                }.padding().background(Color.orange).border(Color.gray)
+                    Image(systemName: "chevron.right.circle.fill").font(.title).font(.system(size: 14, weight: .light, design: .serif)).foregroundColor(Color.green)
+                }.padding().foregroundColor(Color.gray)
             }
             
+            
+            if(session.customerDeliveryAddress.postNumber.isEmpty) {
+                Text("Delivery address is missing. Please provide address for placing orders")
+                    .font(.system(size: 12, weight: .light, design: .serif))
+                    .italic()
+                    .foregroundColor(Color.red)
+            }
+            Divider()
             
             HStack {
-                Text("Reciept")
+                
+                Text("Reciept").font(.system(size: 14, weight: .light, design: .serif))
                 Spacer()
-                Text(">").font(.title)
-            }.padding().background(Color.orange).onTapGesture {
+                Image(systemName: "chevron.down.circle.fill").font(.title).font(.system(size: 14, weight: .light, design: .serif)).foregroundColor(Color.green)
+                
+            }.padding().onTapGesture {
                 self.displayReciept.toggle()
-            }
+            }.foregroundColor(Color.gray)
+            
             if(self.displayReciept) {
                 OrderRecieptView()
             }
             
+            Divider()
             Spacer()
             
             Button(action: {
@@ -63,28 +74,35 @@ struct OrderConfirmationView: View {
                     .padding()
                 
             }
+            .disabled(session.customerDeliveryAddress.postNumber.isEmpty ? true : false)
                 
-                .navigationBarTitle("")
-            }
-                
+            .navigationBarTitle("")
+        }.onAppear(perform: fetchUserDetails)
+            
             
             .alert(isPresented: $showAlert) {
                 switch session.orderPlacementStatus {
                 case "success":
                     return Alert(title: Text("Thanks!").foregroundColor(Color.green).bold(), message: Text("Your order has been succesfully placed!"))
-                
+                    
                 case "failed":
                     return Alert(title: Text("Sorry!").foregroundColor(Color.red).bold(), message: Text("Something goes wrong. Please contact 0123456789 or use the web application!!!"))
-               
+                    
                 default:
-                return Alert(title: Text("Sorry!"), message: Text("Not able to get the status of order placement. Please check the order history tab"))
+                    return Alert(title: Text("Sorry!"), message: Text("Not able to get the status of order placement. Please check the order history tab"))
                 }
-            }
         }
     }
     
-    struct OrderConfirmationView_Previews: PreviewProvider {
-        static var previews: some View {
-            OrderConfirmationView()
-        }
+    
+    func fetchUserDetails() {
+        session.listen()
+        self.session.fetchUserDeliveryAddress()
+    }
+}
+
+struct OrderConfirmationView_Previews: PreviewProvider {
+    static var previews: some View {
+        OrderConfirmationView()
+    }
 }

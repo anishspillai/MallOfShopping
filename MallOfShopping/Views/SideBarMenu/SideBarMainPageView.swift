@@ -86,24 +86,15 @@ struct SideBarMainPageView: View {
                 Divider()
             }
             
-            if(self.session.session != nil) {
-                Button(action: {
-                    self.displayCatagories.toggle()
-                }) {
-                    HStack {
-                        GreenButtonView(buttonTitle: "Log In")
-                    }
+            if(self.session.session == nil) {
+               
+                NavigationLink(destination: SignInView()) {
+                     GreenButtonView(buttonTitle: "Log In")
                 }
+                
             } else {                
                 Button(action: {
-                    //_ = self.session.signOut()
-                    
-                    let now = Date()
-                    let stamp = Int(now.timeIntervalSinceReferenceDate)
-                    print(stamp)
-                    
-                    print(Date(timeIntervalSinceReferenceDate: TimeInterval(Double(String(stamp))!)))
-                    
+                    _ = self.session.signOut()
                 }) {
                     HStack {
                         GreenButtonView(buttonTitle: "Log Out")
@@ -127,6 +118,7 @@ struct SideBarMainPageView: View {
     
     func fetchSideBarMenuOptions() {
         self.session.getCatagoriesForSideBarMenu()
+        self.session.listen()
     }
     
     private func selectDeselect(menu: String) {

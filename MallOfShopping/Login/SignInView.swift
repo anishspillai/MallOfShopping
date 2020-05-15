@@ -28,7 +28,7 @@ struct SignInView : View {
             } else {
                 self.email = ""
                 self.password = ""
-                //self.presentationMode.wrappedValue.dismiss()
+                self.presentationMode.wrappedValue.dismiss()
             }
         }
     }
@@ -78,11 +78,11 @@ struct SignInView : View {
                 Group {
                     if(!self.isSignUp) {
                         Button(action: signIn) {
-                            Text("Sign in").frame(width: 80, height: 40).background(Color.purple).cornerRadius(20).foregroundColor(Color.white)
+                            GreenButtonView(buttonTitle: "Sign In")
                         }
                     } else {
                         Button(action: signUp) {
-                            Text("Sign up").frame(width: 80, height: 40).background(Color.purple).cornerRadius(20).foregroundColor(Color.white)
+                            GreenButtonView(buttonTitle: "Sign Up")
                         }
                     }
                 }
