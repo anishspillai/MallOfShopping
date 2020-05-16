@@ -27,6 +27,9 @@ struct CustomerOrderHistoryView: View {
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
+                
+                Rectangle().frame(height: 0.01)
+                
                 VStack {
                     
                     if session.session != nil {

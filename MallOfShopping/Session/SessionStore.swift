@@ -198,28 +198,6 @@ class SessionStore : ObservableObject {
             , orders[16].toAnyObject()])
     }
     
-    
-    /**func getListOfGroceries()  {
-     
-     let ref: DatabaseReference = Database.database().reference(withPath: "admin/Grocery")
-     
-     ref.observe(DataEventType.value) { (snapshot) in
-     self.groceryList = []
-     for child in snapshot.children {
-     if let snapshot = child as? DataSnapshot,
-     let order = GROCERY(snapshot: snapshot) {
-     
-     self.groceryList.append(order)
-     }
-     }
-     
-     if(!self.groceryList.isEmpty) {
-     self.groceryListInGridFormat = self.groceryList.chunked(into: 3)
-     }
-     }
-     }*/
-    
-    
     func getListOfGroceries()  {
         
         let ref: DatabaseReference = Database.database().reference(withPath: "admin/Catagories/")
@@ -264,22 +242,13 @@ class SessionStore : ObservableObject {
         self.groceryListGridByType = [[]]
         
         ref.observe(DataEventType.value) { (snapshot) in
-            
-            
-            
-            //for child in snapshot.children {
-            
-            //let snapshot = child as? DataSnapshot
-            
+                        
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let order = GROCERY(snapshot: snapshot) {
                     self.groceryListByType.append(order)
                 }
-            }
-            
-            //}
-            
+            }            
             
             
             if(!self.groceryListByType.isEmpty) {

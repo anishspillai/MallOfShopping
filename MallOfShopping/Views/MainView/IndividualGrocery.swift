@@ -20,9 +20,8 @@ struct IndividualGrocery: View {
     var body: some View {
         
         VStack {
-            if(session.groceryListInGridFormat.isEmpty) {
-                //InitialView()
-                Text("Loading")
+            if(session.groceryList.isEmpty) {
+                InitialView()
             }
             else {
                 NavigationView {

@@ -16,7 +16,7 @@ struct FilteredGroceryGridView: View {
     
     var groceryType: String
     var grocerySubType: String
-
+    
     
     var body: some View {
         VStack {
@@ -28,44 +28,40 @@ struct FilteredGroceryGridView: View {
                         
                         TopMenu(isMainPage: false)
                         
+                        
+                        ScrollView(showsIndicators: false) {
                             
-                            ScrollView(showsIndicators: false) {
-                                
-                                Rectangle()
-                                    .frame(width: geometry.size.width, height: 0.01)
-                                
-                                Spacer()
-                                if(true) {
-                                    ForEach(0..<self.session.groceryListGridByType.count, id: \.self) { index in
-                                        HStack {
-                                            ForEach(self.session.groceryListGridByType[index]) { grocery in
+                            Rectangle()
+                                .frame(width: geometry.size.width, height: 0.01)
+                            
+                            Spacer()
+                            ForEach(0..<self.session.groceryListGridByType.count, id: \.self) { index in
+                                HStack {
+                                    ForEach(self.session.groceryListGridByType[index]) { grocery in
+                                        
+                                        NavigationLink(destination:IndividualGroceryDetailView()) {
+                                            
+                                            VStack() {
                                                 
-                                                NavigationLink(destination:IndividualGroceryDetailView()) {
-                                                    
-                                                    VStack() {
-                                                        
-                                                        PriceView(grocery: grocery)
-                                                        
-                                                        GroceryDetailView(grocery: grocery)
-                                                        
-                                                        GroceryCountStepperView(grocery: grocery)
-                                                        
-                                                        Spacer()
-                                                        
-                                                    }
-                                                    .overlay(RoundedRectangle(cornerRadius: 10)
-                                                    .stroke(Color.orange, lineWidth: 1))
-                                                    .frame(width: ( geometry.size.width - 50)/3)
-                                                    .padding(.trailing, 2).padding(.leading, 1)
-                                                    
-                                                }.buttonStyle(PlainButtonStyle())
+                                                PriceView(grocery: grocery)
                                                 
-                                                //GroceryView(grocery: grocery)
+                                                GroceryDetailView(grocery: grocery)
+                                                
+                                                GroceryCountStepperView(grocery: grocery)
+                                                
+                                                Spacer()
+                                                
                                             }
-                                        }.padding(.bottom, 5)
+                                            .overlay(RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.orange, lineWidth: 1))
+                                            .frame(width: ( geometry.size.width - 50)/3)
+                                            .padding(.trailing, 2).padding(.leading, 1)
+                                            
+                                        }.buttonStyle(PlainButtonStyle())
                                     }
-                                }
+                                }.padding(.bottom, 5)
                             }
+                        }
                     }
                     
                 }
