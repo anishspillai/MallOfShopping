@@ -161,7 +161,7 @@ class SessionStore : ObservableObject {
         
         ref.observe(DataEventType.value) { (snapshot) in
             
-           
+            
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let customerDeliveryAddress = CustomerDeliveryAddress(snapshot: snapshot) {
@@ -199,19 +199,53 @@ class SessionStore : ObservableObject {
     }
     
     
+    /**func getListOfGroceries()  {
+     
+     let ref: DatabaseReference = Database.database().reference(withPath: "admin/Grocery")
+     
+     ref.observe(DataEventType.value) { (snapshot) in
+     self.groceryList = []
+     for child in snapshot.children {
+     if let snapshot = child as? DataSnapshot,
+     let order = GROCERY(snapshot: snapshot) {
+     
+     self.groceryList.append(order)
+     }
+     }
+     
+     if(!self.groceryList.isEmpty) {
+     self.groceryListInGridFormat = self.groceryList.chunked(into: 3)
+     }
+     }
+     }*/
+    
     
     func getListOfGroceries()  {
         
-        let ref: DatabaseReference = Database.database().reference(withPath: "admin/Grocery")
+        let ref: DatabaseReference = Database.database().reference(withPath: "admin/Catagories/")
+        
+        self.groceryList = []
         
         ref.observe(DataEventType.value) { (snapshot) in
-            self.groceryList = []
+            
             for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let order = GROCERY(snapshot: snapshot) {
+                
+                let subChild = child as! DataSnapshot
+                
+                for child in subChild.children {
                     
-                    self.groceryList.append(order)
+                    let superChild = child as! DataSnapshot
+                    
+                    for child in superChild.children {
+                        
+                        if let snapshot = child as? DataSnapshot,
+                            let order = GROCERY(snapshot: snapshot) {
+                            
+                            self.groceryList.append(order)
+                        }
+                    }
                 }
+                
             }
             
             if(!self.groceryList.isEmpty) {
