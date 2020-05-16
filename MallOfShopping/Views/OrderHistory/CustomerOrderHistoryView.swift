@@ -36,8 +36,10 @@ struct CustomerOrderHistoryView: View {
                         }
                         
                     } else {
+                        
                         Image(systemName: "person.crop.circle.fill.badge.exclam").font(.largeTitle).padding().foregroundColor(Color.red)
                         Text("Please log in and check the list again").padding()
+                        
                     }
                     Spacer()
                     
