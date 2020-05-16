@@ -22,7 +22,8 @@ struct ApartmentNoView: View {
             
             HStack {
                 
-                if(!editApartmentNo) {                Text("\(session.customerDeliveryAddress.apartmentNumber)").font(.subheadline)
+                if(!editApartmentNo) {
+                    Text("\(session.customerDeliveryAddress.apartmentNumber)").font(.subheadline).padding(.leading, 25)
                 } else {
                     Text("*").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
                     TextField("Apartment No", text:  $apartmentNumber)
@@ -50,7 +51,7 @@ struct ApartmentNoView: View {
                     
                     CancelEditFieldButtonView(editField: $editApartmentNo)
                 }
-            }.padding(.leading, 25)
+            }
             
             Divider()
         }

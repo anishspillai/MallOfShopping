@@ -15,7 +15,7 @@ struct CustomerDeliveryAddress {
     let ref: DatabaseReference?
     var apartmentNumber: String
     var address: String
-    var firstName: String
+    var firstName: String = "Friend"
     var lastName: String
     var postNumber: String
     var streetName: String

@@ -26,7 +26,8 @@ struct ContactNumberView: View {
             HStack {
                 
                 if(!editMobileNumber) {
-                    Text(session.customerDeliveryAddress.telephoneNumber).font(.subheadline)
+                    Text(session.customerDeliveryAddress.telephoneNumber).font(.subheadline).padding(.leading,
+                                                                                                     25)
                 } else {
                     TelephoneNumberInputView(telephoneNumber: $mobileNumber)
                 }
@@ -40,7 +41,8 @@ struct ContactNumberView: View {
                 } else {
                     
                     Button(action: {
-                        if(TelephoneNumberValidator.isValidContact(contactNumber: self.mobileNumber)) {
+                        if(!self.mobileNumber.isEmpty &&
+                            TelephoneNumberValidator.isValidContact(contactNumber: self.mobileNumber)) {
                             
                             self.session.customerDeliveryAddress.telephoneNumber = self.mobileNumber
                             self.session.addUserAddress(customerDeliveryAddress: self.session.customerDeliveryAddress)
@@ -54,7 +56,7 @@ struct ContactNumberView: View {
                     CancelEditFieldButtonView(editField: $editMobileNumber)
                 }
                 
-            }.padding(.leading, 25)
+            }
             
             Divider()
             

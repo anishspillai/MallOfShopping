@@ -56,7 +56,7 @@ struct CancelEditFieldButtonView: View {
         Button(action: {
             self.editField.toggle()
         }) {
-            Image(systemName: "multiply.circle.fill").font(.title).foregroundColor(Color.red).padding()
+            Image(systemName: "multiply.circle.fill").font(.title).foregroundColor(Color.red).padding(.trailing)
         }
     }
 }
@@ -64,7 +64,7 @@ struct CancelEditFieldButtonView: View {
 struct SaveFieldButtonView: View {
     
     var body: some View {
-        Image(systemName: "checkmark.circle.fill").font(.title).foregroundColor(Color.green).padding()
+        Image(systemName: "checkmark.circle.fill").font(.title).foregroundColor(Color.green).padding(.trailing)
     }
 }
 

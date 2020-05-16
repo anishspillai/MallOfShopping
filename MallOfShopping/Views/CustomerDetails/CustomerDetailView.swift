@@ -201,7 +201,7 @@ struct TelephoneNumberInputView : View {
             HStack {
                 Text("*").font(.headline).foregroundColor(Color.red).padding(.leading, 5)
                 
-                TextField("10 digits telephone number, ex 0123456789", text:  $telephoneNumber)
+                TextField("10 digits, ex 0123456987", text:  $telephoneNumber)
                     .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.leading).padding(.trailing)
             }
             
@@ -209,7 +209,7 @@ struct TelephoneNumberInputView : View {
                 Text("Invalid Telephone Number, requires 10 digit number with starting 0")
                     .font(.system(size: 12, weight: .light, design: .serif))
                     .italic()
-                    .foregroundColor(Color.red)
+                    .foregroundColor(Color.red).lineLimit(2)
             }
         }
     }

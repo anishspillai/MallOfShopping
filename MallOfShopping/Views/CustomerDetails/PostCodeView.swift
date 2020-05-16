@@ -22,7 +22,8 @@ struct PostCodeView: View {
             
             HStack {
                 
-                if(!editPostalCode) {                Text("\(session.customerDeliveryAddress.postNumber)").font(.subheadline)
+                if(!editPostalCode) {
+                    Text("\(session.customerDeliveryAddress.postNumber)").font(.subheadline).padding(.leading, 25)
                 } else {
                     PinCodeInputView(pinCode: $postalCode)
                 }
@@ -35,7 +36,7 @@ struct PostCodeView: View {
                 } else {
                     
                     Button(action: {
-                        if(!self.postalCode.isEmpty) {
+                        if(!self.postalCode.isEmpty && PinCodeValidator.isValidPinNumber(pinNumber: self.postalCode)) {
                             self.session.customerDeliveryAddress.postNumber = self.postalCode
                             self.session.addUserAddress(customerDeliveryAddress: self.session.customerDeliveryAddress)
                             self.editPostalCode.toggle()
@@ -46,7 +47,7 @@ struct PostCodeView: View {
                     
                     CancelEditFieldButtonView(editField: $editPostalCode)
                 }
-            }.padding(.leading, 25)
+            }
         }
     }
 }
