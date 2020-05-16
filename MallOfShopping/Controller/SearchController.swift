@@ -26,25 +26,42 @@ class SearchController: ObservableObject {
     private init() {
     }
     
-    func setSessionStore(sessionStore: SessionStore) {
+    func initialize(sessionStore: SessionStore, isMainPage: Bool) {
         SearchController.shared.sessionStore = sessionStore
-        SearchController.shared.isMainPage = true
+        SearchController.shared.isMainPage = isMainPage
     }
     
     func filterGroceryData() {
         
-        if(true) {
-            let filteredGroceryArray: [GROCERY] = self.sessionStore.groceryList.filter{self.searchText.isEmpty ? true : $0.brandName.contains(self.searchText)}
+        let filteredGroceryArray: [GROCERY]
+        
+        if(isMainPage) {
+            filteredGroceryArray = self.sessionStore.groceryList.filter{self.searchText.isEmpty ? true : $0.brandName.contains(self.searchText)}
             
             if(!filteredGroceryArray.isEmpty) {
                 self.sessionStore.groceryListInGridFormat = filteredGroceryArray.chunked(into: 3)
             } else {
-                 self.sessionStore.groceryListInGridFormat = [[]]
+                self.sessionStore.groceryListInGridFormat = [[]]
             }
+            
         } else {
-            let filteredGroceryArray: [GROCERY] = self.sessionStore.groceryListByType.filter{$0.brandName.localizedStandardContains(self.searchText)}
-            self.sessionStore.groceryListGridByType = filteredGroceryArray.chunked(into: 3)
+            filteredGroceryArray = self.sessionStore.groceryListByType.filter{
+                self.searchText.isEmpty ? true : $0.brandName.contains(self.searchText)
+            }
+            
+            if(!filteredGroceryArray.isEmpty) {
+                self.sessionStore.groceryListGridByType = filteredGroceryArray.chunked(into: 3)
+            } else {
+                self.sessionStore.groceryListGridByType = [[]]
+            }
+        }
+        
+        
+        if(!filteredGroceryArray.isEmpty) {
+            self.sessionStore.groceryListInGridFormat = filteredGroceryArray.chunked(into: 3)
+        } else {
+            self.sessionStore.groceryListInGridFormat = [[]]
         }
     }
-
+    
 }

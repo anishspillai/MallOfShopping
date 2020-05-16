@@ -26,9 +26,8 @@ struct FilteredGroceryGridView: View {
                 GeometryReader { geometry in
                     VStack {
                         
-                        TopMenu()
+                        TopMenu(isMainPage: false)
                         
-                        if(true) { // Search here
                             
                             ScrollView(showsIndicators: false) {
                                 
@@ -67,8 +66,6 @@ struct FilteredGroceryGridView: View {
                                     }
                                 }
                             }
-                            
-                        }
                     }
                     
                 }

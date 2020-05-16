@@ -14,11 +14,11 @@ struct TopMenu: View {
     
     @EnvironmentObject var sessionStore: SessionStore
     
-    
     @State private var displaySearchTextInput: Bool = false
     
-    @ObservedObject var tester: SearchController = SearchController.shared
+    @ObservedObject var searchController: SearchController = SearchController.shared
     
+    var isMainPage = true
     
     var body: some View {
         HStack {
@@ -35,14 +35,16 @@ struct TopMenu: View {
             
             if (self.displaySearchTextInput) {
                 ZStack {
-                    TextField("Search By brand name", text: self.$tester.searchText)
+                    TextField("Search By brand name", text: self.$searchController.searchText)
                         .textFieldStyle(RoundedBorderTextFieldStyle()).padding(.top).padding(.leading)
                     
-                    Button(action: {
-                        self.tester.searchText = ""
+                    /**Button(action: {
+                        self.searchController.searchText = ""
                     }) {
                         Image(systemName: "multiply.circle.fill")
-                    }.offset(x:0, y:0)
+                    }
+                        .offset(x: 145, y: 15)
+                    .padding(.bottom, 15)*/
                 }
             }
             
@@ -59,6 +61,6 @@ struct TopMenu: View {
     }
     
     func initializeValuesForSearchController() {
-        SearchController.shared.setSessionStore(sessionStore: self.sessionStore)
+        SearchController.shared.initialize(sessionStore: self.sessionStore, isMainPage: isMainPage)
     }
 }
