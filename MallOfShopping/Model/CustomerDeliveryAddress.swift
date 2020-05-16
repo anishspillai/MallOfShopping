@@ -13,13 +13,13 @@ import FirebaseDatabase
 struct CustomerDeliveryAddress {
     
     let ref: DatabaseReference?
-    let apartmentNumber: String
-    let address: String
-    let firstName: String
-    let lastName: String
-    let postNumber: String
-    let streetName: String
-    let telephoneNumber: String
+    var apartmentNumber: String
+    var address: String
+    var firstName: String
+    var lastName: String
+    var postNumber: String
+    var streetName: String
+    var telephoneNumber: String
     
     
     

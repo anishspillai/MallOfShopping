@@ -25,6 +25,11 @@ struct DisplayUserDetails : View {
     
     @EnvironmentObject var session: SessionStore
     
+    @State private var editMobileNumber = false
+    @State private var editAddress = false
+    @State private var editApartmentNo = false
+    @State private var editPostalCode  = false
+    
     
     var body: some View {
         VStack() {
@@ -59,71 +64,23 @@ struct DisplayUserDetails : View {
                         Text("Missing Delivery Address!!!")
                     }.frame(minWidth: 0, maxWidth: .infinity).padding().background(Color.green)
                 }
-                
-                Text("User Details").font(.headline).fontWeight(.semibold)
-                
+               
+               
                 Group {
-                    
-                    HStack {Text("Mobile Number")
-                        .font(.system(size: 15, weight: .light, design: .serif))
-                        .italic()
-                        Spacer()
-                    }.padding(.leading, 10).padding(.top, 20)
-                    
-                    HStack {Text(session.customerDeliveryAddress.telephoneNumber).font(.subheadline)
-                        Spacer()
-                    }.padding(.leading, 25)
-                    
-                    Divider()
+                    ContactNumberView()
                 }
                 
                 Group {
-                    HStack {Text("Address")
-                        .font(.system(size: 15, weight: .light, design: .serif))
-                        .italic()
-                        Spacer()
-                    }.padding(.leading, 10)
                     
+                    AddressView()
                     
-                    HStack {Text("\(session.customerDeliveryAddress.streetName), \(session.customerDeliveryAddress.address)")
-                        Spacer()
-                    }.padding(25)
+                    ApartmentNoView()
                     
-                    Divider()
-                    
-                    HStack {Text("Apartment No")
-                        .font(.system(size: 15, weight: .light, design: .serif))
-                        .italic()
-                        Spacer()
-                    }.padding(.leading, 10)
-                    
-                    HStack {Text("\(session.customerDeliveryAddress.apartmentNumber)").font(.subheadline)
-                        Spacer()
-                    }.padding(.leading, 25)
-                    
-                    Divider()
-                    
-                    HStack {Text("Postal Code")
-                        .font(.system(size: 15, weight: .light, design: .serif))
-                        .italic()
-                        Spacer()
-                    }.padding(.leading, 10)
-                    
-                    HStack {Text("\(session.customerDeliveryAddress.postNumber)").font(.subheadline)
-                        Spacer()
-                    }.padding(.leading, 25)
-                    
-                    Divider()
+                    PostCodeView()
                 }
+                
                 Spacer()
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        self.editUserDetails = true
-                    }) {
-                        GreenButtonView(buttonTitle: session.customerDeliveryAddress.postNumber.isEmpty ? "Add" : "Edit", isWidthFixed: true)
-                    }
-                }.padding()
+                
             } else {
                 EditUserDetailView(editUserDetails: self.$editUserDetails)
                 Spacer()
@@ -266,14 +223,11 @@ struct TelephoneNumberInputView : View {
     }
 }
 
-
 struct PinCodeInputView : View {
     
     @Binding var pinCode: String
     var body: some View {
         VStack {
-            
-            
             
             if(!PinCodeValidator.isValidPinNumber(pinNumber: self.pinCode)) {
                 Text("Invalid Pin Code Number, requires 5 digits number")
