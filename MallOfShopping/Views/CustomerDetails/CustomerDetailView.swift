@@ -49,42 +49,34 @@ struct DisplayUserDetails : View {
             Spacer().frame(height: 10)
             
             
-            if(!session.customerDeliveryAddress.postNumber.isEmpty) {
+            
+            if(self.session.session == nil) {
+                HStack {
+                    Image(systemName: "exclamationmark.circle").padding(.leading)
+                    Spacer()
+                    Text("Please Login and Try again!!").padding(.trailing)
+                }.frame(minWidth: 0, maxWidth: .infinity).padding().background(Color.green)
+                Spacer()
+            } else {
                 
-                if(self.session.session == nil) {
-                    HStack {
-                        Image(systemName: "exclamationmark.circle").padding(.leading)
-                        Spacer()
-                        Text("Please Login and Try again!!").padding(.trailing)
-                    }.frame(minWidth: 0, maxWidth: .infinity).padding().background(Color.green)
-                } else if(session.customerDeliveryAddress.postNumber.isEmpty) {
-                    HStack {
-                        Image(systemName: "exclamationmark.circle")
-                        Spacer()
-                        Text("Missing Delivery Address!!!")
-                    }.frame(minWidth: 0, maxWidth: .infinity).padding().background(Color.green)
-                }
-               
-               
-                Group {
+                if(session.customerDeliveryAddress.postNumber.isEmpty) {
+                    
+                    EditUserDetailView(editUserDetails: self.$editUserDetails)
+                    Spacer()
+                    
+                } else {
                     ContactNumberView()
-                }
-                
-                Group {
                     
                     AddressView()
                     
                     ApartmentNoView()
                     
                     PostCodeView()
+                    
+                    Spacer()
                 }
-                
-                Spacer()
-                
-            } else {
-                EditUserDetailView(editUserDetails: self.$editUserDetails)
-                Spacer()
             }
+            
         }.onAppear(perform: fetchUserDetails)
     }
     
@@ -176,8 +168,8 @@ struct EditUserDetailView : View {
                         streetName.isEmpty ||
                         apartmentNumber.isEmpty) {
                         Text("*** Save button appears after filling all the fields ***")
-                        .font(.system(size: 12, weight: .light, design: .serif))
-                        .disabled(true)
+                            .font(.system(size: 12, weight: .light, design: .serif))
+                            .disabled(true)
                             .foregroundColor(Color.red)
                     } else {
                         GreenButtonView(buttonTitle: "Save", isWidthFixed: true)
