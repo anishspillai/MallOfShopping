@@ -193,9 +193,13 @@ struct PriceView: View {
     
     let grocery: GROCERY
     
+    let url = "https://mallofshopping.s3.eu-north-1.amazonaws.com/images/Aashirvaad_Wheat.png"
+    
     var body: some View {
         
         ZStack {
+            //URLImage(url: url).frame(height: 100).padding(.all)
+            
             Image("1").resizable().frame(height: 100).padding(.all)
             
             Text(self.getPrice(grocery: grocery))

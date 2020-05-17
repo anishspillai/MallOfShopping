@@ -82,6 +82,7 @@ struct DisplayUserDetails : View {
     
     func fetchUserDetails() {
         session.listen()
+        session.customerDeliveryAddress = CustomerDeliveryAddress()
         self.session.fetchUserDeliveryAddress()
     }
 }
