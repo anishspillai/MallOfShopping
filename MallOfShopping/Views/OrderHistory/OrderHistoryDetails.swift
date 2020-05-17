@@ -15,7 +15,37 @@ struct OrderHistoryDetails: View {
     var body: some View {
         GeometryReader { geometry in
             
-            VStack{
+            VStack {
+                
+                Spacer()
+                
+                VStack (alignment: .leading) {
+                    
+                    Text("Icon Defenition")
+                        .font(.system(size: 18, weight: .light, design: .serif)).padding(.leading, 40)
+                    Divider()
+                    
+                    HStack {
+                        
+                        Image(systemName: "xmark.seal.fill").foregroundColor(Color.red).font(.subheadline)
+                        Text("Not yet packed").font(.system(size: 12, weight: .light, design: .serif))
+                            .padding()
+                        
+                        Image(systemName: "paperplane.fill").foregroundColor(Color.yellow).font(.subheadline)
+                        Text("On the way").font(.system(size: 12, weight: .light, design: .serif))
+                            .padding()
+                        
+                        Image(systemName: "checkmark.seal.fill").foregroundColor(Color.green).font(.subheadline)
+                        Text("Delivered").font(.system(size: 12, weight: .light, design: .serif))
+                            .padding()
+                    }.padding(.leading).padding(.trailing)
+                }
+                .padding(.top)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.yellow, lineWidth: 1)
+                )
+                
                 
                 List {
                     
@@ -39,25 +69,60 @@ struct OrderHistoryDetails: View {
                             Divider()
                             
                             Text(order.getPriceWithPrecision())
-                            .font(.system(size: 14, weight: .light, design: .serif))
-                            .italic()
-                            .frame(width: geometry.size.width/3)
+                                .font(.system(size: 14, weight: .light, design: .serif))
+                                .italic()
+                                .frame(width: geometry.size.width/3)
                             
                             Divider()
                             
-                            Image(systemName: "paperplane.fill").font(.subheadline).foregroundColor(Color.yellow)
+                            Image(systemName: self.getIcon(status: order.status))
+                                .font(.subheadline)
+                                .foregroundColor(self.getIconColor(status: order.status))
                         }
                     }
                     
                     HStack {
+                        
                         Text("Total").bold().foregroundColor(Color.red)
+                        
                         Spacer()
-                        Text("1234 Kr")
+                        
+                        Text(ORDERS.getTotalOrderPrice(orders: self.orderHistory.orders))
+                            .font(.system(size: 14, weight: .light, design: .serif))
+                            .italic()
                     }
                 }
                 .listStyle(GroupedListStyle())
                 .environment(\.horizontalSizeClass, .regular)
             }
+        }
+    }
+    
+    func getIcon(status: String) -> String {
+        switch status {
+            
+        case "shipped":
+           return "paperplane.fill"
+            
+        case "delivered":
+            return  "checkmark.seal.fill"
+            
+        default:
+            return "xmark.seal.fill"
+        }
+    }
+    
+    func getIconColor(status: String) -> Color {
+        switch status {
+            
+        case "shipped":
+            return Color.yellow
+            
+        case "delivered":
+            return  Color.green
+            
+        default:
+            return Color.red
         }
     }
 }
