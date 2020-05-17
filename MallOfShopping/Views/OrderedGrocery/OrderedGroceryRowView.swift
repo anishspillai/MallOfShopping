@@ -12,65 +12,63 @@ struct OrderedGroceryRowView: View {
     
     @EnvironmentObject var orderedItems: OrderedItems
     
-    func deleteItems(at offsets: IndexSet) {
-    }
-    
     var body: some View {
-        List {
-            ForEach(self.orderedItems.orderedGroceries, id: \.id) { orderedGrocery in
-                HStack {
-                    
+        
+        GeometryReader { geometry in
+            List {
+                ForEach(self.orderedItems.orderedGroceries, id: \.id) { orderedGrocery in
                     HStack {
-                        VStack(alignment: .leading) {
-                            
-                            Text(orderedGrocery.groceryName)
-                                .font(.system(size: 14, weight: .light, design: .serif))
-                                .italic()
-                            
-                            Text("\(orderedGrocery.noOfItems) * \(orderedGrocery.grossWeight)")
-                                .font(.system(size: 14, weight: .light, design: .serif))
-                                .foregroundColor(.secondary)
-                        }
+                        
+                        HStack {
+                            VStack(alignment: .leading) {
+                                
+                                Text(orderedGrocery.groceryName)
+                                    .font(.system(size: 14, weight: .light, design: .serif))
+                                    .italic()
+                                
+                                Text("\(orderedGrocery.noOfItems) * \(orderedGrocery.grossWeight)")
+                                    .font(.system(size: 14, weight: .light, design: .serif))
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                        }.frame(width: geometry.size.width/3, alignment: .topLeading)
+                        
                         Spacer()
-                    }.frame(width: 90)
-                    
-                    Spacer()
-                    
-                    
-                    Divider()
-                    
-                    HStack {
                         
                         
-                        Button(action: {
-                            
-                            
-                            if(orderedGrocery.noOfItems == 1) {
-                                self.orderedItems.removeGroceryFromTheList(idOfTheItem: orderedGrocery.id)
-                            } else {
-                                self.orderedItems.decrement(idOfTheItem: orderedGrocery.id)
+                        Divider()
+                        
+                        HStack {
+                            Button(action: {
+                                
+                                if(orderedGrocery.noOfItems == 1) {
+                                    self.orderedItems.removeGroceryFromTheList(idOfTheItem: orderedGrocery.id)
+                                } else {
+                                    self.orderedItems.decrement(idOfTheItem: orderedGrocery.id)
+                                }
+                                
+                            }) {
+                                Image(systemName: "minus.circle.fill").imageScale(.medium).foregroundColor(Color.orange)
                             }
                             
-                        }) {
-                            Image(systemName: "minus.circle.fill").imageScale(.medium).foregroundColor(Color.orange)
-                        }
+                            Text(String(orderedGrocery.noOfItems))
+                            
+                            
+                            Button(action: {
+                                self.orderedItems.increament(idOfTheItem: orderedGrocery.id)
+                            }) {
+                                Image(systemName: "plus.circle.fill").imageScale(.medium).foregroundColor(Color.orange)
+                            }
+                        }.buttonStyle(PlainButtonStyle())
+                            .frame(width: geometry.size.width/3, alignment: .center)
                         
-                        Text(String(orderedGrocery.noOfItems))
+                        Divider()
                         
-                        
-                        Button(action: {
-                            self.orderedItems.increament(idOfTheItem: orderedGrocery.id)
-                        }) {
-                            Image(systemName: "plus.circle.fill").imageScale(.medium).foregroundColor(Color.orange)
-                        }
-                    }.buttonStyle(PlainButtonStyle())
+                        Text("\(orderedGrocery.getPriceWithPrecision())").font(.subheadline).frame(width: geometry.size.width/3, alignment: .topLeading)
+                    }
                     
-                    Divider()
-                    
-                    Text("\(orderedGrocery.getPriceWithPrecision())").font(.subheadline)
                 }
-                
-            }.onDelete(perform: deleteItems(at:))
+            }
         }
     }
 }

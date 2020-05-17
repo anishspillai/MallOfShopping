@@ -56,7 +56,6 @@ struct OrderedGroceryView: View {
         
     }
     
-    
 }
 
 struct EmptyCartButton: View {

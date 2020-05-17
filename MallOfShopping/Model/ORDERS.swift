@@ -17,6 +17,7 @@ struct ORDERS: Identifiable {
     let price: Float
     let id: String
     let type: String
+    let status: String = ""
     
     init(id: String,
          groceryName: String,
@@ -31,8 +32,7 @@ struct ORDERS: Identifiable {
         self.noOfItems = noOfItems
         self.id = id
         self.type = type
-        self.price = price
-        
+        self.price = price        
     }
     
     init?(snapshot: DataSnapshot) {
@@ -75,5 +75,13 @@ struct ORDERS: Identifiable {
     
     func getTotalPrice() -> String {
         String(format: "%.2f", (self.price * Float(self.noOfItems)))  + " Kr"
+    }
+    
+    static func getTotalOrderPrice(orders: [ORDERS]) -> String {
+        if orders.count > 0 {
+            return String(orders.reduce(0) { $0 + (Float($1.noOfItems) * $1.price) })
+        } else {
+            return "0"
+        }
     }
 }

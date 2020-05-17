@@ -55,6 +55,7 @@ struct OrderHistoryDetails: View {
                     
                     ForEach(self.orderHistory.orders) { order in
                         HStack {
+                            
                             VStack(alignment: .leading) {
                                 
                                 Text("\(order.groceryName), \(order.type)")
