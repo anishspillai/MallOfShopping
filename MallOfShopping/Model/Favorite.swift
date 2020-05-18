@@ -27,6 +27,8 @@ class Favorite: ObservableObject {
     
     func getFavorites() {
         
+        print("I am getting called")
+        
         let ref: DatabaseReference = Database.database().reference(withPath: "users/favorites/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
         
         ref.observe(DataEventType.value) { (snapshot) in
@@ -41,16 +43,14 @@ class Favorite: ObservableObject {
     }
     
     func fetchFavoriteGroceries(groceryList: [GROCERY]) {
+        print(items)
         var filteredGroceryArray: [GROCERY]
         if(!self.items.isEmpty ) {
-            
-            /**ForEach(self.items) {_ in
-            
-            filteredGroceryArray = groceryList.filter{$0.id.uuidString.contains("")}
-            
-            }*/
-            
+            filteredGroceryArray = groceryList.filter{self.items.contains($0.id.uuidString)}
+            favoriteGroceries = filteredGroceryArray.chunked(into: 3)
         }
+        
+        print(favoriteGroceries)
     }
      
     

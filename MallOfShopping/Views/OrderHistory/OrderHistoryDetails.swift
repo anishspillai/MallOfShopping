@@ -25,20 +25,24 @@ struct OrderHistoryDetails: View {
                         .font(.system(size: 18, weight: .light, design: .serif)).padding(.leading, 40)
                     Divider()
                     
-                    HStack {
+                    HStack (spacing: 10) {
                         
                         Image(systemName: "xmark.seal.fill").foregroundColor(Color.red).font(.subheadline)
                         Text("Not yet packed").font(.system(size: 12, weight: .light, design: .serif))
-                            .padding()
+                        
+                        Image(systemName: "pause.fill").foregroundColor(Color.purple).padding(5)
                         
                         Image(systemName: "paperplane.fill").foregroundColor(Color.yellow).font(.subheadline)
                         Text("On the way").font(.system(size: 12, weight: .light, design: .serif))
-                            .padding()
+                        
+                        Image(systemName: "pause.fill").foregroundColor(Color.purple).padding(5)
+
                         
                         Image(systemName: "checkmark.seal.fill").foregroundColor(Color.green).font(.subheadline)
                         Text("Delivered").font(.system(size: 12, weight: .light, design: .serif))
-                            .padding()
-                    }.padding(.leading).padding(.trailing)
+
+                        
+                    }.padding(.leading).padding(.trailing).padding(.bottom)
                 }
                 .padding(.top)
                 .overlay(

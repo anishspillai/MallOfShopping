@@ -14,10 +14,11 @@ struct FavoritesView: View {
     
     @EnvironmentObject var session: SessionStore
     
+    
     var body: some View {
         VStack {
             
-            if(!session.groceryListGridByType.isEmpty) {
+            if(!favorite.favoriteGroceries.isEmpty) {
                 
                 GeometryReader { geometry in
                     VStack {
@@ -31,9 +32,9 @@ struct FavoritesView: View {
                                 .frame(width: geometry.size.width, height: 0.01)
                             
                             Spacer()
-                            ForEach(0..<self.session.groceryListGridByType.count, id: \.self) { index in
+                            ForEach(0..<self.favorite.favoriteGroceries.count, id: \.self) { index in
                                 HStack {
-                                    ForEach(self.session.groceryListGridByType[index]) { grocery in
+                                    ForEach(self.favorite.favoriteGroceries[index]) { grocery in
                                         
                                         NavigationLink(destination:IndividualGroceryDetailView()) {
                                             

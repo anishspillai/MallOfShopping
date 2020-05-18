@@ -223,6 +223,7 @@ struct PriceView: View {
     }
     
     func getColor() -> Color {
+        //print(favorite.items)
         if(self.favorite.items.contains(self.grocery.id.uuidString)) {
             return Color.red
         }

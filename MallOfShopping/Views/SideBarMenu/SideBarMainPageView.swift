@@ -31,7 +31,7 @@ struct SideBarMainPageView: View {
                 
                 Divider().padding(0)
                 
-                NavigationLink(destination: CustomerDetailView()) {
+                NavigationLink(destination: FavoritesView()) {
                     Text("Favorite").font(.system(size: 15, weight: .light, design: .serif))
                 }
                 
