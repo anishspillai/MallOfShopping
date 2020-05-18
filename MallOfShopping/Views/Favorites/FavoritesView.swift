@@ -1,22 +1,18 @@
 //
-//  FilteredGroceryGridView.swift
+//  FavoritesView.swift
 //  MallOfShopping
 //
-//  Created by Anish Pillai on 2020-05-11.
+//  Created by Anish Pillai on 2020-05-18.
 //  Copyright © 2020 URV. All rights reserved.
 //
 
 import SwiftUI
 
-struct FilteredGroceryGridView: View {
+struct FavoritesView: View {
+    
+    @EnvironmentObject var favorite: Favorite
     
     @EnvironmentObject var session: SessionStore
-    
-    @State private var searchText = ""
-    
-    var groceryType: String
-    var grocerySubType: String
-    
     
     var body: some View {
         VStack {
@@ -70,11 +66,10 @@ struct FilteredGroceryGridView: View {
                 InitialView()
             }
         }
-        .onAppear(perform: fetchFilteredGroceries)
+        .onAppear(perform: fetchFavoriteGroceries)
     }
     
-    func fetchFilteredGroceries() {
-        session.getFilteredGroceryList(groceryType: self.groceryType, grocerySubType: self.grocerySubType)
+    func fetchFavoriteGroceries() {
+        favorite.fetchFavoriteGroceries(groceryList: session.groceryList)
     }
 }
-

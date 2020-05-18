@@ -35,7 +35,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: appView
                 .environmentObject(OrderedItems())
-                .environmentObject(SessionStore()))
+                .environmentObject(SessionStore())
+                .environmentObject(Favorite())
+            )
             self.window = window
             window.makeKeyAndVisible()
         }

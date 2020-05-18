@@ -103,7 +103,7 @@ struct OrderHistoryDetails: View {
         switch status {
             
         case "shipped":
-           return "paperplane.fill"
+            return "paperplane.fill"
             
         case "delivered":
             return  "checkmark.seal.fill"

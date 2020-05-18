@@ -191,6 +191,9 @@ struct GroceryDetailView: View {
 
 struct PriceView: View {
     
+    @EnvironmentObject var favorite: Favorite
+    
+    
     let grocery: GROCERY
     
     let url = "https://mallofshopping.s3.eu-north-1.amazonaws.com/images/Aashirvaad_Wheat.png"
@@ -210,8 +213,23 @@ struct PriceView: View {
                 .clipShape(Circle())
                 .foregroundColor(.white)
                 .offset(x: 30, y: -40)
+            
+            Button(action: {
+                self.favorite.favoriteClickHandler(groceryId: self.grocery.id.uuidString)
+            }, label: {
+                Image(systemName: "heart.fill").font(.system(size: 30)).foregroundColor(self.getColor())
+            }) .offset(x: -40, y: -40)
         }
     }
+    
+    func getColor() -> Color {
+        if(self.favorite.items.contains(self.grocery.id.uuidString)) {
+            return Color.red
+        }
+        return Color.gray
+    }
+    
+    
     
     func getPrice(grocery: GROCERY) -> String {
         if(grocery.offerPrice > 0) {

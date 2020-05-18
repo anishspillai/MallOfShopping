@@ -16,6 +16,8 @@ struct SideBarMainPageView: View {
     
     @EnvironmentObject var session: SessionStore
     
+    @EnvironmentObject var favorite: Favorite
+    
     @State private var selection: Set<String> = []
     
     var body: some View {
@@ -131,6 +133,7 @@ struct SideBarMainPageView: View {
     
     func fetchSideBarMenuOptions() {
         self.session.getCatagoriesForSideBarMenu()
+        self.favorite.getFavorites()
         self.session.listen()
     }
     

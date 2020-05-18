@@ -12,6 +12,8 @@ struct OrderConfirmationView: View {
     
     @EnvironmentObject var session: SessionStore
     
+    @EnvironmentObject var favorite: Favorite
+    
     @EnvironmentObject var orderedItems: OrderedItems
     
     @State private var displayReciept = false
@@ -61,7 +63,12 @@ struct OrderConfirmationView: View {
             Spacer()
             
             Button(action: {
+                
                 self.session.addGroceryForTheUser(orderedItems: self.orderedItems)
+                
+                if(!self.favorite.items.isEmpty) {
+                    self.session.addFavoriteGroceries(favorites: self.favorite.items)
+                }
                 self.showAlert = true
                 
             }) {

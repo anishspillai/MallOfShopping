@@ -146,6 +146,15 @@ class SessionStore : ObservableObject {
         
     }
     
+    func addFavoriteGroceries(favorites: [String]) {
+        
+        let ref: DatabaseReference = Database.database().reference(withPath: "users/favorites/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")        
+        
+        ref.setValue(favorites, withCompletionBlock: { (error, ref) in
+        })
+        
+    }
+    
     func addUserAddress(customerDeliveryAddress: CustomerDeliveryAddress) {
         
         let ref: DatabaseReference = Database.database().reference(withPath: "users/user-details/\(String(describing: Auth.auth().currentUser?.uid ?? "Error"))")
